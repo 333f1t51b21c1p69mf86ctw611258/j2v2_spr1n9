@@ -1,0 +1,15 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html>
+  <head>
+  </head>
+<body>
+	<div style="margin-top: 100px;"></div>
+	<nav class="navbar navbar-inverse navbar-fixed-bottom">
+	  <div class="container">
+	    <p class="navbar-text">
+	    	<a href="http://www.frameworkonly.com">Spring Ecosystem</a> &copy; <put-date th:text=${#dates.year(#dates.createNow())}></put-date> |  Spring Boot + Spring WebMVC + Spring Data + Thymeleaf.
+	    </p> 
+	  </div>
+	</nav>
+</body>
+</html>
