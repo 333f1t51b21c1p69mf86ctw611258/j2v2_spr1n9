@@ -21,7 +21,6 @@
                 <li><a href="#contact">Contact</a></li>
                 <li th:classappend="${#httpServletRequest.getRequestURI() == '/products' ? 'active':''}"><a th:href="@{/products}"><span>Products</span></a></li>
                 <li th:classappend="${#httpServletRequest.getRequestURI() == '/devices' ? 'active':''}"><a th:href="@{/devices}"><span>Devices</span></a></li>
-                <li th:classappend="${#httpServletRequest.getRequestURI() == '/persons' ? 'active':''}"><a th:href="@{/persons}"><span>Persons</span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li th:if="${#authorization.expression('!isAuthenticated()')}">
