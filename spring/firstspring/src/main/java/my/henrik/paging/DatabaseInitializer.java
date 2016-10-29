@@ -28,13 +28,32 @@ public class DatabaseInitializer {
         Person fifthPerson = new Person("David", "Cameron", 60);
         Person sixthPerson = new Person(" Alexander", "Lukashenko", 60);
 
+        Person person1 = new Person("Barack", "Obama", 40);
+        Person person2 = new Person("Barack", "Obama", 40);
+        Person person3 = new Person("Barack", "Obama", 40);
+        Person person4 = new Person("Barack", "Obama", 40);
+        Person person5 = new Person("Barack", "Obama", 40);
+        Person person6 = new Person("Barack", "Obama", 40);
+        Person person7 = new Person("Barack", "Obama", 40);
+        Person person8 = new Person("Barack", "Obama", 40);
+        Person person9 = new Person("Barack", "Obama", 40);
+
         personService.save(Arrays.asList(
                 firstPerson,
                 secondPerson,
                 thirdPerson,
                 fourthPerson,
                 fifthPerson,
-                sixthPerson)
+                sixthPerson,
+                person1,
+                person2,
+                person3,
+                person4,
+                person5,
+                person6,
+                person7,
+                person8,
+                person9)
         );
     }
 

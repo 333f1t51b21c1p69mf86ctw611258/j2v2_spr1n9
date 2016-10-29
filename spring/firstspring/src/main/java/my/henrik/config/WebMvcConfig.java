@@ -13,7 +13,6 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-import org.thymeleaf.dialect.springdata.SpringDataDialect;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -64,9 +63,6 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
 
         templateEngine.addDialect(new SpringSecurityDialect());
         templateEngine.addDialect(new Java8TimeDialect());
-
-        // Add the Spring Data dialect to your existing Thymeleaf template engine
-        templateEngine.addDialect(new SpringDataDialect());
 
         return templateEngine;
     }
