@@ -14,7 +14,6 @@ public class DeviceController {
 
     @RequestMapping(value = "/devices", method = RequestMethod.GET)
     public String list(Model model) {
-//        model.addAttribute("products", productService.listAllProducts());
         System.out.println("Returning devices:");
 
         MessageHelper.addInfoAttribute(model, "test.message1");

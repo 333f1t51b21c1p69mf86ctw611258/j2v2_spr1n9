@@ -19,7 +19,7 @@
                 <li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"><a th:href="@{/}"><span>Home</span></a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li th:classappend="${#httpServletRequest.getRequestURI() == '/products' ? 'active':''}"><a th:href="@{/products}"><span>Products</span></a></li>
+                <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/product') ? 'active':''}"><a th:href="@{/products}"><span>Products</span></a></li>
                 <li th:classappend="${#httpServletRequest.getRequestURI() == '/devices' ? 'active':''}"><a th:href="@{/devices}"><span>Devices</span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
