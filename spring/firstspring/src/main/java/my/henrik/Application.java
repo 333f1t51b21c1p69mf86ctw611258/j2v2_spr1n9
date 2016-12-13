@@ -1,3 +1,5 @@
 package my.henrik;
 
-public interface Application {}
+public interface Application {
+
+}
