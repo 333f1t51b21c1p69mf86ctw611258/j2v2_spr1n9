@@ -470,8 +470,8 @@
                 <jpa.database>MYSQL</jpa.database>
                 <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
                 <jdbc.url>jdbc:mysql://localhost:3306/petclinic?useUnicode=true</jdbc.url>
-                <jdbc.username>root</jdbc.username>
-                <jdbc.password>petclinic</jdbc.password>
+                <jdbc.username>henrik</jdbc.username>
+                <jdbc.password>123456</jdbc.password>
             </properties>
             <dependencies>
                 <dependency>

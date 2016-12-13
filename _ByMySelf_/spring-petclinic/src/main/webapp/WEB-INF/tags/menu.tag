@@ -33,6 +33,11 @@
                     <span>Veterinarians</span>
                 </petclinic:menuItem>
 
+                <petclinic:menuItem active="${name eq 'test'}" url="/tests.html" title="Test">
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                    <span>Test</span>
+                </petclinic:menuItem>
+
                 <petclinic:menuItem active="${name eq 'error'}" url="/oups.html"
                             title="trigger a RuntimeException to see how it is handled">
                     <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
