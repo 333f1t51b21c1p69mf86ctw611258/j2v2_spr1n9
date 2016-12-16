@@ -41,7 +41,7 @@ public class TestController {
         this.clinicService = clinicService;
     }
 
-    @RequestMapping(value = { "/tests.html"})
+    @RequestMapping(value = {"/tests.html"})
     public String showVetList(Map<String, Object> model) {
         // Here we are returning an object of type 'Vets' rather than a collection of Vet objects
         // so it is simpler for Object-Xml mapping
@@ -51,7 +51,7 @@ public class TestController {
         return "tests/testList";
     }
 
-    @RequestMapping(value = { "/tests.json", "/tests.xml"})
+    @RequestMapping(value = {"/tests.json", "/tests.xml"})
     public
     @ResponseBody
     Vets showResourcesVetList() {
