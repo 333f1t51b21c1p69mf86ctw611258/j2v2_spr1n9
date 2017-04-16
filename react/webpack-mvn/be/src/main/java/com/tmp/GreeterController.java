@@ -11,16 +11,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "/api/greetings")
 public class GreeterController {
-    
-    private static final String template = "Hello, %s!";
 
-    @RequestMapping(method = RequestMethod.GET, produces = { "application/json" })
-    public @ResponseBody Greeting greetNoName() {
+    private static final String template = "Hello ***, %s!";
+
+    @RequestMapping(method = RequestMethod.GET, produces = {"application/json"})
+    public
+    @ResponseBody
+    Greeting greetNoName() {
         return new Greeting(String.format(template, "World"));
     }
 
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = { "application/json" })
-    public @ResponseBody Greeting greetName(final @PathVariable String name) {
+    @RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = {"application/json"})
+    public
+    @ResponseBody
+    Greeting greetName(final @PathVariable String name) {
         return new Greeting(String.format(template, name));
     }
 
