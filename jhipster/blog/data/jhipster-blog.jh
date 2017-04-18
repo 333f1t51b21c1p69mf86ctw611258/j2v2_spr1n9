@@ -13,6 +13,22 @@ entity Tag {
 	name String required minlength(2)
 }
 
+entity Author {
+	name String required minlength(1) maxlength(255),
+    birthDate LocalDate
+}
+
+entity Book {
+	title String,
+	description String,
+	publicationDate LocalDate,
+	price BigDecimal
+}
+
+relationship ManyToOne {
+	Book{author(name)} to Author
+}
+
 relationship ManyToOne {
 	Blog{user(login)} to User
 }
@@ -25,4 +41,4 @@ relationship ManyToMany {
 	Entry{tag(name)} to Tag{entry}
 }
 
-paginate Entry, Tag with infinite-scroll
+paginate Entry, Tag, Author, Book with infinite-scroll
