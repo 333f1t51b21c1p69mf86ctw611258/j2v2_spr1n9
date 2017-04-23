@@ -9,10 +9,11 @@
 
     function stateConfig($stateProvider) {
         $stateProvider.state('static', {
-            parent: 'admin-jobs',
+            parent: 'app',
             url: '/static',
             data: {
-                authorities: []
+                authorities: ['ROLE_USER'],
+                pageTitle: 'Static'
             },
             views: {
                 'content@': {
