@@ -9,7 +9,7 @@
 
     function stateConfig($stateProvider) {
         $stateProvider.state('static', {
-            parent: 'app',
+            parent: 'common',
             url: '/static',
             data: {
                 authorities: ['ROLE_USER'],
@@ -17,7 +17,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/static/static.html',
+                    templateUrl: 'app/common/static/static.html',
                     controller: 'StaticController',
                     controllerAs: 'vm'
                 }
