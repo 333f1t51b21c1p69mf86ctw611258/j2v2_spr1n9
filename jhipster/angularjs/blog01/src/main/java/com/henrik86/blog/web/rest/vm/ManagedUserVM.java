@@ -42,4 +42,12 @@ public class ManagedUserVM extends UserDTO {
         return "ManagedUserVM{" +
             "} " + super.toString();
     }
+
+    // Default attributes omitted for brevity
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
 }
