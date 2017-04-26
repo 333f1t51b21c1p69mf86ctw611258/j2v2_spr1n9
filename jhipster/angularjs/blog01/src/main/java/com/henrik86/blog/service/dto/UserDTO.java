@@ -164,4 +164,12 @@ public class UserDTO {
             ", authorities=" + authorities +
             "}";
     }
+
+    // Default attributes omitted for brevity
+
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
 }

@@ -33,5 +33,5 @@ entity UserExtra {
 }
 
 relationship OneToOne {
-  UserExtra{user(id)} to User
+    UserExtra{user(id)} to User
 }

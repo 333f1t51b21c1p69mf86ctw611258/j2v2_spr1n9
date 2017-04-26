@@ -2,9 +2,11 @@ package com.henrik86.blog.service;
 
 import com.henrik86.blog.domain.Authority;
 import com.henrik86.blog.domain.User;
+import com.henrik86.blog.domain.UserExtra;
 import com.henrik86.blog.repository.AuthorityRepository;
 import com.henrik86.blog.repository.PersistentTokenRepository;
 import com.henrik86.blog.config.Constants;
+import com.henrik86.blog.repository.UserExtraRepository;
 import com.henrik86.blog.repository.UserRepository;
 import com.henrik86.blog.security.AuthoritiesConstants;
 import com.henrik86.blog.security.SecurityUtils;
@@ -35,17 +37,25 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final UserExtraRepository userExtraRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     private final PersistentTokenRepository persistentTokenRepository;
 
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository) {
+    public UserService(UserRepository userRepository,
+                       PasswordEncoder passwordEncoder,
+                       PersistentTokenRepository persistentTokenRepository,
+                       AuthorityRepository authorityRepository,
+                       UserExtraRepository userExtraRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.persistentTokenRepository = persistentTokenRepository;
         this.authorityRepository = authorityRepository;
+
+        this.userExtraRepository = userExtraRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -84,6 +94,16 @@ public class UserService {
                 user.setResetDate(ZonedDateTime.now());
                 return user;
             });
+    }
+
+    public void createExtraInfo(User newUser, String phone) {
+        // Create and save the UserExtra entity
+        UserExtra newUserExtra = new UserExtra();
+        newUserExtra.setId(newUser.getId());
+        newUserExtra.setPhone(phone);
+        newUserExtra.setUser(newUser);
+        userExtraRepository.save(newUserExtra);
+        log.debug("Created Information for UserExtra: {}", newUserExtra);
     }
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
