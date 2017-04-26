@@ -1,17 +1,16 @@
 package com.henrik86.blog.service;
 
-import com.henrik86.blog.config.Constants;
 import com.henrik86.blog.domain.Authority;
 import com.henrik86.blog.domain.User;
-import com.henrik86.blog.domain.UserExtra;
 import com.henrik86.blog.repository.AuthorityRepository;
 import com.henrik86.blog.repository.PersistentTokenRepository;
-import com.henrik86.blog.repository.UserExtraRepository;
+import com.henrik86.blog.config.Constants;
 import com.henrik86.blog.repository.UserRepository;
 import com.henrik86.blog.security.AuthoritiesConstants;
 import com.henrik86.blog.security.SecurityUtils;
-import com.henrik86.blog.service.dto.UserDTO;
 import com.henrik86.blog.service.util.RandomUtil;
+import com.henrik86.blog.service.dto.UserDTO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -23,10 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Service class for managing users.
@@ -45,16 +41,11 @@ public class UserService {
 
     private final AuthorityRepository authorityRepository;
 
-    private final UserExtraRepository userExtraRepository;
-
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository,
-                       UserExtraRepository userExtraRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.persistentTokenRepository = persistentTokenRepository;
         this.authorityRepository = authorityRepository;
-
-        this.userExtraRepository = userExtraRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -70,19 +61,19 @@ public class UserService {
     }
 
     public Optional<User> completePasswordReset(String newPassword, String key) {
-        log.debug("Reset user password for reset key {}", key);
+       log.debug("Reset user password for reset key {}", key);
 
-        return userRepository.findOneByResetKey(key)
+       return userRepository.findOneByResetKey(key)
             .filter(user -> {
                 ZonedDateTime oneDayAgo = ZonedDateTime.now().minusHours(24);
                 return user.getResetDate().isAfter(oneDayAgo);
-            })
-            .map(user -> {
+           })
+           .map(user -> {
                 user.setPassword(passwordEncoder.encode(newPassword));
                 user.setResetKey(null);
                 user.setResetDate(null);
                 return user;
-            });
+           });
     }
 
     public Optional<User> requestPasswordReset(String mail) {
@@ -93,16 +84,6 @@ public class UserService {
                 user.setResetDate(ZonedDateTime.now());
                 return user;
             });
-    }
-
-    public void addExtraInfo(User newUser, String phone) {
-        // Create and save the UserExtra entity
-        UserExtra newUserExtra = new UserExtra();
-        newUserExtra.setId(newUser.getId());
-        newUserExtra.setPhone(phone);
-        newUserExtra.setUser(newUser);
-        userExtraRepository.save(newUserExtra);
-        log.debug("Created Information for UserExtra: {}", newUserExtra);
     }
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
@@ -164,10 +145,10 @@ public class UserService {
      * Update basic information (first name, last name, email, language) for the current user.
      *
      * @param firstName first name of user
-     * @param lastName  last name of user
-     * @param email     email id of user
-     * @param langKey   language key
-     * @param imageUrl  image URL of user
+     * @param lastName last name of user
+     * @param email email id of user
+     * @param langKey language key
+     * @param imageUrl image URL of user
      */
     public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
