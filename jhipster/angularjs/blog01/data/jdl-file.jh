@@ -26,3 +26,12 @@ relationship ManyToMany {
 }
 
 paginate Entry, Tag with infinite-scroll
+
+entity UserExtra {
+	id Long,
+	phone String
+}
+
+relationship OneToOne {
+  UserExtra{user(id)} to User
+}
