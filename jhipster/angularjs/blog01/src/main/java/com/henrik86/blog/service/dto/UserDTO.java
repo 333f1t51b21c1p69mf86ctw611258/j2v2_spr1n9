@@ -5,6 +5,7 @@ import com.henrik86.blog.config.Constants;
 import com.henrik86.blog.domain.Authority;
 import com.henrik86.blog.domain.User;
 
+import com.henrik86.blog.domain.UserExtra;
 import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.*;
@@ -81,6 +82,14 @@ public class UserDTO {
         this.lastModifiedBy = lastModifiedBy;
         this.lastModifiedDate = lastModifiedDate;
         this.authorities = authorities;
+    }
+
+    public UserDTO(User user, UserExtra userExtra) {
+        this(user);
+
+        if (userExtra != null) {
+            this.phone = userExtra.getPhone();
+        }
     }
 
     public Long getId() {

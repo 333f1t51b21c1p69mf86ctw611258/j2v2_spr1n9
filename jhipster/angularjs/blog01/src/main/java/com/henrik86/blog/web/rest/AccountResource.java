@@ -4,7 +4,9 @@ import com.codahale.metrics.annotation.Timed;
 
 import com.henrik86.blog.domain.PersistentToken;
 import com.henrik86.blog.domain.User;
+import com.henrik86.blog.domain.UserExtra;
 import com.henrik86.blog.repository.PersistentTokenRepository;
+import com.henrik86.blog.repository.UserExtraRepository;
 import com.henrik86.blog.repository.UserRepository;
 import com.henrik86.blog.security.SecurityUtils;
 import com.henrik86.blog.service.MailService;
@@ -17,6 +19,7 @@ import com.henrik86.blog.web.rest.util.HeaderUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -41,6 +44,9 @@ public class AccountResource {
     private final UserRepository userRepository;
 
     private final UserService userService;
+
+    @Autowired
+    private UserExtraRepository userExtraRepository;
 
     private final MailService mailService;
 
@@ -123,7 +129,7 @@ public class AccountResource {
     @Timed
     public ResponseEntity<UserDTO> getAccount() {
         return Optional.ofNullable(userService.getUserWithAuthorities())
-            .map(user -> new ResponseEntity<>(new UserDTO(user), HttpStatus.OK))
+            .map(user -> new ResponseEntity<>(new UserDTO(user, userExtraRepository.findOne(user.getId())), HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
