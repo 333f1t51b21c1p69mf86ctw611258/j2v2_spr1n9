@@ -96,14 +96,16 @@ public class UserService {
             });
     }
 
-    public void createExtraInfo(User newUser, String phone) {
+    public UserExtra createExtraInfo(User newUser, String phone) {
         // Create and save the UserExtra entity
         UserExtra newUserExtra = new UserExtra();
         newUserExtra.setId(newUser.getId());
         newUserExtra.setPhone(phone);
         newUserExtra.setUser(newUser);
-        userExtraRepository.save(newUserExtra);
+        newUserExtra = userExtraRepository.save(newUserExtra);
         log.debug("Created Information for UserExtra: {}", newUserExtra);
+
+        return newUserExtra;
     }
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
@@ -276,5 +278,21 @@ public class UserService {
             log.debug("Deleting not activated user {}", user.getLogin());
             userRepository.delete(user);
         }
+    }
+
+    public UserExtra updateExtraInfo(User user, String phone) {
+        UserExtra userExtra = userExtraRepository.findOne(user.getId());
+
+        if (userExtra == null) {
+            userExtra = createExtraInfo(user, phone);
+        } else {
+            userExtra.setPhone(phone);
+
+            userExtra = userExtraRepository.save(userExtra);
+
+            log.debug("Changed Information for UserExtra: {}", userExtra);
+        }
+
+        return userExtra;
     }
 }

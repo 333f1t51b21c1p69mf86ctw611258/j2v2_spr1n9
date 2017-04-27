@@ -73,6 +73,30 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label class="control-label" for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Your phone"
+                           ng-model="vm.settingsAccount.phone" ng-minlength=5 ng-maxlength=100 maxlength="100">
+                    <div ng-show="form.phone.$dirty && form.phone.$invalid">
+                        <p class="help-block"
+                           ng-show="form.phone.$error.required">
+                            Your phone is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="form.phone.$error.phone">
+                            Your phone is invalid.
+                        </p>
+                        <p class="help-block"
+                           ng-show="form.phone.$error.minlength">
+                            Your phone is required to be at least 5 characters.
+                        </p>
+                        <p class="help-block"
+                           ng-show="form.phone.$error.maxlength">
+                            Your phone cannot be longer than 100 characters.
+                        </p>
+                    </div>
+                </div>
+
                 <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Save</button>
             </form>
         </div>
