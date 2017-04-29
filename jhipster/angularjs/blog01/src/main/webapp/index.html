@@ -34,20 +34,23 @@
         </div>
 
         <div class="footer" ng-cloak="">
-            <p data-translate="footer">This is your footer</p>
+            <p data-translate="footer" class="pull-left">This is your footer</p>
             <div ng-controller="BootswatchController as vm" id="bootswatch-theme-switcher" uib-dropdown="" class="dropup pull-right">
-                    <a class="btn btn-default dropdown-toggle" uib-dropdown-toggle="">
-                        <span class="glyphicon glyphicon-adjust"></span>
-                        <span class="hidden-tablet" translate="bootswatch.themeSelector">Theme</span>
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu" role="menu" uib-dropdown-menu="">
-                        <li class="theme-link" ng-repeat="theme in vm.themes">
-                            <a href="" jh-switch-theme="theme">{{theme.name}}</a>
-                        </li>
-                    </ul>
-                </div>
+                <a class="btn btn-default dropdown-toggle" uib-dropdown-toggle="">
+                    <span class="glyphicon glyphicon-adjust"></span>
+                    <span class="hidden-tablet" translate="bootswatch.themeSelector">Theme</span>
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu" uib-dropdown-menu="">
+                    <li class="theme-link" ng-repeat="theme in vm.themes">
+                        <a href="" jh-switch-theme="theme">{{theme.name}}</a>
+                    </li>
+                </ul>
             </div>
+            <br />
+            <br />
+            <br />
+        </div>
     </div>
 
     <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
