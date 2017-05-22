@@ -7,3 +7,148 @@
 5602 [restartedMain] WARN  o.a.c.f.AbstractWSDLBasedEndpointFactory - Could not find endpoint/port for {http://endpoint.web.seawind.dzs.com/}WeatherServiceEndpointPort in wsdl. Using {http://www.codecentric.de/namespace/weatherservice/}WeatherService.
 5619 [restartedMain] INFO  org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be /WeatherSoapService_1.0
 7383 [restartedMain] INFO  c.d.s.web.SeawindWebApplication - Started SeawindWebApplication in 7.134 seconds (JVM running for 7.666)
+845  [restartedMain] INFO  c.d.s.web.SeawindWebApplication - Starting SeawindWebApplication on DESKTOP-OB29B68 with PID 3124 (D:\Develop\Java\Github\spring\dzs-seawind\sw-web\target\classes started by Henrik in D:\Develop\Java\Github\spring\dzs-seawind\sw-web)
+850  [restartedMain] INFO  c.d.s.web.SeawindWebApplication - No active profile set, falling back to default profiles: default
+3293 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service Tomcat
+3295 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.5
+3411 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+4546 [restartedMain] INFO  o.a.c.w.s.f.ReflectionServiceFactoryBean - Creating Service {http://www.codecentric.de/namespace/weatherservice/}Weather from WSDL: file:/D:/Develop/Java/Github/spring/dzs-seawind/sw-web/target/classes/service-api-definition/Weather1.0.wsdl
+4886 [restartedMain] WARN  o.a.c.f.AbstractWSDLBasedEndpointFactory - Could not find endpoint/port for {http://endpoint.web.seawind.dzs.com/}WeatherServiceEndpointPort in wsdl. Using {http://www.codecentric.de/namespace/weatherservice/}WeatherService.
+4903 [restartedMain] INFO  org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be /WeatherSoapService_1.0
+6620 [restartedMain] INFO  c.d.s.web.SeawindWebApplication - Started SeawindWebApplication in 6.375 seconds (JVM running for 6.905)
+856  [main] INFO  d.j.t.e.WeatherServiceXmlFileSystemTest - Starting WeatherServiceXmlFileSystemTest on DESKTOP-OB29B68 with PID 11408 (started by Henrik in D:\Develop\Java\Github\spring\dzs-seawind\sw-web)
+857  [main] INFO  d.j.t.e.WeatherServiceXmlFileSystemTest - No active profile set, falling back to default profiles: default
+2616 [main] INFO  o.a.catalina.core.StandardService - Starting service Tomcat
+2618 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.5
+2734 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+3640 [main] INFO  o.a.c.w.s.f.ReflectionServiceFactoryBean - Creating Service {http://www.codecentric.de/namespace/weatherservice/}WeatherServiceService from class de.codecentric.namespace.weatherservice.WeatherService
+4411 [main] INFO  o.a.c.w.s.f.ReflectionServiceFactoryBean - Creating Service {http://www.codecentric.de/namespace/weatherservice/}Weather from WSDL: file:/D:/Develop/Java/Github/spring/dzs-seawind/sw-web/target/classes/service-api-definition/Weather1.0.wsdl
+4440 [main] WARN  o.a.c.f.AbstractWSDLBasedEndpointFactory - Could not find endpoint/port for {http://endpoint.web.seawind.dzs.com/}WeatherServiceEndpointPort in wsdl. Using {http://www.codecentric.de/namespace/weatherservice/}WeatherService.
+4457 [main] INFO  org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be /WeatherSoapService_1.0
+5315 [main] INFO  d.j.t.e.WeatherServiceXmlFileSystemTest - Started WeatherServiceXmlFileSystemTest in 4.988 seconds (JVM running for 5.537)
+5522 [main] INFO  d.c.c.l.s.SoapMessageLoggingOutInterceptor - <]=== Outbound-SoapMessage <]=== stored in ElasticsearchField 'soap-message-outbound'
+5525 [main] INFO  o.a.c.s.W.W.WeatherService - 000 >>> Outbound Message:
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetCityForecastByZIP xmlns="http://www.codecentric.de/namespace/weatherservice/general" xmlns:ns2="http://www.codecentric.de/namespace/weatherservice/exception" xmlns:ns3="http://www.codecentric.de/namespace/weatherservice/datatypes" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+      <ForecastRequest>
+        <ZIP>99425</ZIP>
+        <flagcolor>bluewhite</flagcolor>
+        <productName>ForecastBasic</productName>
+        <ForecastCustomer>
+          <Age>30</Age>
+          <Contribution>5000</Contribution>
+          <MethodOfPayment>Paypal</MethodOfPayment>
+        </ForecastCustomer>
+      </ForecastRequest>
+    </GetCityForecastByZIP>
+  </soap:Body>
+</soap:Envelope>
+
+5636 [http-nio-8090-exec-1] INFO  d.c.c.l.s.SoapMessageLoggingInInterceptor - ===[> Inbound-SoapMessage ===[> stored in ElasticsearchField 'soap-message-inbound'
+5637 [http-nio-8090-exec-1] INFO  d.c.c.l.s.SoapMessageLoggingInInterceptor - 001 >>> Header in Inbound-HTTP-Message stored in Elasticsearch-Field 'http-header-inbound'
+5637 [http-nio-8090-exec-1] INFO  o.a.c.s.W.W.WeatherService - 000 >>> Inbound Message:
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><GetCityForecastByZIP xmlns="http://www.codecentric.de/namespace/weatherservice/general" xmlns:ns2="http://www.codecentric.de/namespace/weatherservice/exception" xmlns:ns3="http://www.codecentric.de/namespace/weatherservice/datatypes" xmlns:xmime="http://www.w3.org/2005/05/xmlmime"><ForecastRequest><ZIP>99425</ZIP><flagcolor>bluewhite</flagcolor><productName>ForecastBasic</productName><ForecastCustomer><Age>30</Age><Contribution>5000</Contribution><MethodOfPayment>Paypal</MethodOfPayment></ForecastCustomer></ForecastRequest></GetCityForecastByZIP></soap:Body></soap:Envelope>
+5696 [http-nio-8090-exec-1] INFO  d.c.c.l.s.SoapMessageLoggingOutInterceptor - <]=== Outbound-SoapMessage <]=== stored in ElasticsearchField 'soap-message-outbound'
+5704 [http-nio-8090-exec-1] INFO  o.a.c.s.W.W.WeatherService - 000 >>> Outbound Message:
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetCityForecastByZIPResponse xmlns="http://www.codecentric.de/namespace/weatherservice/general" xmlns:ns2="http://www.codecentric.de/namespace/weatherservice/exception" xmlns:ns3="http://www.codecentric.de/namespace/weatherservice/datatypes" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+      <GetCityForecastByZIPResult>
+        <Success>true</Success>
+        <State>Deutschland</State>
+        <City>Weimar</City>
+        <WeatherStationCity>Weimar</WeatherStationCity>
+        <ForecastResult>
+          <ns3:Forecast>
+            <ns3:Date>2017-05-22T14:19:06.461+07:00</ns3:Date>
+            <ns3:WeatherID>0</ns3:WeatherID>
+            <ns3:Desciption>Vorhersage für Weimar</ns3:Desciption>
+            <ns3:Temperatures>
+              <ns3:MorningLow>0°</ns3:MorningLow>
+              <ns3:DaytimeHigh>90°</ns3:DaytimeHigh>
+            </ns3:Temperatures>
+            <ns3:ProbabilityOfPrecipiation>
+              <ns3:Nighttime>5000%</ns3:Nighttime>
+              <ns3:Daytime>22%</ns3:Daytime>
+            </ns3:ProbabilityOfPrecipiation>
+          </ns3:Forecast>
+        </ForecastResult>
+      </GetCityForecastByZIPResult>
+    </GetCityForecastByZIPResponse>
+  </soap:Body>
+</soap:Envelope>
+
+5709 [http-nio-8090-exec-1] INFO  d.c.c.logging.LogCorrelationFilter - 009 >>> Calltime: 86
+5713 [main] INFO  d.c.c.l.s.SoapMessageLoggingInInterceptor - ===[> Inbound-SoapMessage ===[> stored in ElasticsearchField 'soap-message-inbound'
+5714 [main] INFO  d.c.c.l.s.SoapMessageLoggingInInterceptor - 001 >>> Header in Inbound-HTTP-Message stored in Elasticsearch-Field 'http-header-inbound'
+5720 [main] INFO  o.a.c.s.W.W.WeatherService - 000 >>> Inbound Message:
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><GetCityForecastByZIPResponse xmlns="http://www.codecentric.de/namespace/weatherservice/general" xmlns:ns2="http://www.codecentric.de/namespace/weatherservice/exception" xmlns:ns3="http://www.codecentric.de/namespace/weatherservice/datatypes" xmlns:xmime="http://www.w3.org/2005/05/xmlmime"><GetCityForecastByZIPResult><Success>true</Success><State>Deutschland</State><City>Weimar</City><WeatherStationCity>Weimar</WeatherStationCity><ForecastResult><ns3:Forecast><ns3:Date>2017-05-22T14:19:06.461+07:00</ns3:Date><ns3:WeatherID>0</ns3:WeatherID><ns3:Desciption>Vorhersage für Weimar</ns3:Desciption><ns3:Temperatures><ns3:MorningLow>0°</ns3:MorningLow><ns3:DaytimeHigh>90°</ns3:DaytimeHigh></ns3:Temperatures><ns3:ProbabilityOfPrecipiation><ns3:Nighttime>5000%</ns3:Nighttime><ns3:Daytime>22%</ns3:Daytime></ns3:ProbabilityOfPrecipiation></ns3:Forecast></ForecastResult></GetCityForecastByZIPResult></GetCityForecastByZIPResponse></soap:Body></soap:Envelope>
+1030 [main] INFO  d.j.t.e.WeatherServiceXmlFileSystemTest - Starting WeatherServiceXmlFileSystemTest on DESKTOP-OB29B68 with PID 3104 (started by Henrik in D:\Develop\Java\Github\spring\dzs-seawind\sw-web)
+1032 [main] INFO  d.j.t.e.WeatherServiceXmlFileSystemTest - No active profile set, falling back to default profiles: default
+3175 [main] INFO  o.a.catalina.core.StandardService - Starting service Tomcat
+3177 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.5
+3282 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+4335 [main] INFO  o.a.c.w.s.f.ReflectionServiceFactoryBean - Creating Service {http://www.codecentric.de/namespace/weatherservice/}WeatherServiceService from class de.codecentric.namespace.weatherservice.WeatherService
+5206 [main] INFO  o.a.c.w.s.f.ReflectionServiceFactoryBean - Creating Service {http://www.codecentric.de/namespace/weatherservice/}Weather from WSDL: file:/D:/Develop/Java/Github/spring/dzs-seawind/sw-web/target/classes/service-api-definition/Weather1.0.wsdl
+5239 [main] WARN  o.a.c.f.AbstractWSDLBasedEndpointFactory - Could not find endpoint/port for {http://endpoint.web.seawind.dzs.com/}WeatherServiceEndpointPort in wsdl. Using {http://www.codecentric.de/namespace/weatherservice/}WeatherService.
+5256 [main] INFO  org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be /WeatherSoapService_1.0
+6552 [main] INFO  d.j.t.e.WeatherServiceXmlFileSystemTest - Started WeatherServiceXmlFileSystemTest in 6.173 seconds (JVM running for 6.891)
+6832 [main] INFO  d.c.c.l.s.SoapMessageLoggingOutInterceptor - <]=== Outbound-SoapMessage <]=== stored in ElasticsearchField 'soap-message-outbound'
+6835 [main] INFO  o.a.c.s.W.W.WeatherService - 000 >>> Outbound Message:
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetCityForecastByZIP xmlns="http://www.codecentric.de/namespace/weatherservice/general" xmlns:ns2="http://www.codecentric.de/namespace/weatherservice/exception" xmlns:ns3="http://www.codecentric.de/namespace/weatherservice/datatypes" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+      <ForecastRequest>
+        <ZIP>99425</ZIP>
+        <flagcolor>bluewhite</flagcolor>
+        <productName>ForecastBasic</productName>
+        <ForecastCustomer>
+          <Age>30</Age>
+          <Contribution>5000</Contribution>
+          <MethodOfPayment>Paypal</MethodOfPayment>
+        </ForecastCustomer>
+      </ForecastRequest>
+    </GetCityForecastByZIP>
+  </soap:Body>
+</soap:Envelope>
+
+6930 [http-nio-8090-exec-1] INFO  d.c.c.l.s.SoapMessageLoggingInInterceptor - ===[> Inbound-SoapMessage ===[> stored in ElasticsearchField 'soap-message-inbound'
+6931 [http-nio-8090-exec-1] INFO  d.c.c.l.s.SoapMessageLoggingInInterceptor - 001 >>> Header in Inbound-HTTP-Message stored in Elasticsearch-Field 'http-header-inbound'
+6931 [http-nio-8090-exec-1] INFO  o.a.c.s.W.W.WeatherService - 000 >>> Inbound Message:
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><GetCityForecastByZIP xmlns="http://www.codecentric.de/namespace/weatherservice/general" xmlns:ns2="http://www.codecentric.de/namespace/weatherservice/exception" xmlns:ns3="http://www.codecentric.de/namespace/weatherservice/datatypes" xmlns:xmime="http://www.w3.org/2005/05/xmlmime"><ForecastRequest><ZIP>99425</ZIP><flagcolor>bluewhite</flagcolor><productName>ForecastBasic</productName><ForecastCustomer><Age>30</Age><Contribution>5000</Contribution><MethodOfPayment>Paypal</MethodOfPayment></ForecastCustomer></ForecastRequest></GetCityForecastByZIP></soap:Body></soap:Envelope>
+33469 [http-nio-8090-exec-1] INFO  d.c.c.l.s.SoapMessageLoggingOutInterceptor - <]=== Outbound-SoapMessage <]=== stored in ElasticsearchField 'soap-message-outbound'
+33475 [http-nio-8090-exec-1] INFO  o.a.c.s.W.W.WeatherService - 000 >>> Outbound Message:
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetCityForecastByZIPResponse xmlns="http://www.codecentric.de/namespace/weatherservice/general" xmlns:ns2="http://www.codecentric.de/namespace/weatherservice/exception" xmlns:ns3="http://www.codecentric.de/namespace/weatherservice/datatypes" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+      <GetCityForecastByZIPResult>
+        <Success>true</Success>
+        <State>Deutschland</State>
+        <City>Weimar</City>
+        <WeatherStationCity>Weimar</WeatherStationCity>
+        <ForecastResult>
+          <ns3:Forecast>
+            <ns3:Date>2017-05-22T14:20:09.888+07:00</ns3:Date>
+            <ns3:WeatherID>0</ns3:WeatherID>
+            <ns3:Desciption>Vorhersage für Weimar</ns3:Desciption>
+            <ns3:Temperatures>
+              <ns3:MorningLow>0°</ns3:MorningLow>
+              <ns3:DaytimeHigh>90°</ns3:DaytimeHigh>
+            </ns3:Temperatures>
+            <ns3:ProbabilityOfPrecipiation>
+              <ns3:Nighttime>5000%</ns3:Nighttime>
+              <ns3:Daytime>22%</ns3:Daytime>
+            </ns3:ProbabilityOfPrecipiation>
+          </ns3:Forecast>
+        </ForecastResult>
+      </GetCityForecastByZIPResult>
+    </GetCityForecastByZIPResponse>
+  </soap:Body>
+</soap:Envelope>
+
+33479 [http-nio-8090-exec-1] INFO  d.c.c.logging.LogCorrelationFilter - 009 >>> Calltime: 26561
+33484 [main] INFO  d.c.c.l.s.SoapMessageLoggingInInterceptor - ===[> Inbound-SoapMessage ===[> stored in ElasticsearchField 'soap-message-inbound'
+33484 [main] INFO  d.c.c.l.s.SoapMessageLoggingInInterceptor - 001 >>> Header in Inbound-HTTP-Message stored in Elasticsearch-Field 'http-header-inbound'
+33489 [main] INFO  o.a.c.s.W.W.WeatherService - 000 >>> Inbound Message:
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><GetCityForecastByZIPResponse xmlns="http://www.codecentric.de/namespace/weatherservice/general" xmlns:ns2="http://www.codecentric.de/namespace/weatherservice/exception" xmlns:ns3="http://www.codecentric.de/namespace/weatherservice/datatypes" xmlns:xmime="http://www.w3.org/2005/05/xmlmime"><GetCityForecastByZIPResult><Success>true</Success><State>Deutschland</State><City>Weimar</City><WeatherStationCity>Weimar</WeatherStationCity><ForecastResult><ns3:Forecast><ns3:Date>2017-05-22T14:20:09.888+07:00</ns3:Date><ns3:WeatherID>0</ns3:WeatherID><ns3:Desciption>Vorhersage für Weimar</ns3:Desciption><ns3:Temperatures><ns3:MorningLow>0°</ns3:MorningLow><ns3:DaytimeHigh>90°</ns3:DaytimeHigh></ns3:Temperatures><ns3:ProbabilityOfPrecipiation><ns3:Nighttime>5000%</ns3:Nighttime><ns3:Daytime>22%</ns3:Daytime></ns3:ProbabilityOfPrecipiation></ns3:Forecast></ForecastResult></GetCityForecastByZIPResult></GetCityForecastByZIPResponse></soap:Body></soap:Envelope>
