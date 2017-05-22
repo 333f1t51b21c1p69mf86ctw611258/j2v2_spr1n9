@@ -1,15 +1,17 @@
-package de.jonashackt.tutorial.configuration;
+package com.dzs.seawind.web.configuration;
 
 import de.codecentric.cxf.xmlvalidation.CustomFaultBuilder;
 import de.codecentric.namespace.weatherservice.Weather;
 import de.codecentric.namespace.weatherservice.WeatherService;
-import de.jonashackt.tutorial.endpoint.WeatherServiceEndpoint;
-import de.jonashackt.tutorial.xmlvalidation.WeatherFaultBuilder;
+
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.dzs.seawind.web.endpoint.WeatherServiceEndpoint;
+import com.dzs.seawind.web.xmlvalidation.WeatherFaultBuilder;
 
 import javax.xml.ws.Endpoint;
 

@@ -1,9 +1,11 @@
-package de.jonashackt.tutorial.controller;
+package com.dzs.seawind.web.controller;
 
 import de.codecentric.namespace.weatherservice.general.ForecastRequest;
 import de.codecentric.namespace.weatherservice.general.ForecastReturn;
-import de.jonashackt.tutorial.transformation.GetCityForecastByZIPOutMapper;
+
 import org.springframework.stereotype.Component;
+
+import com.dzs.seawind.web.transformation.GetCityForecastByZIPOutMapper;
 
 /*
  *  Example-Controller:

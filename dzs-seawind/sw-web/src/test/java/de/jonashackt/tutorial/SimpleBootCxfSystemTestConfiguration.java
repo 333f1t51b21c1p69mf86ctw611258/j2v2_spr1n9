@@ -4,11 +4,13 @@ import de.codecentric.cxf.common.BootStarterCxfException;
 import de.codecentric.cxf.configuration.CxfAutoConfiguration;
 import de.codecentric.cxf.soaprawclient.SoapRawClient;
 import de.codecentric.namespace.weatherservice.WeatherService;
-import de.jonashackt.tutorial.configuration.SimpleBootCxfConfiguration;
+
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.dzs.seawind.web.configuration.SimpleBootCxfConfiguration;
 
 @Configuration
 public class SimpleBootCxfSystemTestConfiguration {

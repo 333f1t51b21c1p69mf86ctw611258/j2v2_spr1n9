@@ -1,4 +1,4 @@
-package de.jonashackt.tutorial.endpoint;
+package com.dzs.seawind.web.endpoint;
 
 import de.codecentric.namespace.weatherservice.WeatherException;
 import de.codecentric.namespace.weatherservice.WeatherService;
@@ -6,8 +6,10 @@ import de.codecentric.namespace.weatherservice.general.ForecastRequest;
 import de.codecentric.namespace.weatherservice.general.ForecastReturn;
 import de.codecentric.namespace.weatherservice.general.WeatherInformationReturn;
 import de.codecentric.namespace.weatherservice.general.WeatherReturn;
-import de.jonashackt.tutorial.controller.WeatherServiceController;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.dzs.seawind.web.controller.WeatherServiceController;
 
 
 public class WeatherServiceEndpoint implements WeatherService {

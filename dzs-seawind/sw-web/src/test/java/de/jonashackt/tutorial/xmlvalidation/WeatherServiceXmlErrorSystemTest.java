@@ -6,7 +6,7 @@ import de.codecentric.cxf.common.FaultType;
 import de.codecentric.cxf.soaprawclient.SoapRawClient;
 import de.codecentric.cxf.soaprawclient.SoapRawClientResponse;
 import de.jonashackt.tutorial.SimpleBootCxfSystemTestApplication;
-import de.jonashackt.tutorial.common.CustomIds;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.Resource;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.dzs.seawind.web.common.CustomIds;
 
 import java.io.IOException;
 

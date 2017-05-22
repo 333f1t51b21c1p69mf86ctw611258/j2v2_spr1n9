@@ -1,10 +1,12 @@
-package de.jonashackt.tutorial.xmlvalidation;
+package com.dzs.seawind.web.xmlvalidation;
 
 import de.codecentric.cxf.common.FaultType;
 import de.codecentric.cxf.xmlvalidation.CustomFaultBuilder;
 import de.codecentric.namespace.weatherservice.exception.WeatherException;
-import de.jonashackt.tutorial.common.CustomIds;
+
 import org.springframework.stereotype.Component;
+
+import com.dzs.seawind.web.common.CustomIds;
 
 @Component
 public class WeatherFaultBuilder implements CustomFaultBuilder {

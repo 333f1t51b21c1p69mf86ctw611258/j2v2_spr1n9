@@ -1,4 +1,4 @@
-package de.jonashackt.tutorial.common;
+package com.dzs.seawind.web.common;
 
 /**
  * Custom Ids and Messages for WeatherException-Detail

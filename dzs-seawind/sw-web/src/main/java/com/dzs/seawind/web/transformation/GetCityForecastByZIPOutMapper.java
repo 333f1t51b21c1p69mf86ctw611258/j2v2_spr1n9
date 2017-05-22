@@ -1,4 +1,4 @@
-package de.jonashackt.tutorial.transformation;
+package com.dzs.seawind.web.transformation;
 
 import de.codecentric.namespace.weatherservice.datatypes.ArrayOfForecast;
 import de.codecentric.namespace.weatherservice.datatypes.Forecast;
