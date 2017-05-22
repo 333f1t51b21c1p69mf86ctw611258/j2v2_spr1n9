@@ -2,19 +2,19 @@
 <wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema"
 				  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
 				  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
-				  xmlns:weather="http://www.codecentric.de/namespace/weatherservice/"
-				  xmlns:general="http://www.codecentric.de/namespace/weatherservice/general"
-				  xmlns:exception="http://www.codecentric.de/namespace/weatherservice/exception"
+				  xmlns:weather="http://www.dasanzhone.com/namespace/weatherservice/"
+				  xmlns:general="http://www.dasanzhone.com/namespace/weatherservice/general"
+				  xmlns:exception="http://www.dasanzhone.com/namespace/weatherservice/exception"
 				  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
 				  xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
 				  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
 				  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
-				  targetNamespace="http://www.codecentric.de/namespace/weatherservice/"
+				  targetNamespace="http://www.dasanzhone.com/namespace/weatherservice/"
 				  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema xmlns="http://www.w3.org/2001/XMLSchema"
               xmlns:s="http://www.w3.org/2001/XMLSchema"
-              targetNamespace="http://www.codecentric.de/namespace/weatherservice/"
+              targetNamespace="http://www.dasanzhone.com/namespace/weatherservice/"
               attributeFormDefault="qualified"
               elementFormDefault="qualified">
        <s:include schemaLocation="Weather1.0.xsd"/>
@@ -64,7 +64,7 @@
   <wsdl:binding name="WeatherService" type="weather:WeatherService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
     <wsdl:operation name="GetWeatherInformation">
-      <soap:operation soapAction="http://www.codecentric.de/namespace/weatherservice/GetWeatherInformation" style="document"/>
+      <soap:operation soapAction="http://www.dasanzhone.com/namespace/weatherservice/GetWeatherInformation" style="document"/>
       <wsdl:input>
         <soap:body use="literal"/>
       </wsdl:input>
@@ -76,7 +76,7 @@
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetCityForecastByZIP">
-      <soap:operation soapAction="http://www.codecentric.de/namespace/weatherservice/GetCityForecastByZIP" style="document"/>
+      <soap:operation soapAction="http://www.dasanzhone.com/namespace/weatherservice/GetCityForecastByZIP" style="document"/>
       <wsdl:input>
         <soap:body use="literal"/>
       </wsdl:input>
@@ -88,7 +88,7 @@
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetCityWeatherByZIP">
-      <soap:operation soapAction="http://www.codecentric.de/namespace/weatherservice/GetCityWeatherByZIP" style="document"/>
+      <soap:operation soapAction="http://www.dasanzhone.com/namespace/weatherservice/GetCityWeatherByZIP" style="document"/>
       <wsdl:input>
         <soap:body use="literal"/>
       </wsdl:input>

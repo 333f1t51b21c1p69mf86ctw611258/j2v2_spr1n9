@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <s:schema xmlns:s="http://www.w3.org/2001/XMLSchema"
-          xmlns="http://www.codecentric.de/namespace/deviceservice/datatypes"
-          xmlns:datatypes="http://www.codecentric.de/namespace/deviceservice/datatypes"
+          xmlns="http://www.dasanzhone.com/namespace/deviceservice/datatypes"
+          xmlns:datatypes="http://www.dasanzhone.com/namespace/deviceservice/datatypes"
           xmlns:mime="http://www.w3.org/2005/05/xmlmime"
-          targetNamespace="http://www.codecentric.de/namespace/deviceservice/datatypes"
+          targetNamespace="http://www.dasanzhone.com/namespace/deviceservice/datatypes"
           elementFormDefault="qualified"
           version="1.0">
       

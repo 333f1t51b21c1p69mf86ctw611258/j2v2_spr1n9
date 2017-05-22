@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <s:schema xmlns:s="http://www.w3.org/2001/XMLSchema"
-          xmlns="http://www.codecentric.de/namespace/deviceservice/exception"
-          xmlns:exception="http://www.codecentric.de/namespace/deviceservice/exception"
-          targetNamespace="http://www.codecentric.de/namespace/deviceservice/exception"
+          xmlns="http://www.dasanzhone.com/namespace/deviceservice/exception"
+          xmlns:exception="http://www.dasanzhone.com/namespace/deviceservice/exception"
+          targetNamespace="http://www.dasanzhone.com/namespace/deviceservice/exception"
           elementFormDefault="qualified"
           version="1.0">
       

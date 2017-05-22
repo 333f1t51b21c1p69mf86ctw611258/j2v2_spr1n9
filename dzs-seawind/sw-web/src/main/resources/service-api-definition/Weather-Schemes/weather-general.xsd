@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <s:schema xmlns:s="http://www.w3.org/2001/XMLSchema"
-          xmlns="http://www.codecentric.de/namespace/weatherservice/general"
-          xmlns:datatypes="http://www.codecentric.de/namespace/weatherservice/datatypes"
-          xmlns:general="http://www.codecentric.de/namespace/weatherservice/general"
-          targetNamespace="http://www.codecentric.de/namespace/weatherservice/general"
+          xmlns="http://www.dasanzhone.com/namespace/weatherservice/general"
+          xmlns:datatypes="http://www.dasanzhone.com/namespace/weatherservice/datatypes"
+          xmlns:general="http://www.dasanzhone.com/namespace/weatherservice/general"
+          targetNamespace="http://www.dasanzhone.com/namespace/weatherservice/general"
           elementFormDefault="qualified"
           version="1.0">
       
-      <s:import namespace="http://www.codecentric.de/namespace/weatherservice/datatypes"
+      <s:import namespace="http://www.dasanzhone.com/namespace/weatherservice/datatypes"
                 schemaLocation="weather-datatypes.xsd"/>
       
       <s:element name="GetWeatherInformation">
