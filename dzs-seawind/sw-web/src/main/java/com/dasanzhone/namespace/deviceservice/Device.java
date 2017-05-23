@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "Device", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/", wsdlLocation = "file:/Volumes/data/DEV/Java/tmp/sw-web/src/main/resources/service-api-definition/Device1.0.wsdl")
+@WebServiceClient(name = "Device", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/", wsdlLocation = "file:/D:/Develop/Java/Github/spring/dzs-seawind/sw-web/src/main/resources/service-api-definition/Device1.0.wsdl")
 public class Device
     extends Service
 {
@@ -30,7 +30,7 @@ public class Device
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/Volumes/data/DEV/Java/tmp/sw-web/src/main/resources/service-api-definition/Device1.0.wsdl");
+            url = new URL("file:/D:/Develop/Java/Github/spring/dzs-seawind/sw-web/src/main/resources/service-api-definition/Device1.0.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

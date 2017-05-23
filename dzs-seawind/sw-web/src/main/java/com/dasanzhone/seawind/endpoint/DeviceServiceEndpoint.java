@@ -29,8 +29,9 @@ public class DeviceServiceEndpoint implements DeviceService {
     
     @Override
     public DeviceInformationReturn getDeviceInformation(String zip) throws DeviceException {
-        // TODO Auto-generated method stub
-        return null;
+    	LOG.debug("Method getDeviceInformation() was called. Processing the Request in the backend");
+
+        return deviceServiceController.getDeviceInformation(zip);
     }
 
     @Override

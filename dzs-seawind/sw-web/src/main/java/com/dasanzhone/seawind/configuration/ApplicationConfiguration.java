@@ -3,6 +3,7 @@ package com.dasanzhone.seawind.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.dasanzhone.seawind.controller.DeviceServiceController;
 import com.dasanzhone.seawind.controller.WeatherServiceController;
 
 
@@ -13,4 +14,10 @@ public class ApplicationConfiguration {
 	public WeatherServiceController weatherServiceController() {
 		return new WeatherServiceController();
 	}
+	
+	@Bean
+	public DeviceServiceController deviceServiceController() {
+		return new DeviceServiceController();
+	}
+	
 }

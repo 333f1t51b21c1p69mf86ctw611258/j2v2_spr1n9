@@ -4,8 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import com.dasanzhone.namespace.deviceservice.DeviceService;
 import com.dasanzhone.namespace.weatherservice.WeatherService;
 import com.dasanzhone.seawind.configuration.ApplicationConfiguration;
+import com.dasanzhone.seawind.endpoint.DeviceServiceEndpoint;
 import com.dasanzhone.seawind.endpoint.WeatherServiceEndpoint;
 
 @Configuration
@@ -16,4 +18,10 @@ public class ApplicationTestConfiguration {
     public WeatherService weatherService() {
         return new WeatherServiceEndpoint();
     }
+    
+    @Bean
+    public DeviceService deviceService() {
+        return new DeviceServiceEndpoint();
+    }
+    
 }

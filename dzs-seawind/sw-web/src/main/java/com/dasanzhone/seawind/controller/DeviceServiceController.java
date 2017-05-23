@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.dasanzhone.namespace.deviceservice.general.DeviceInformationReturn;
 import com.dasanzhone.namespace.deviceservice.general.ForecastRequest;
 import com.dasanzhone.namespace.deviceservice.general.ForecastReturn;
 
@@ -13,36 +14,45 @@ import com.dasanzhone.namespace.deviceservice.general.ForecastReturn;
  *  for calling Backend-Services and handling Backend-Exceptions
  *  So it decouples the WSDL-generated Classes from the internal Classes - for when the former changes,
  *  nothing or only the mapping has to be changed
- */ 
+ */
 @Component
 public class DeviceServiceController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DeviceServiceController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(DeviceServiceController.class);
 
-    public ForecastReturn getCityForecastByZIP(ForecastRequest forecastRequest) {
-        /*
-	     * We leave out inbound transformation, plausibility-checking, logging, backend-calls e.g.
-	     * for the moment
-	     *
-	     * Just some Log-Statements here :)
-	     */
-        LOG.info("Starting inbound transformation into internal datamodel");
+	public ForecastReturn getCityForecastByZIP(ForecastRequest forecastRequest) {
+		/*
+		 * We leave out inbound transformation, plausibility-checking, logging,
+		 * backend-calls e.g. for the moment
+		 *
+		 * Just some Log-Statements here :)
+		 */
+		LOG.info("Starting inbound transformation into internal datamodel");
 
-        LOG.info("Checking plausibility of data");
+		LOG.info("Checking plausibility of data");
 
-        LOG.info("Calling Backend No. 1");
+		LOG.info("Calling Backend No. 1");
 
-        LOG.info("Calling Backend No. 2");
+		LOG.info("Calling Backend No. 2");
 
-        LOG.info("Starting outbound transformation into external datamodel");
+		LOG.info("Starting outbound transformation into external datamodel");
 
-        return null; // GetCityForecastByZIPOutMapper.mapGeneralOutlook2Forecast();
+		return null; // GetCityForecastByZIPOutMapper.mapGeneralOutlook2Forecast();
 	}
-	
+
 	/*
 	 * Other Methods would follow here...
 	 */
-	//public DeviceReturn getCityDeviceByZIP(ForecastRequest forecastRequest) throws BusinessException {}
+	// public DeviceReturn getCityDeviceByZIP(ForecastRequest forecastRequest)
+	// throws BusinessException {}
 
-	//public DeviceInformationReturn getDeviceInformation(String zip) throws BusinessException {}
+	public DeviceInformationReturn getDeviceInformation(String zip) {
+		DeviceInformationReturn deviceInformationReturn = new DeviceInformationReturn();
+
+		deviceInformationReturn.setResponseText("responseText");
+		deviceInformationReturn.setSuccess(true);
+
+		return deviceInformationReturn;
+	}
+	
 }

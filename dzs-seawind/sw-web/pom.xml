@@ -83,10 +83,11 @@
 				<version>2.4.1</version>
 				<configuration>
 					<!-- See http://www.mojohaus.org/jaxws-maven-plugin/wsimport-mojo.html -->
-					<wsdlUrls>
-						<wsdlUrl>src/main/resources/service-api-definition/Weather1.0.wsdl</wsdlUrl>
-						<wsdlUrl>src/main/resources/service-api-definition/Device1.0.wsdl</wsdlUrl>
-					</wsdlUrls>
+<!-- 					<wsdlUrls> -->
+<!-- 						<wsdlUrl>src/main/resources/service-api-definition/Weather1.0.wsdl</wsdlUrl> -->
+<!-- 						<wsdlUrl>src/main/resources/service-api-definition/Device1.0.wsdl</wsdlUrl> -->
+<!-- 					</wsdlUrls> -->
+					<wsdlDirectory>${basedir}/src/main/resources/service-api-definition</wsdlDirectory>
 					<sourceDestDir>src/main/java</sourceDestDir>
 					<!-- For accessing the imported schema, see https://netbeans.org/bugzilla/show_bug.cgi?id=241570 -->
 					<vmArgs>
