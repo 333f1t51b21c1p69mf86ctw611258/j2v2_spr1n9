@@ -1,12 +1,16 @@
 package com.dasanzhone.seawind.controller;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.snmp4j.smi.OID;
 import org.springframework.stereotype.Component;
 
 import com.dasanzhone.namespace.deviceservice.general.DeviceInformationReturn;
 import com.dasanzhone.namespace.deviceservice.general.ForecastRequest;
 import com.dasanzhone.namespace.deviceservice.general.ForecastReturn;
+import com.dasanzhone.seawind.service.SnmpManager;
 
 /*
  *  Example-Controller:
@@ -46,7 +50,22 @@ public class DeviceServiceController {
 	// public DeviceReturn getCityDeviceByZIP(ForecastRequest forecastRequest)
 	// throws BusinessException {}
 
-	public DeviceInformationReturn getDeviceInformation(String zip) {
+	public DeviceInformationReturn getDeviceInformation(String zip) throws IOException {
+		/**
+		 * Port 161 is used for Read and Other operations Port 162 is used for
+		 * the trap generation
+		 */
+		SnmpManager client = new SnmpManager("udp:10.72.200.125/161");
+		client.start();
+				
+		/**
+		 * OID - .1.3.6.1.2.1.1.1.0 => SysDec OID - .1.3.6.1.2.1.1.5.0 =>
+		 * SysName => MIB explorer will be usefull here, as discussed in
+		 * previous article
+		 */
+		String sysDescr = client.getAsString(new OID(".1.3.6.1.4.1.637.61.1.35.10.1.1.5.331481088"));
+		System.out.println("### " + sysDescr);
+		
 		DeviceInformationReturn deviceInformationReturn = new DeviceInformationReturn();
 
 		deviceInformationReturn.setResponseText("responseText");

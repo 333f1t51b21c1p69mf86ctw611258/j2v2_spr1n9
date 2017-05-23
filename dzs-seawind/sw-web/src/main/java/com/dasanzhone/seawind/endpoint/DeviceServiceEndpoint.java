@@ -1,5 +1,7 @@
 package com.dasanzhone.seawind.endpoint;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,11 @@ public class DeviceServiceEndpoint implements DeviceService {
     public DeviceInformationReturn getDeviceInformation(String zip) throws DeviceException {
     	LOG.debug("Method getDeviceInformation() was called. Processing the Request in the backend");
 
-        return deviceServiceController.getDeviceInformation(zip);
+        try {
+			return deviceServiceController.getDeviceInformation(zip);
+		} catch (IOException e) {
+			throw new DeviceException(e.toString(), new com.dasanzhone.namespace.deviceservice.exception.DeviceException());
+		}
     }
 
     @Override
