@@ -57,21 +57,22 @@ public class DeviceServiceController {
 		 */
 		SnmpManager client = new SnmpManager("udp:10.72.200.125/161");
 		client.start();
-				
+
 		/**
 		 * OID - .1.3.6.1.2.1.1.1.0 => SysDec OID - .1.3.6.1.2.1.1.5.0 =>
 		 * SysName => MIB explorer will be usefull here, as discussed in
 		 * previous article
 		 */
-		String sysDescr = client.getAsString(new OID(".1.3.6.1.4.1.637.61.1.35.10.1.1.5.331481088"));
-		System.out.println("### " + sysDescr);
-		
+		final String oid = ".1.3.6.1.4.1.637.61.1.35.10.1.1.5.331481088";
+		String sysDescr = client.getAsString(new OID(oid));
+		LOG.info(String.format("sysDescr [%s] = %s", oid, sysDescr));
+
 		DeviceInformationReturn deviceInformationReturn = new DeviceInformationReturn();
 
-		deviceInformationReturn.setResponseText("responseText");
+		deviceInformationReturn.setResponseText(sysDescr);
 		deviceInformationReturn.setSuccess(true);
 
 		return deviceInformationReturn;
 	}
-	
+
 }
