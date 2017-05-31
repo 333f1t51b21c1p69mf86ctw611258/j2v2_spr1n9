@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.snmp4j.smi.OID;
+import org.snmp4j.smi.OctetString;
+import org.snmp4j.smi.Variable;
 import org.springframework.stereotype.Component;
 
 import com.dasanzhone.namespace.deviceservice.general.DeviceInformationReturn;
@@ -63,13 +65,18 @@ public class DeviceServiceController {
 		 * SysName => MIB explorer will be usefull here, as discussed in
 		 * previous article
 		 */
-		final String oid = ".1.3.6.1.4.1.637.61.1.35.10.1.1.5.331481088";
-		String sysDescr = client.getAsString(new OID(oid));
-		LOG.info(String.format("sysDescr [%s] = %s", oid, sysDescr));
+		// final String oid = ".1.3.6.1.4.1.637.61.1.35.10.1.1.5.331481088";
+		final String oid = ".1.3.6.1.4.1.637.61.1.35.10.1.1.82.331481088";
+
+		Variable var = client.getAsVariable(new OID(oid));
+
+		OctetString sysDescr = (OctetString) var;
+
+		LOG.info(String.format("sysDescr [%s] = %s", oid, sysDescr.toString()));
 
 		DeviceInformationReturn deviceInformationReturn = new DeviceInformationReturn();
 
-		deviceInformationReturn.setResponseText(sysDescr);
+		deviceInformationReturn.setResponseText(sysDescr.toString());
 		deviceInformationReturn.setSuccess(true);
 
 		return deviceInformationReturn;

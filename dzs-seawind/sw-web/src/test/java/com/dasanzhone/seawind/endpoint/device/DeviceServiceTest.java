@@ -15,23 +15,23 @@ import com.dasanzhone.seawind.ApplicationTestConfiguration;
 import com.dasanzhone.seawind.endpoint.DeviceServiceEndpoint;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=ApplicationTestConfiguration.class)
+@ContextConfiguration(classes = ApplicationTestConfiguration.class)
 public class DeviceServiceTest {
 
     @Autowired
     private DeviceServiceEndpoint deviceServiceEndpoint;
-    
+
     @Test
     public void getDeviceInformation() throws DeviceException {
         // Given
         String zip = "084";
-        
+
         // When
         DeviceInformationReturn deviceInformationReturn = deviceServiceEndpoint.getDeviceInformation(zip);
-        
+
         // Then
         assertNotNull(deviceInformationReturn);
         assertEquals(true, deviceInformationReturn.isSuccess());
-        assertEquals("responseText", deviceInformationReturn.getResponseText());
+        assertEquals("abc", deviceInformationReturn.getResponseText());
     }
 }

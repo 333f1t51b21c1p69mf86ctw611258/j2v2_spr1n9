@@ -13,6 +13,7 @@ import org.snmp4j.smi.Address;
 import org.snmp4j.smi.GenericAddress;
 import org.snmp4j.smi.OID;
 import org.snmp4j.smi.OctetString;
+import org.snmp4j.smi.Variable;
 import org.snmp4j.smi.VariableBinding;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
 
@@ -70,6 +71,11 @@ public class SnmpManager {
 	public String getAsString(OID oid) throws IOException {
 		ResponseEvent event = get(new OID[] { oid });
 		return event.getResponse().get(0).getVariable().toString();
+	}
+	
+	public Variable getAsVariable(OID oid) throws IOException {
+		ResponseEvent event = get(new OID[] { oid });
+		return event.getResponse().get(0).getVariable();
 	}
 
 	/**

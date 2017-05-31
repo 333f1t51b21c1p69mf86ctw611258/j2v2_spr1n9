@@ -47,7 +47,7 @@ public class SnmpAgentAndClientTest {
 		// two physical interfaces
 		MOTableBuilder builder = new MOTableBuilder(interfacesTable)
 				.addColumnType(SMIConstants.SYNTAX_INTEGER, MOAccessImpl.ACCESS_READ_ONLY)
-				.addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_ONLY)
+				.addColumnType(SMIConstants.SYNTAX_OCTET_STRING, MOAccessImpl.ACCESS_READ_WRITE)
 				.addColumnType(SMIConstants.SYNTAX_INTEGER, MOAccessImpl.ACCESS_READ_ONLY)
 				.addColumnType(SMIConstants.SYNTAX_INTEGER, MOAccessImpl.ACCESS_READ_ONLY)
 				.addColumnType(SMIConstants.SYNTAX_GAUGE32, MOAccessImpl.ACCESS_READ_ONLY)
@@ -56,14 +56,22 @@ public class SnmpAgentAndClientTest {
 				.addColumnType(SMIConstants.SYNTAX_INTEGER, MOAccessImpl.ACCESS_READ_ONLY)
 				// Normally you would begin loop over you two domain objects
 				// here
-				.addRowValue(new Integer32(1)).addRowValue(new OctetString("loopback")).addRowValue(new Integer32(24))
-				.addRowValue(new Integer32(1500)).addRowValue(new Gauge32(10000000))
-				.addRowValue(new OctetString("00:00:00:00:01")).addRowValue(new Integer32(1500))
+				.addRowValue(new Integer32(1))
+				.addRowValue(new OctetString("loopback"))
+				.addRowValue(new Integer32(24))
+				.addRowValue(new Integer32(1500))
+				.addRowValue(new Gauge32(10000000))
+				.addRowValue(new OctetString("00:00:00:00:01"))
+				.addRowValue(new Integer32(1500))
 				.addRowValue(new Integer32(1500))
 				// next row
-				.addRowValue(new Integer32(2)).addRowValue(new OctetString("eth0")).addRowValue(new Integer32(24))
-				.addRowValue(new Integer32(1500)).addRowValue(new Gauge32(10000000))
-				.addRowValue(new OctetString("00:00:00:00:02")).addRowValue(new Integer32(1500))
+				.addRowValue(new Integer32(2))
+				.addRowValue(new OctetString("eth0"))
+				.addRowValue(new Integer32(24))
+				.addRowValue(new Integer32(1500))
+				.addRowValue(new Gauge32(10000000))
+				.addRowValue(new OctetString("00:00:00:00:02"))
+				.addRowValue(new Integer32(1500))
 				.addRowValue(new Integer32(1500));
 
 		agent.registerManagedObject(builder.build());
@@ -108,9 +116,11 @@ public class SnmpAgentAndClientTest {
 		// you need, here we use column 2,6 and 8 so we do not verify the
 		// complete
 		// table
-		List<List<String>> tableContents = client
-				.getTableAsStrings(new OID[] { new OID(interfacesTable.toString() + ".2"),
-						new OID(interfacesTable.toString() + ".6"), new OID(interfacesTable.toString() + ".8") });
+		List<List<String>> tableContents = client.getTableAsStrings(
+				new OID[] { new OID(interfacesTable.toString() + ".2"),
+						new OID(interfacesTable.toString() + ".6"),
+						new OID(interfacesTable.toString() + ".8")
+				});
 
 		// and validate here
 		assertEquals(2, tableContents.size());
@@ -119,6 +129,11 @@ public class SnmpAgentAndClientTest {
 
 		// Row 1
 		assertEquals("loopback", tableContents.get(0).get(0));
+
+		// Try to change NetworkInterface name
+		tableContents.get(0).set(0, "abc");
+		System.out.println(tableContents.get(0).get(0));
+
 		assertEquals("00:00:00:00:01", tableContents.get(0).get(1));
 		assertEquals("1500", tableContents.get(0).get(2));
 
