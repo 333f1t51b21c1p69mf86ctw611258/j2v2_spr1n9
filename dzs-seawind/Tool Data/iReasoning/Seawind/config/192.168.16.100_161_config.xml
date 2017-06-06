@@ -7,7 +7,7 @@ engineID:	            SNMPv3's engineID of this agent. If it's empty, the first 
 engineBoots:	        agent reboot times. Its value is updated whenever 
                         agent restarts if agent is a SNMPv3 agent
 -->
-<properties version="2" engineID="123456" engineBoots="1" readCommunity="public"/>
+<properties version="2" engineID="123456" engineBoots="1" readCommunity="public" writeCommunity="private"/>
 <trapSink hostname="localhost" port="162" community="public" version="1" isInform="no" description="trap receiver &apos;s host name and port number. Use default port 162 if port is not specified."/>
 <!--
 <snmpV3TrapSink

@@ -2,6 +2,7 @@
 <SnmpSimulatorData>
 <Instances
 readCommunity="public"
+writeCommunity="private"
 >
 <!-- sysDescr -->
 <Instance
