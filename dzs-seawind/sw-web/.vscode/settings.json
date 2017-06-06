@@ -1,3 +1,8 @@
 {
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/target": true
+    }
 }
