@@ -63,4 +63,12 @@
 	    </s:restriction>
       </s:simpleType>
       
+      <s:complexType name="NetworkDevice">
+      	<s:sequence>
+      		<s:element name="Description" type="s:string"></s:element>
+      		<s:element name="DeviceId" type="s:string"></s:element>
+      		<s:element name="ModelName" type="s:string"></s:element>
+      	</s:sequence>
+      </s:complexType>
+      
 </s:schema>

@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="9a8188a5-d4a5-40e8-8c15-59b93aca92ff" activeEnvironment="Default" name="Seawind_20170523" resourceRoot="" soapui-version="5.3.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="9d8fb36e-9f36-4e1a-b450-5d09cdf1de0c" wsaVersion="NONE" name="DeviceService" type="wsdl" bindingName="{http://www.dasanzhone.com/namespace/deviceservice/}DeviceService" soapVersion="1_1" anonymous="optional" definition="file:/D:/Develop/Java/Github/spring/dzs-seawind/sw-web/src/main/resources/service-api-definition/Device1.0.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\D:\Develop\Java\Github\spring\dzs-seawind\sw-web\src\main\resources\service-api-definition\Device1.0.wsdl"><con:part><con:url>file:\D:\Develop\Java\Github\spring\dzs-seawind\sw-web\src\main\resources\service-api-definition\Device1.0.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.dasanzhone.com/namespace/deviceservice/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:device="http://www.dasanzhone.com/namespace/deviceservice/" xmlns:general="http://www.dasanzhone.com/namespace/deviceservice/general" xmlns:exception="http://www.dasanzhone.com/namespace/deviceservice/exception" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<con:soapui-project id="9a8188a5-d4a5-40e8-8c15-59b93aca92ff" activeEnvironment="Default" name="Seawind_20170523" resourceRoot="" soapui-version="5.3.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="9d8fb36e-9f36-4e1a-b450-5d09cdf1de0c" wsaVersion="NONE" name="DeviceService" type="wsdl" bindingName="{http://www.dasanzhone.com/namespace/deviceservice/}DeviceService" soapVersion="1_1" anonymous="optional" definition="file:/D:/Develop/Java/Github/spring/dzs-seawind/sw-web/src/main/resources/service-api-definition/Device1.0.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.cxf.CXFAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="EXSH" value="false"/>
+  <con:entry key="Java Args" value=""/>
+  <con:entry key="Class Folder" value=""/>
+  <con:entry key="Exclude namespaces" value="&lt;xml-fragment/>"/>
+  <con:entry key="build.xml" value="false"/>
+  <con:entry key="Bindings" value=""/>
+  <con:entry key="Implementation" value="false"/>
+  <con:entry key="Server" value="false"/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Output Packages" value="&lt;xml-fragment xmlns:con=&quot;http://eviware.com/soapui/config&quot;>
+  &lt;con:entry key=&quot;http://www.dasanzhone.com/namespace/deviceservice/datatypes&quot; value=&quot;com.dzs.seawind.datatype&quot;/>
+  &lt;con:entry key=&quot;http://www.dasanzhone.com/namespace/deviceservice/&quot; value=&quot;com.dzs.seawind&quot;/>
+  &lt;con:entry key=&quot;http://www.dasanzhone.com/namespace/deviceservice/general&quot; value=&quot;com.dzs.seawind&quot;/>
+&lt;/xml-fragment>"/>
+  <con:entry key="All Code" value="false"/>
+  <con:entry key="Use cached WSDL" value="true"/>
+  <con:entry key="DEX" value="true"/>
+  <con:entry key="Validate WSDL" value="false"/>
+  <con:entry key="Output Directory" value="D:\tmp\cxf_generated"/>
+  <con:entry key="Compile" value="false"/>
+  <con:entry key="WSDL" value="file:/D:/Develop/Java/Github/spring/dzs-seawind/sw-web/src/main/resources/service-api-definition/Device1.0.wsdl"/>
+  <con:entry key="DNS" value="true"/>
+  <con:entry key="Catalog" value=""/>
+  <con:entry key="Package" value="com.dzs.seawind"/>
+  <con:entry key="Client" value="false"/>
+</xml-fragment>]]></con:setting></con:settings><con:definitionCache type="TEXT" rootPart="file:\D:\Develop\Java\Github\spring\dzs-seawind\sw-web\src\main\resources\service-api-definition\Device1.0.wsdl"><con:part><con:url>file:\D:\Develop\Java\Github\spring\dzs-seawind\sw-web\src\main\resources\service-api-definition\Device1.0.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.dasanzhone.com/namespace/deviceservice/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:device="http://www.dasanzhone.com/namespace/deviceservice/" xmlns:general="http://www.dasanzhone.com/namespace/deviceservice/general" xmlns:exception="http://www.dasanzhone.com/namespace/deviceservice/exception" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema targetNamespace="http://www.dasanzhone.com/namespace/deviceservice/" attributeFormDefault="qualified" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
       <s:include schemaLocation="Device1.0.xsd"/>

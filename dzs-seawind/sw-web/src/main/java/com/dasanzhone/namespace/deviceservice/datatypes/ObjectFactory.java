@@ -62,6 +62,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link NetworkDevice }
+     * 
+     */
+    public NetworkDevice createNetworkDevice() {
+        return new NetworkDevice();
+    }
+
+    /**
      * Create an instance of {@link DeviceOverviewPdf }
      * 
      */
