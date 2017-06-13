@@ -44,6 +44,13 @@
 		<wsdl:part name="parameters" element="general:GetNetworkDeviceByIdResponse"></wsdl:part>
 	</wsdl:message>
 
+	<wsdl:message name="DeclareOntIdIn">
+		<wsdl:part name="parameters" element="general:DeclareOntId"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="DeclareOntIdOut">
+		<wsdl:part name="parameters" element="general:DeclareOntIdResponse"></wsdl:part>
+	</wsdl:message>
+
 	<wsdl:message name="DeviceException">
 		<wsdl:part name="parameters" element="exception:DeviceException" />
 	</wsdl:message>
@@ -73,9 +80,16 @@
 			<wsdl:output message="device:GetCityDeviceByZIPOut" />
 			<wsdl:fault name="DeviceException" message="device:DeviceException" />
 		</wsdl:operation>
+
 		<wsdl:operation name="GetNetworkDeviceById">
 			<wsdl:input message="device:GetNetworkDeviceByIdIn"></wsdl:input>
 			<wsdl:output message="device:GetNetworkDeviceByIdOut"></wsdl:output>
+			<wsdl:fault name="DeviceException" message="device:DeviceException" />
+		</wsdl:operation>
+
+		<wsdl:operation name="DeclareOntId">
+			<wsdl:input message="device:DeclareOntIdIn"></wsdl:input>
+			<wsdl:output message="device:DeclareOntIdOut"></wsdl:output>
 			<wsdl:fault name="DeviceException" message="device:DeviceException" />
 		</wsdl:operation>
 
@@ -129,6 +143,21 @@
 		<wsdl:operation name="GetNetworkDeviceById">
 			<soap:operation
 				soapAction="http://www.dasanzhone.com/namespace/deviceservice/GetNetworkDeviceById"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="DeviceException">
+				<soap:fault name="DeviceException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="DeclareOntId">
+			<soap:operation
+				soapAction="http://www.dasanzhone.com/namespace/deviceservice/DeclareOntId"
 				style="document" />
 			<wsdl:input>
 				<soap:body use="literal" />

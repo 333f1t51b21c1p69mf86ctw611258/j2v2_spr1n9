@@ -158,7 +158,7 @@ public class SnmpOperation {
 		return false;
 	}
 
-	public static void setWithoutMib_Low(SnmpOperationInput inputObject) {
+	public static SnmpPDU setWithoutMib_Low(SnmpOperationInput inputObject) {
 		// // Take care of getting options
 		// String usage = "\nsnmpset [-d] [-v version(v1,v2,v3)] [-c community] \n" +
 		// "[-wc writeCommunity] [-p port] [-r retries] \n" +
@@ -331,6 +331,8 @@ public class SnmpOperation {
 		session.close();
 		// stop api thread
 		api.close();
+		
+		return res_pdu;
 	}
 
 }

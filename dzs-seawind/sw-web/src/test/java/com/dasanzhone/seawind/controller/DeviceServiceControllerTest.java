@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.dasanzhone.namespace.deviceservice.general.OntInput;
 import com.dasanzhone.seawind.ApplicationTestConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -36,8 +37,17 @@ public class DeviceServiceControllerTest {
 	}
 
 	@Test
-	public void test() {
-		deviceServiceController.declareOntId("1/1/1/1/30", "auto", "auto", "DSNW:6F555550", "enable", "enable", "H646EW");
+	public void test_declareOntId() {
+		OntInput ontInput = new OntInput();
+		ontInput.setOntInterface("1/1/1/1/30");
+		ontInput.setSwVerPland("auto");
+		ontInput.setSwDnloadVersion("auto");
+		ontInput.setSernum("DSNWoUUP");
+		ontInput.setFecUp("enable");
+		ontInput.setEnableAes("enable");
+		ontInput.setPlndVar("H646EW");
+		
+		deviceServiceController.declareOntId(ontInput);
 	}
 
 }

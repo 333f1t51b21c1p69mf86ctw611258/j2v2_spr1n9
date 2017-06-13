@@ -8,11 +8,13 @@ import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
+import com.dasanzhone.namespace.deviceservice.general.CommonOperationReturn;
 import com.dasanzhone.namespace.deviceservice.general.DeviceInformationReturn;
 import com.dasanzhone.namespace.deviceservice.general.DeviceReturn;
 import com.dasanzhone.namespace.deviceservice.general.ForecastRequest;
 import com.dasanzhone.namespace.deviceservice.general.ForecastReturn;
 import com.dasanzhone.namespace.deviceservice.general.NetworkDeviceReturn;
+import com.dasanzhone.namespace.deviceservice.general.OntInput;
 
 
 /**
@@ -105,6 +107,23 @@ public interface DeviceService {
     public NetworkDeviceReturn getNetworkDeviceById(
         @WebParam(name = "DeviceId", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general")
         String deviceId)
+        throws DeviceException
+    ;
+
+    /**
+     * 
+     * @param ontInput
+     * @return
+     *     returns com.dasanzhone.namespace.deviceservice.general.CommonOperationReturn
+     * @throws DeviceException
+     */
+    @WebMethod(operationName = "DeclareOntId", action = "http://www.dasanzhone.com/namespace/deviceservice/DeclareOntId")
+    @WebResult(name = "DeclareOntIdResult", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general")
+    @RequestWrapper(localName = "DeclareOntId", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general", className = "com.dasanzhone.namespace.deviceservice.general.DeclareOntId")
+    @ResponseWrapper(localName = "DeclareOntIdResponse", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general", className = "com.dasanzhone.namespace.deviceservice.general.DeclareOntIdResponse")
+    public CommonOperationReturn declareOntId(
+        @WebParam(name = "OntInput", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general")
+        OntInput ontInput)
         throws DeviceException
     ;
 

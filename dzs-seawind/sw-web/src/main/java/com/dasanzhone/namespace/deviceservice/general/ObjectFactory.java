@@ -36,19 +36,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetDeviceInformationResponse }
+     * Create an instance of {@link DeclareOntIdResponse }
      * 
      */
-    public GetDeviceInformationResponse createGetDeviceInformationResponse() {
-        return new GetDeviceInformationResponse();
+    public DeclareOntIdResponse createDeclareOntIdResponse() {
+        return new DeclareOntIdResponse();
     }
 
     /**
-     * Create an instance of {@link DeviceInformationReturn }
+     * Create an instance of {@link CommonOperationReturn }
      * 
      */
-    public DeviceInformationReturn createDeviceInformationReturn() {
-        return new DeviceInformationReturn();
+    public CommonOperationReturn createCommonOperationReturn() {
+        return new CommonOperationReturn();
     }
 
     /**
@@ -76,22 +76,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetCityDeviceByZIPResponse }
-     * 
-     */
-    public GetCityDeviceByZIPResponse createGetCityDeviceByZIPResponse() {
-        return new GetCityDeviceByZIPResponse();
-    }
-
-    /**
-     * Create an instance of {@link DeviceReturn }
-     * 
-     */
-    public DeviceReturn createDeviceReturn() {
-        return new DeviceReturn();
-    }
-
-    /**
      * Create an instance of {@link ForecastReturn }
      * 
      */
@@ -105,6 +89,62 @@ public class ObjectFactory {
      */
     public NetworkDeviceReturn createNetworkDeviceReturn() {
         return new NetworkDeviceReturn();
+    }
+
+    /**
+     * Create an instance of {@link DeclareOntId }
+     * 
+     */
+    public DeclareOntId createDeclareOntId() {
+        return new DeclareOntId();
+    }
+
+    /**
+     * Create an instance of {@link OntInput }
+     * 
+     */
+    public OntInput createOntInput() {
+        return new OntInput();
+    }
+
+    /**
+     * Create an instance of {@link GetCityForecastByZIPResponse }
+     * 
+     */
+    public GetCityForecastByZIPResponse createGetCityForecastByZIPResponse() {
+        return new GetCityForecastByZIPResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetDeviceInformationResponse }
+     * 
+     */
+    public GetDeviceInformationResponse createGetDeviceInformationResponse() {
+        return new GetDeviceInformationResponse();
+    }
+
+    /**
+     * Create an instance of {@link DeviceInformationReturn }
+     * 
+     */
+    public DeviceInformationReturn createDeviceInformationReturn() {
+        return new DeviceInformationReturn();
+    }
+
+    /**
+     * Create an instance of {@link GetCityDeviceByZIPResponse }
+     * 
+     */
+    public GetCityDeviceByZIPResponse createGetCityDeviceByZIPResponse() {
+        return new GetCityDeviceByZIPResponse();
+    }
+
+    /**
+     * Create an instance of {@link DeviceReturn }
+     * 
+     */
+    public DeviceReturn createDeviceReturn() {
+        return new DeviceReturn();
     }
 
     /**
@@ -129,14 +169,6 @@ public class ObjectFactory {
      */
     public GetDeviceInformation createGetDeviceInformation() {
         return new GetDeviceInformation();
-    }
-
-    /**
-     * Create an instance of {@link GetCityForecastByZIPResponse }
-     * 
-     */
-    public GetCityForecastByZIPResponse createGetCityForecastByZIPResponse() {
-        return new GetCityForecastByZIPResponse();
     }
 
     /**

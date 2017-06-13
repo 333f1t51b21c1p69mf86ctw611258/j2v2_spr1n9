@@ -10,15 +10,21 @@ import org.snmp4j.smi.OctetString;
 import org.snmp4j.smi.Variable;
 import org.springframework.stereotype.Component;
 
+import com.adventnet.snmp.snmp2.SnmpPDU;
+import com.dasanzhone.namespace.deviceservice.general.CommonOperationReturn;
 import com.dasanzhone.namespace.deviceservice.general.DeviceInformationReturn;
 import com.dasanzhone.namespace.deviceservice.general.ForecastRequest;
 import com.dasanzhone.namespace.deviceservice.general.ForecastReturn;
+import com.dasanzhone.namespace.deviceservice.general.OntInput;
+import com.dasanzhone.seawind.entity.OntInputSwapper;
 import com.dasanzhone.seawind.service.SnmpManager;
 import com.dasanzhone.seawind.snmp.SnmpOid;
 import com.dasanzhone.seawind.snmp.SnmpOperation;
 import com.dasanzhone.seawind.snmp.SnmpOperationInput;
 import com.dasanzhone.seawind.snmp.SnmpUtil;
 import com.dasanzhone.seawind.util.BusinessUtil;
+
+import net.logstash.logback.encoder.org.apache.commons.lang.exception.ExceptionUtils;
 
 /*
  *  Example-Controller:
@@ -30,6 +36,7 @@ import com.dasanzhone.seawind.util.BusinessUtil;
 @Component
 public class DeviceServiceController {
 
+	private static final String STRING_ENABLE = "ENABLE";
 	private static final Logger LOG = LoggerFactory.getLogger(DeviceServiceController.class);
 
 	public ForecastReturn getCityForecastByZIP(ForecastRequest forecastRequest) {
@@ -95,20 +102,19 @@ public class DeviceServiceController {
 	public static String ROOT_ENABLE_AES = ".1.3.6.1.4.1.637.61.1.35.10.1.1.75.";
 	public static String ROOT_PLND_VAR = ".1.3.6.1.4.1.637.61.1.35.10.1.1.65.";
 
-	public boolean declareOntId(
-			String ont_interface,
-			String sw_ver_pland,
-			String sw_dnload_version,
-			String sernum,
-			String fec_up,
-			String enable_aes,
-			String plnd_var) {
+	public CommonOperationReturn declareOntId(OntInput ontInput) {
+		CommonOperationReturn result = new CommonOperationReturn();
+
+		OntInputSwapper ontInputSwapper = new OntInputSwapper(ontInput);
 
 		int leafNode;
 		try {
-			leafNode = BusinessUtil.tranformInterfaceToOid(ont_interface);
+			leafNode = BusinessUtil.tranformInterfaceToOid(ontInputSwapper.getOntInterface());
 		} catch (Exception e) {
-			return false;
+			result.setSuccess(false);
+			result.setResponseText(e.toString());
+			result.setDescription(ExceptionUtils.getFullStackTrace(e));
+			return result;
 		}
 
 		SnmpOperationInput input = new SnmpOperationInput();
@@ -120,31 +126,31 @@ public class DeviceServiceController {
 		SnmpOid snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.2." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "4"));
 		input.getOids().add(snmpOid);
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.5." + leafNode, SnmpUtil.getSnmpVar("STRING", "DSNWoUUP"));
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.5." + leafNode, SnmpUtil.getSnmpVar("STRING", ontInputSwapper.getSernum()));
 		input.getOids().add(snmpOid);
 
 		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.8." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "0"));
 		input.getOids().add(snmpOid);
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.11." + leafNode, SnmpUtil.getSnmpVar("STRING", "AUTO"));
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.11." + leafNode, SnmpUtil.getSnmpVar("STRING", ontInputSwapper.getSwVerPland()));
 		input.getOids().add(snmpOid);
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.18." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "8000"));
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.18." + leafNode, SnmpUtil.getSnmpVar("INTEGER", ontInputSwapper.getBerint()));
 		input.getOids().add(snmpOid);
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.21." + leafNode, SnmpUtil.getSnmpVar("STRING", "*"));
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.21." + leafNode, SnmpUtil.getSnmpVar("STRING", ontInputSwapper.getProvversion()));
 		input.getOids().add(snmpOid);
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.39." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "2"));
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.39." + leafNode, SnmpUtil.getSnmpVar("INTEGER", ontInputSwapper.getFecUp()));
 		input.getOids().add(snmpOid);
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.60." + leafNode, SnmpUtil.getSnmpVar("STRING", "AUTO"));
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.60." + leafNode, SnmpUtil.getSnmpVar("STRING", ontInputSwapper.getSwDnloadVersion()));
 		input.getOids().add(snmpOid);
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.63." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "1"));
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.63." + leafNode, SnmpUtil.getSnmpVar("INTEGER", ontInputSwapper.getOpticsHist()));
 		input.getOids().add(snmpOid);
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.65." + leafNode, SnmpUtil.getSnmpVar("STRING", "H646EW"));
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.65." + leafNode, SnmpUtil.getSnmpVar("STRING", ontInputSwapper.getPlndVar()));
 		input.getOids().add(snmpOid);
 
 		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.47.6.1.1.18." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "8"));
@@ -153,17 +159,30 @@ public class DeviceServiceController {
 		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.47.6.1.1.19." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "2"));
 		input.getOids().add(snmpOid);
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.75." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "1"));
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.75." + leafNode, SnmpUtil.getSnmpVar("INTEGER", ontInputSwapper.getEnableAes()));
 		input.getOids().add(snmpOid);
 
 		try {
-			SnmpOperation.setWithoutMib_Low(input);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			SnmpPDU snmpPDU = SnmpOperation.setWithoutMib_Low(input);
+			if (snmpPDU.getErrstat() == 0) {
+				result.setSuccess(true);
+				result.setResponseText("SUCCESSFUL");
+				result.setDescription(snmpPDU.printVarBinds());
+			} else {
+				result.setSuccess(false);
+				result.setResponseText("UNSUCCESSFUL");
+				result.setDescription(snmpPDU.getError());
+			}
 
-		return true;
+			return result;
+
+		} catch (Exception e) {
+
+			result.setSuccess(false);
+			result.setResponseText(e.toString());
+			result.setDescription(ExceptionUtils.getFullStackTrace(e));
+			return result;
+		}
 	}
 
 }
