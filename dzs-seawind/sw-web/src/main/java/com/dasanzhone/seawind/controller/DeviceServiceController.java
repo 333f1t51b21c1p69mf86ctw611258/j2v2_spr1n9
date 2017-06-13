@@ -1,6 +1,7 @@
 package com.dasanzhone.seawind.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,11 @@ import com.dasanzhone.namespace.deviceservice.general.DeviceInformationReturn;
 import com.dasanzhone.namespace.deviceservice.general.ForecastRequest;
 import com.dasanzhone.namespace.deviceservice.general.ForecastReturn;
 import com.dasanzhone.seawind.service.SnmpManager;
+import com.dasanzhone.seawind.snmp.SnmpOid;
+import com.dasanzhone.seawind.snmp.SnmpOperation;
+import com.dasanzhone.seawind.snmp.SnmpOperationInput;
+import com.dasanzhone.seawind.snmp.SnmpUtil;
+import com.dasanzhone.seawind.util.BusinessUtil;
 
 /*
  *  Example-Controller:
@@ -80,6 +86,84 @@ public class DeviceServiceController {
 		deviceInformationReturn.setSuccess(true);
 
 		return deviceInformationReturn;
+	}
+
+	public static String ROOT_SW_VER_PLAND = ".1.3.6.1.4.1.637.61.1.35.10.1.1.11.";
+	public static String ROOT_SW_DNLOAD_VERSION = ".1.3.6.1.4.1.637.61.1.35.10.1.1.60.";
+	public static String ROOT_SERNUM = ".1.3.6.1.4.1.637.61.1.35.10.1.1.5.";
+	public static String ROOT_FEC_UP = ".1.3.6.1.4.1.637.61.1.35.10.1.1.39.";
+	public static String ROOT_ENABLE_AES = ".1.3.6.1.4.1.637.61.1.35.10.1.1.75.";
+	public static String ROOT_PLND_VAR = ".1.3.6.1.4.1.637.61.1.35.10.1.1.65.";
+
+	public boolean declareOntId(
+			String ont_interface,
+			String sw_ver_pland,
+			String sw_dnload_version,
+			String sernum,
+			String fec_up,
+			String enable_aes,
+			String plnd_var) {
+
+		int leafNode;
+		try {
+			leafNode = BusinessUtil.tranformInterfaceToOid(ont_interface);
+		} catch (Exception e) {
+			return false;
+		}
+
+		SnmpOperationInput input = new SnmpOperationInput();
+
+		input.setHost("10.72.200.125");
+		input.setVersion("v2");
+		input.setOids(new ArrayList<SnmpOid>());
+
+		SnmpOid snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.2." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "4"));
+		input.getOids().add(snmpOid);
+
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.5." + leafNode, SnmpUtil.getSnmpVar("STRING", "DSNWoUUP"));
+		input.getOids().add(snmpOid);
+
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.8." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "0"));
+		input.getOids().add(snmpOid);
+
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.11." + leafNode, SnmpUtil.getSnmpVar("STRING", "AUTO"));
+		input.getOids().add(snmpOid);
+
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.18." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "8000"));
+		input.getOids().add(snmpOid);
+
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.21." + leafNode, SnmpUtil.getSnmpVar("STRING", "*"));
+		input.getOids().add(snmpOid);
+
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.39." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "2"));
+		input.getOids().add(snmpOid);
+
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.60." + leafNode, SnmpUtil.getSnmpVar("STRING", "AUTO"));
+		input.getOids().add(snmpOid);
+
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.63." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "1"));
+		input.getOids().add(snmpOid);
+
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.65." + leafNode, SnmpUtil.getSnmpVar("STRING", "H646EW"));
+		input.getOids().add(snmpOid);
+
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.47.6.1.1.18." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "8"));
+		input.getOids().add(snmpOid);
+
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.47.6.1.1.19." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "2"));
+		input.getOids().add(snmpOid);
+
+		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.75." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "1"));
+		input.getOids().add(snmpOid);
+
+		try {
+			SnmpOperation.setWithoutMib_Low(input);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return true;
 	}
 
 }

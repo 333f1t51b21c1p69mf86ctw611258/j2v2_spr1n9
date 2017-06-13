@@ -24,6 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _NetworkDeviceReturn_QNAME = new QName("http://www.dasanzhone.com/namespace/deviceservice/general", "NetworkDeviceReturn");
     private final static QName _DeviceReturn_QNAME = new QName("http://www.dasanzhone.com/namespace/deviceservice/general", "DeviceReturn");
     private final static QName _ForecastReturn_QNAME = new QName("http://www.dasanzhone.com/namespace/deviceservice/general", "ForecastReturn");
 
@@ -67,6 +68,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetNetworkDeviceById }
+     * 
+     */
+    public GetNetworkDeviceById createGetNetworkDeviceById() {
+        return new GetNetworkDeviceById();
+    }
+
+    /**
      * Create an instance of {@link GetCityDeviceByZIPResponse }
      * 
      */
@@ -91,11 +100,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link NetworkDeviceReturn }
+     * 
+     */
+    public NetworkDeviceReturn createNetworkDeviceReturn() {
+        return new NetworkDeviceReturn();
+    }
+
+    /**
      * Create an instance of {@link GetCityDeviceByZIP }
      * 
      */
     public GetCityDeviceByZIP createGetCityDeviceByZIP() {
         return new GetCityDeviceByZIP();
+    }
+
+    /**
+     * Create an instance of {@link GetNetworkDeviceByIdResponse }
+     * 
+     */
+    public GetNetworkDeviceByIdResponse createGetNetworkDeviceByIdResponse() {
+        return new GetNetworkDeviceByIdResponse();
     }
 
     /**
@@ -120,6 +145,15 @@ public class ObjectFactory {
      */
     public ForecastCustomer createForecastCustomer() {
         return new ForecastCustomer();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NetworkDeviceReturn }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.dasanzhone.com/namespace/deviceservice/general", name = "NetworkDeviceReturn")
+    public JAXBElement<NetworkDeviceReturn> createNetworkDeviceReturn(NetworkDeviceReturn value) {
+        return new JAXBElement<NetworkDeviceReturn>(_NetworkDeviceReturn_QNAME, NetworkDeviceReturn.class, null, value);
     }
 
     /**

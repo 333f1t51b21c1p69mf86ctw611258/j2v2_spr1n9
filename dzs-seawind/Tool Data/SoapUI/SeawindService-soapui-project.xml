@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="60260306-833d-48ed-b217-fad08f1f464f" activeEnvironment="Default" name="SeawindService" resourceRoot="${projectDir}" soapui-version="5.3.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="1489858b-c810-4c1b-9c89-aaf8744102b3" wsaVersion="NONE" name="DeviceService" type="wsdl" bindingName="{http://www.dasanzhone.com/namespace/deviceservice/}DeviceService" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/soap-api/DeviceSoapService_1.0?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/soap-api/DeviceSoapService_1.0?wsdl"><con:part><con:url>http://localhost:8080/soap-api/DeviceSoapService_1.0?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.dasanzhone.com/namespace/deviceservice/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:general="http://www.dasanzhone.com/namespace/deviceservice/general" xmlns:exception="http://www.dasanzhone.com/namespace/deviceservice/exception" xmlns:device="http://www.dasanzhone.com/namespace/deviceservice/">
+  <wsdl:types>
+    <s:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.dasanzhone.com/namespace/deviceservice/" xmlns="http://www.w3.org/2001/XMLSchema">
+      <s:include schemaLocation="http://localhost:8080/soap-api/DeviceSoapService_1.0?xsd=Device1.0.xsd"/>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCityForecastByZIPIn">
+    <wsdl:part element="general:GetCityForecastByZIP" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCityDeviceByZIPIn">
+    <wsdl:part element="general:GetCityDeviceByZIP" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeviceException">
+    <wsdl:part element="exception:DeviceException" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetDeviceInformationOut">
+    <wsdl:part element="general:GetDeviceInformationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetNetworkDeviceByIdIn">
+    <wsdl:part element="general:GetNetworkDeviceById" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCityDeviceByZIPOut">
+    <wsdl:part element="general:GetCityDeviceByZIPResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetDeviceInformationIn">
+    <wsdl:part element="general:GetDeviceInformation" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCityForecastByZIPOut">
+    <wsdl:part element="general:GetCityForecastByZIPResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetNetworkDeviceByIdOut">
+    <wsdl:part element="general:GetNetworkDeviceByIdResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="DeviceService">
+    <wsdl:operation name="GetDeviceInformation">
+      <wsdl:documentation>Gets Information
+				for each DeviceID</wsdl:documentation>
+      <wsdl:input message="device:GetDeviceInformationIn"></wsdl:input>
+      <wsdl:output message="device:GetDeviceInformationOut"></wsdl:output>
+      <wsdl:fault message="device:DeviceException" name="DeviceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <wsdl:documentation>Allows you to get
+				your City Forecast Over the Next 7 Days, which is updated hourly.</wsdl:documentation>
+      <wsdl:input message="device:GetCityForecastByZIPIn"></wsdl:input>
+      <wsdl:output message="device:GetCityForecastByZIPOut"></wsdl:output>
+      <wsdl:fault message="device:DeviceException" name="DeviceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDeviceByZIP">
+      <wsdl:documentation>Allows you to get
+				your City's Device, which is updated hourly.</wsdl:documentation>
+      <wsdl:input message="device:GetCityDeviceByZIPIn"></wsdl:input>
+      <wsdl:output message="device:GetCityDeviceByZIPOut"></wsdl:output>
+      <wsdl:fault message="device:DeviceException" name="DeviceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetNetworkDeviceById">
+      <wsdl:input message="device:GetNetworkDeviceByIdIn"></wsdl:input>
+      <wsdl:output message="device:GetNetworkDeviceByIdOut"></wsdl:output>
+      <wsdl:fault message="device:DeviceException" name="DeviceException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DeviceService" type="device:DeviceService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetDeviceInformation">
+      <soap:operation soapAction="http://www.dasanzhone.com/namespace/deviceservice/GetDeviceInformation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DeviceException">
+        <soap:fault name="DeviceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <soap:operation soapAction="http://www.dasanzhone.com/namespace/deviceservice/GetCityForecastByZIP" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DeviceException">
+        <soap:fault name="DeviceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDeviceByZIP">
+      <soap:operation soapAction="http://www.dasanzhone.com/namespace/deviceservice/GetCityDeviceByZIP" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DeviceException">
+        <soap:fault name="DeviceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetNetworkDeviceById">
+      <soap:operation soapAction="http://www.dasanzhone.com/namespace/deviceservice/GetNetworkDeviceById" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DeviceException">
+        <soap:fault name="DeviceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Device">
+    <wsdl:port binding="device:DeviceService" name="DeviceService">
+      <soap:address location="http://localhost:8080/soap-api/DeviceSoapService_1.0"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/soap-api/DeviceSoapService_1.0?xsd=Device1.0.xsd</con:url><con:content>&lt;s:schema elementFormDefault="qualified" targetNamespace="http://www.dasanzhone.com/namespace/deviceservice/" version="1.0" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:exception="http://www.dasanzhone.com/namespace/deviceservice/exception" xmlns:device="http://www.dasanzhone.com/namespace/deviceservice/" xmlns:datatypes="http://www.dasanzhone.com/namespace/deviceservice/datatypes">
+  &lt;s:import namespace="http://www.dasanzhone.com/namespace/deviceservice/general" schemaLocation="http://localhost:8080/soap-api/DeviceSoapService_1.0?xsd=Device-Schemes/device-general.xsd"/>
+  &lt;s:import namespace="http://www.dasanzhone.com/namespace/deviceservice/exception" schemaLocation="http://localhost:8080/soap-api/DeviceSoapService_1.0?xsd=Device-Schemes/device-exception.xsd"/>
+&lt;/s:schema></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:8080/soap-api/DeviceSoapService_1.0?xsd=Device-Schemes/device-general.xsd</con:url><con:content><![CDATA[<s:schema elementFormDefault="qualified" targetNamespace="http://www.dasanzhone.com/namespace/deviceservice/general" version="1.0" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:general="http://www.dasanzhone.com/namespace/deviceservice/general" xmlns:datatypes="http://www.dasanzhone.com/namespace/deviceservice/datatypes" xmlns="http://www.dasanzhone.com/namespace/deviceservice/general">
+  <s:import namespace="http://www.dasanzhone.com/namespace/deviceservice/datatypes" schemaLocation="http://localhost:8080/soap-api/DeviceSoapService_1.0?xsd=Device-Schemes/device-datatypes.xsd"/>
+  <s:element name="GetDeviceInformation">
+    <s:complexType>
+      <s:sequence>
+        <s:element maxOccurs="1" minOccurs="0" name="ZIP" type="s:string"/>
+      </s:sequence>
+    </s:complexType>
+  </s:element>
+  <s:element name="GetDeviceInformationResponse">
+    <s:complexType>
+      <s:sequence>
+        <s:element maxOccurs="1" minOccurs="0" name="GetDeviceInformationResult" type="general:DeviceInformationReturn"/>
+      </s:sequence>
+    </s:complexType>
+  </s:element>
+  <s:complexType name="DeviceInformationReturn">
+    <s:sequence>
+      <s:element maxOccurs="1" minOccurs="1" name="Success" type="s:boolean"/>
+      <s:element maxOccurs="1" minOccurs="0" name="ResponseText" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="DeviceOverviewPdf" type="datatypes:DeviceOverviewPdf"/>
+    </s:sequence>
+  </s:complexType>
+  <s:element name="GetCityForecastByZIP">
+    <s:complexType>
+      <s:sequence>
+        <s:element maxOccurs="1" minOccurs="0" name="ForecastRequest" type="general:ForecastRequest"/>
+      </s:sequence>
+    </s:complexType>
+  </s:element>
+  <s:element name="GetCityForecastByZIPResponse">
+    <s:complexType>
+      <s:sequence>
+        <s:element maxOccurs="1" minOccurs="0" name="GetCityForecastByZIPResult" type="general:ForecastReturn"/>
+      </s:sequence>
+    </s:complexType>
+  </s:element>
+  <s:complexType name="ForecastRequest">
+    <s:sequence>
+      <s:element maxOccurs="1" minOccurs="0" name="ZIP" type="s:string"/>
+      <s:element name="flagcolor" type="s:string"/>
+      <s:element name="productName" type="datatypes:ProductName"/>
+      <s:element name="ForecastCustomer" type="general:ForecastCustomer"/>
+    </s:sequence>
+  </s:complexType>
+  <s:complexType name="ForecastCustomer">
+    <s:sequence>
+      <s:element name="Age" type="s:int"/>
+      <s:element name="Contribution" type="s:int"/>
+      <s:element name="MethodOfPayment" type="s:string"/>
+    </s:sequence>
+  </s:complexType>
+  <s:complexType name="ForecastReturn">
+    <s:sequence>
+      <s:element maxOccurs="1" minOccurs="1" name="Success" type="s:boolean"/>
+      <s:element maxOccurs="1" minOccurs="0" name="ResponseText" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="State" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="City" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="DeviceStationCity" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="ForecastResult" type="datatypes:ArrayOfForecast"/>
+    </s:sequence>
+  </s:complexType>
+  <s:element name="GetCityDeviceByZIP">
+    <s:complexType>
+      <s:sequence>
+        <s:element maxOccurs="1" minOccurs="0" name="ForecastRequest" type="general:ForecastRequest"/>
+      </s:sequence>
+    </s:complexType>
+  </s:element>
+  <s:element name="GetCityDeviceByZIPResponse">
+    <s:complexType>
+      <s:sequence>
+        <s:element maxOccurs="1" minOccurs="1" name="GetCityDeviceByZIPResult" type="general:DeviceReturn"/>
+      </s:sequence>
+    </s:complexType>
+  </s:element>
+  <s:complexType name="DeviceReturn">
+    <s:sequence>
+      <s:element maxOccurs="1" minOccurs="1" name="Success" type="s:boolean"/>
+      <s:element maxOccurs="1" minOccurs="0" name="ResponseText" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="State" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="City" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="DeviceStationCity" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="1" name="DeviceID" type="s:short"/>
+      <s:element maxOccurs="1" minOccurs="0" name="Description" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="Temperature" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="RelativeHumidity" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="Wind" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="Pressure" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="Visibility" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="WindChill" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="Remarks" type="s:string"/>
+    </s:sequence>
+  </s:complexType>
+  <s:element name="ForecastReturn" nillable="true" type="general:ForecastReturn"/>
+  <s:element name="DeviceReturn" type="general:DeviceReturn"/>
+  <s:complexType name="NetworkDeviceReturn">
+    <s:sequence>
+      <s:element maxOccurs="1" minOccurs="1" name="Success" type="s:boolean"/>
+      <s:element maxOccurs="1" minOccurs="0" name="ResponseText" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="NetworkDevice" type="datatypes:NetworkDevice"/>
+    </s:sequence>
+  </s:complexType>
+  <s:element name="NetworkDeviceReturn" type="NetworkDeviceReturn"/>
+  <s:element name="GetNetworkDeviceById">
+    <s:complexType>
+      <s:sequence>
+        <s:element maxOccurs="1" minOccurs="0" name="DeviceId" type="s:string"/>
+      </s:sequence>
+    </s:complexType>
+  </s:element>
+  <s:element name="GetNetworkDeviceByIdResponse">
+    <s:complexType>
+      <s:sequence>
+        <s:element maxOccurs="1" minOccurs="0" name="GetNetworkDeviceByIdResult" type="general:NetworkDeviceReturn"/>
+      </s:sequence>
+    </s:complexType>
+  </s:element>
+</s:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:8080/soap-api/DeviceSoapService_1.0?xsd=Device-Schemes/device-datatypes.xsd</con:url><con:content><![CDATA[<s:schema elementFormDefault="qualified" targetNamespace="http://www.dasanzhone.com/namespace/deviceservice/datatypes" version="1.0" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://www.w3.org/2005/05/xmlmime" xmlns:datatypes="http://www.dasanzhone.com/namespace/deviceservice/datatypes" xmlns="http://www.dasanzhone.com/namespace/deviceservice/datatypes">
+  <s:import namespace="http://www.w3.org/2005/05/xmlmime" schemaLocation="http://localhost:8080/soap-api/DeviceSoapService_1.0?xsd=Device-Schemes/w3c-xmlmime-definition.xsd"/>
+  <s:complexType name="DeviceOverviewPdf">
+    <s:sequence>
+      <s:element maxOccurs="1" minOccurs="0" name="Filename" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="Data" type="mime:base64Binary"/>
+    </s:sequence>
+  </s:complexType>
+  <s:complexType name="DeviceDescription">
+    <s:sequence>
+      <s:element maxOccurs="1" minOccurs="1" name="DeviceID" type="s:short"/>
+      <s:element maxOccurs="1" minOccurs="0" name="Description" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="PictureURL" type="s:string"/>
+    </s:sequence>
+  </s:complexType>
+  <s:complexType name="ArrayOfForecast">
+    <s:sequence>
+      <s:element maxOccurs="unbounded" minOccurs="0" name="Forecast" nillable="true" type="datatypes:Forecast"/>
+    </s:sequence>
+  </s:complexType>
+  <s:complexType name="Forecast">
+    <s:sequence>
+      <s:element maxOccurs="1" minOccurs="1" name="Date" type="s:dateTime"/>
+      <s:element maxOccurs="1" minOccurs="1" name="DeviceID" type="s:short"/>
+      <s:element maxOccurs="1" minOccurs="0" name="Desciption" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="1" name="Temperatures" type="datatypes:temp"/>
+      <s:element maxOccurs="1" minOccurs="1" name="ProbabilityOfPrecipiation" type="datatypes:POP"/>
+    </s:sequence>
+  </s:complexType>
+  <s:complexType name="temp">
+    <s:sequence>
+      <s:element maxOccurs="1" minOccurs="0" name="MorningLow" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="DaytimeHigh" type="s:string"/>
+    </s:sequence>
+  </s:complexType>
+  <s:complexType name="POP">
+    <s:sequence>
+      <s:element maxOccurs="1" minOccurs="0" name="Nighttime" type="s:string"/>
+      <s:element maxOccurs="1" minOccurs="0" name="Daytime" type="s:string"/>
+    </s:sequence>
+  </s:complexType>
+  <s:simpleType name="ProductName">
+    <s:restriction base="s:string">
+      <s:enumeration value="ForecastBasic"/>
+      <s:enumeration value="ForecastProfessional"/>
+      <s:enumeration value="ForecastUltimateXL"/>
+    </s:restriction>
+  </s:simpleType>
+  <s:complexType name="NetworkDevice">
+    <s:sequence>
+      <s:element name="Description" type="s:string"/>
+      <s:element name="DeviceId" type="s:string"/>
+      <s:element name="ModelName" type="s:string"/>
+    </s:sequence>
+  </s:complexType>
+</s:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:8080/soap-api/DeviceSoapService_1.0?xsd=Device-Schemes/w3c-xmlmime-definition.xsd</con:url><con:content><![CDATA[<!--W3C XML Schema defined in the Describing Media Content of Binary Data in XML specification,
+     see http://www.w3.org/TR/xml-media-types
+     Copyright © 2005 World Wide Web Consortium-->
+<xs:schema targetNamespace="http://www.w3.org/2005/05/xmlmime" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+  <xs:attribute name="contentType">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="3"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="expectedContentTypes" type="xs:string"/>
+  <xs:complexType name="base64Binary">
+    <xs:simpleContent>
+      <xs:extension base="xs:base64Binary">
+        <xs:attribute ref="xmime:contentType"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="hexBinary">
+    <xs:simpleContent>
+      <xs:extension base="xs:hexBinary">
+        <xs:attribute ref="xmime:contentType"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:8080/soap-api/DeviceSoapService_1.0?xsd=Device-Schemes/device-exception.xsd</con:url><con:content><![CDATA[<s:schema elementFormDefault="qualified" targetNamespace="http://www.dasanzhone.com/namespace/deviceservice/exception" version="1.0" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:exception="http://www.dasanzhone.com/namespace/deviceservice/exception" xmlns="http://www.dasanzhone.com/namespace/deviceservice/exception">
+  <s:element name="DeviceException">
+    <s:complexType>
+      <s:sequence>
+        <s:element name="Uuid" type="s:string"/>
+        <s:element name="timestamp" type="s:dateTime"/>
+        <s:element name="businessErrorId" type="s:string"/>
+        <s:element name="bigBusinessErrorCausingMoneyLoss" type="s:boolean"/>
+        <s:element name="exceptionDetails" type="s:string"/>
+      </s:sequence>
+    </s:complexType>
+  </s:element>
+</s:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/soap-api/DeviceSoapService_1.0</con:endpoint></con:endpoints><con:operation id="b669339d-5e9b-452b-815a-66ed12212d8a" isOneWay="false" action="http://www.dasanzhone.com/namespace/deviceservice/GetCityDeviceByZIP" name="GetCityDeviceByZIP" bindingOperationName="GetCityDeviceByZIP" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f045904a-89ec-449e-8c81-ef7a19282abe" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soap-api/DeviceSoapService_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:GetCityDeviceByZIP>\r
+         <!--Optional:-->\r
+         <gen:ForecastRequest>\r
+            <!--Optional:-->\r
+            <gen:ZIP>?</gen:ZIP>\r
+            <gen:flagcolor>?</gen:flagcolor>\r
+            <gen:productName>?</gen:productName>\r
+            <gen:ForecastCustomer>\r
+               <gen:Age>?</gen:Age>\r
+               <gen:Contribution>?</gen:Contribution>\r
+               <gen:MethodOfPayment>?</gen:MethodOfPayment>\r
+            </gen:ForecastCustomer>\r
+         </gen:ForecastRequest>\r
+      </gen:GetCityDeviceByZIP>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetCityDeviceByZIP"/></con:call></con:operation><con:operation id="013bc3fb-3235-40f4-bfbc-99a12d204b2b" isOneWay="false" action="http://www.dasanzhone.com/namespace/deviceservice/GetCityForecastByZIP" name="GetCityForecastByZIP" bindingOperationName="GetCityForecastByZIP" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="368a41cd-925c-415a-8d98-555ad8a45ddc" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soap-api/DeviceSoapService_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:GetCityForecastByZIP>\r
+         <!--Optional:-->\r
+         <gen:ForecastRequest>\r
+            <!--Optional:-->\r
+            <gen:ZIP>?</gen:ZIP>\r
+            <gen:flagcolor>?</gen:flagcolor>\r
+            <gen:productName>?</gen:productName>\r
+            <gen:ForecastCustomer>\r
+               <gen:Age>?</gen:Age>\r
+               <gen:Contribution>?</gen:Contribution>\r
+               <gen:MethodOfPayment>?</gen:MethodOfPayment>\r
+            </gen:ForecastCustomer>\r
+         </gen:ForecastRequest>\r
+      </gen:GetCityForecastByZIP>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetCityForecastByZIP"/></con:call></con:operation><con:operation id="f41741dc-64bc-4299-963c-8637302fc569" isOneWay="false" action="http://www.dasanzhone.com/namespace/deviceservice/GetDeviceInformation" name="GetDeviceInformation" bindingOperationName="GetDeviceInformation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7a8a08ed-c73d-4c0c-906e-f528baab7bea" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soap-api/DeviceSoapService_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:GetDeviceInformation>\r
+         <!--Optional:-->\r
+         <gen:ZIP>?</gen:ZIP>\r
+      </gen:GetDeviceInformation>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetDeviceInformation"/></con:call></con:operation><con:operation id="9ac38c17-852c-4909-9add-23125b8106d5" isOneWay="false" action="http://www.dasanzhone.com/namespace/deviceservice/GetNetworkDeviceById" name="GetNetworkDeviceById" bindingOperationName="GetNetworkDeviceById" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="335a5b1c-9ba8-4ef4-84ac-fbab91cb782b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soap-api/DeviceSoapService_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:GetNetworkDeviceById>\r
+         <!--Optional:-->\r
+         <gen:DeviceId>?</gen:DeviceId>\r
+      </gen:GetNetworkDeviceById>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetNetworkDeviceById"/></con:call></con:operation></con:interface><con:mockService id="041ac980-e88f-4879-95cb-142add0fc01d" port="8080" path="/" host="DESKTOP-OB29B68" name="MockService 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="GetNetworkDeviceById" id="7826362c-42c4-4f79-b407-30d45efcf293" interface="DeviceService" operation="GetNetworkDeviceById"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="3efd56fe-6839-4a0e-a1f0-c32a900f9d3f" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general" xmlns:dat="http://www.dasanzhone.com/namespace/deviceservice/datatypes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gen:GetNetworkDeviceByIdResponse>
+         <!--Optional:-->
+         <gen:GetNetworkDeviceByIdResult>
+            <gen:Success>?</gen:Success>
+            <!--Optional:-->
+            <gen:ResponseText>?</gen:ResponseText>
+            <!--Optional:-->
+            <gen:NetworkDevice>
+               <dat:Description>?</dat:Description>
+               <dat:DeviceId>?</dat:DeviceId>
+               <dat:ModelName>?</dat:ModelName>
+            </gen:NetworkDevice>
+         </gen:GetNetworkDeviceByIdResult>
+      </gen:GetNetworkDeviceByIdResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetNetworkDeviceById"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

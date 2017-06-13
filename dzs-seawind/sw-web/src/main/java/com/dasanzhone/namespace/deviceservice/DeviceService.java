@@ -12,6 +12,7 @@ import com.dasanzhone.namespace.deviceservice.general.DeviceInformationReturn;
 import com.dasanzhone.namespace.deviceservice.general.DeviceReturn;
 import com.dasanzhone.namespace.deviceservice.general.ForecastRequest;
 import com.dasanzhone.namespace.deviceservice.general.ForecastReturn;
+import com.dasanzhone.namespace.deviceservice.general.NetworkDeviceReturn;
 
 
 /**
@@ -31,7 +32,9 @@ public interface DeviceService {
 
 
     /**
-     * Gets Information for each DeviceID
+     * Gets Information
+     * 				for each DeviceID
+     * 			
      * 
      * @param zip
      * @return
@@ -49,7 +52,9 @@ public interface DeviceService {
     ;
 
     /**
-     * Allows you to get your City Forecast Over the Next 7 Days, which is updated hourly.
+     * Allows you to get
+     * 				your City Forecast Over the Next 7 Days, which is updated hourly.
+     * 			
      * 
      * @param forecastRequest
      * @return
@@ -67,7 +72,9 @@ public interface DeviceService {
     ;
 
     /**
-     * Allows you to get your City's Device, which is updated hourly.
+     * Allows you to get
+     * 				your City's Device, which is updated hourly.
+     * 			
      * 
      * @param forecastRequest
      * @return
@@ -81,6 +88,23 @@ public interface DeviceService {
     public DeviceReturn getCityDeviceByZIP(
         @WebParam(name = "ForecastRequest", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general")
         ForecastRequest forecastRequest)
+        throws DeviceException
+    ;
+
+    /**
+     * 
+     * @param deviceId
+     * @return
+     *     returns com.dasanzhone.namespace.deviceservice.general.NetworkDeviceReturn
+     * @throws DeviceException
+     */
+    @WebMethod(operationName = "GetNetworkDeviceById", action = "http://www.dasanzhone.com/namespace/deviceservice/GetNetworkDeviceById")
+    @WebResult(name = "GetNetworkDeviceByIdResult", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general")
+    @RequestWrapper(localName = "GetNetworkDeviceById", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general", className = "com.dasanzhone.namespace.deviceservice.general.GetNetworkDeviceById")
+    @ResponseWrapper(localName = "GetNetworkDeviceByIdResponse", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general", className = "com.dasanzhone.namespace.deviceservice.general.GetNetworkDeviceByIdResponse")
+    public NetworkDeviceReturn getNetworkDeviceById(
+        @WebParam(name = "DeviceId", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general")
+        String deviceId)
         throws DeviceException
     ;
 
