@@ -24,7 +24,9 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -32,7 +34,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -49,7 +50,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = SwwebApp.class)
 public class UserResourceIntTest {
 
-    private static final String DEFAULT_ID = "id1";
+    private static final Long DEFAULT_ID = 1L;
 
     private static final String DEFAULT_LOGIN = "johndoe";
     private static final String UPDATED_LOGIN = "jhipster";
@@ -93,6 +94,9 @@ public class UserResourceIntTest {
     @Autowired
     private ExceptionTranslator exceptionTranslator;
 
+    @Autowired
+    private EntityManager em;
+
     private MockMvc restUserMockMvc;
 
     private User user;
@@ -114,7 +118,7 @@ public class UserResourceIntTest {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which has a required relationship to the User entity.
      */
-    public static User createEntity() {
+    public static User createEntity(EntityManager em) {
         User user = new User();
         user.setLogin(DEFAULT_LOGIN);
         user.setPassword(RandomStringUtils.random(60));
@@ -129,11 +133,11 @@ public class UserResourceIntTest {
 
     @Before
     public void initTest() {
-        userRepository.deleteAll();
-        user = createEntity();
+        user = createEntity(em);
     }
 
     @Test
+    @Transactional
     public void createUser() throws Exception {
         int databaseSizeBeforeCreate = userRepository.findAll().size();
 
@@ -174,13 +178,14 @@ public class UserResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void createUserWithExistingId() throws Exception {
         int databaseSizeBeforeCreate = userRepository.findAll().size();
 
         Set<String> authorities = new HashSet<>();
         authorities.add("ROLE_USER");
         ManagedUserVM managedUserVM = new ManagedUserVM(
-            "1L",
+            1L,
             DEFAULT_LOGIN,
             DEFAULT_PASSWORD,
             DEFAULT_FIRSTNAME,
@@ -207,9 +212,10 @@ public class UserResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void createUserWithExistingLogin() throws Exception {
         // Initialize the database
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
         int databaseSizeBeforeCreate = userRepository.findAll().size();
 
         Set<String> authorities = new HashSet<>();
@@ -242,9 +248,10 @@ public class UserResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void createUserWithExistingEmail() throws Exception {
         // Initialize the database
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
         int databaseSizeBeforeCreate = userRepository.findAll().size();
 
         Set<String> authorities = new HashSet<>();
@@ -277,12 +284,13 @@ public class UserResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void getAllUsers() throws Exception {
         // Initialize the database
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
 
         // Get all the users
-        restUserMockMvc.perform(get("/api/users")
+        restUserMockMvc.perform(get("/api/users?sort=id,desc")
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
@@ -295,9 +303,10 @@ public class UserResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void getUser() throws Exception {
         // Initialize the database
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
 
         // Get the user
         restUserMockMvc.perform(get("/api/users/{login}", user.getLogin()))
@@ -312,15 +321,17 @@ public class UserResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void getNonExistingUser() throws Exception {
         restUserMockMvc.perform(get("/api/users/unknown"))
             .andExpect(status().isNotFound());
     }
 
     @Test
+    @Transactional
     public void updateUser() throws Exception {
         // Initialize the database
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
         int databaseSizeBeforeUpdate = userRepository.findAll().size();
 
         // Update the user
@@ -361,9 +372,10 @@ public class UserResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void updateUserLogin() throws Exception {
         // Initialize the database
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
         int databaseSizeBeforeUpdate = userRepository.findAll().size();
 
         // Update the user
@@ -405,9 +417,10 @@ public class UserResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void updateUserExistingEmail() throws Exception {
         // Initialize the database with 2 users
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
 
         User anotherUser = new User();
         anotherUser.setLogin("jhipster");
@@ -418,7 +431,7 @@ public class UserResourceIntTest {
         anotherUser.setLastName("hipster");
         anotherUser.setImageUrl("");
         anotherUser.setLangKey("en");
-        userRepository.save(anotherUser);
+        userRepository.saveAndFlush(anotherUser);
 
         // Update the user
         User updatedUser = userRepository.findOne(user.getId());
@@ -448,9 +461,10 @@ public class UserResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void updateUserExistingLogin() throws Exception {
         // Initialize the database
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
 
         User anotherUser = new User();
         anotherUser.setLogin("jhipster");
@@ -461,7 +475,7 @@ public class UserResourceIntTest {
         anotherUser.setLastName("hipster");
         anotherUser.setImageUrl("");
         anotherUser.setLangKey("en");
-        userRepository.save(anotherUser);
+        userRepository.saveAndFlush(anotherUser);
 
         // Update the user
         User updatedUser = userRepository.findOne(user.getId());
@@ -491,9 +505,10 @@ public class UserResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void deleteUser() throws Exception {
         // Initialize the database
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
         int databaseSizeBeforeDelete = userRepository.findAll().size();
 
         // Delete the user
@@ -507,6 +522,7 @@ public class UserResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void getAllAuthorities() throws Exception {
         restUserMockMvc.perform(get("/api/users/authorities")
             .accept(TestUtil.APPLICATION_JSON_UTF8)
@@ -518,6 +534,7 @@ public class UserResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void testUserEquals() {
         User userA = new User();
         assertThat(userA).isEqualTo(userA);
