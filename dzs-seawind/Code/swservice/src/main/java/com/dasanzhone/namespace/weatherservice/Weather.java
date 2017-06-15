@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.1
  * 
  */
-@WebServiceClient(name = "Weather", targetNamespace = "http://www.dasanzhone.com/namespace/weatherservice/", wsdlLocation = "file:/D:/Develop/Java/Github/spring/dzs-seawind/sw-web/src/main/resources/service-api-definition/Weather1.0.wsdl")
+@WebServiceClient(name = "Weather", targetNamespace = "http://www.dasanzhone.com/namespace/weatherservice/", wsdlLocation = "file:/D:/Develop/Java/Github/spring/dzs-seawind/Code/swservice/src/main/resources/service-api-definition/Weather1.0.wsdl")
 public class Weather
     extends Service
 {
@@ -30,7 +30,7 @@ public class Weather
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/D:/Develop/Java/Github/spring/dzs-seawind/sw-web/src/main/resources/service-api-definition/Weather1.0.wsdl");
+            url = new URL("file:/D:/Develop/Java/Github/spring/dzs-seawind/Code/swservice/src/main/resources/service-api-definition/Weather1.0.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

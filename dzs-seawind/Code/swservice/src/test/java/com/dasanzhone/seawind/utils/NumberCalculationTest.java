@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dasanzhone.seawind.util.BusinessUtil;
+import com.dasanzhone.seawind.swservice.util.BusinessUtil;
 
 public class NumberCalculationTest {
 

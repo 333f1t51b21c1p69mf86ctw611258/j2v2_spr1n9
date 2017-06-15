@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Import;
 
 import com.dasanzhone.namespace.deviceservice.DeviceService;
 import com.dasanzhone.namespace.weatherservice.WeatherService;
-import com.dasanzhone.seawind.configuration.ApplicationConfiguration;
-import com.dasanzhone.seawind.endpoint.DeviceServiceEndpoint;
-import com.dasanzhone.seawind.endpoint.WeatherServiceEndpoint;
+import com.dasanzhone.seawind.swservice.configuration.ApplicationConfiguration;
+import com.dasanzhone.seawind.swservice.endpoint.DeviceServiceEndpoint;
+import com.dasanzhone.seawind.swservice.endpoint.WeatherServiceEndpoint;
 
 @Configuration
 @Import(ApplicationConfiguration.class)

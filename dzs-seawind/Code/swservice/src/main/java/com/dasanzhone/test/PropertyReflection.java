@@ -73,7 +73,12 @@ public class PropertyReflection {
 
 	public static void getProperties() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		Class<?> clazz = Class.forName("com.dasanzhone.test.PropertyReflection");
-		Object instance = clazz.newInstance();
+
+		PropertyReflection propertyReflection = new PropertyReflection();
+		propertyReflection.setSalary(10000);
+		propertyReflection.setFirstname("Nguyen");
+
+		Object instance = clazz.cast(propertyReflection);
 		int salary = get(instance, "salary");
 		String firstname = get(instance, "firstname");
 

@@ -2,7 +2,7 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <logger name="org.springframework" level="WARN"/>
-    <logger name="com.dasanzhone.seawind" level="DEBUG"/>
+    <logger name="com.dasanzhone.seawind.swservice" level="DEBUG"/>
     <logger name="org.apache.cxf" level="INFO"/>
 
     <!-- Logstash-Configuration -->

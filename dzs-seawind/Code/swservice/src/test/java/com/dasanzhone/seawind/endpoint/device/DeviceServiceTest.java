@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.dasanzhone.namespace.deviceservice.DeviceException;
 import com.dasanzhone.namespace.deviceservice.general.DeviceInformationReturn;
 import com.dasanzhone.seawind.ApplicationTestConfiguration;
-import com.dasanzhone.seawind.endpoint.DeviceServiceEndpoint;
+import com.dasanzhone.seawind.swservice.endpoint.DeviceServiceEndpoint;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ApplicationTestConfiguration.class)

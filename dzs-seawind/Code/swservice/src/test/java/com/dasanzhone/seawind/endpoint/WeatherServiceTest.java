@@ -13,9 +13,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.dasanzhone.namespace.weatherservice.WeatherException;
 import com.dasanzhone.namespace.weatherservice.general.ForecastRequest;
 import com.dasanzhone.namespace.weatherservice.general.ForecastReturn;
-import com.dasanzhone.seawind.endpoint.WeatherServiceEndpoint;
-
 import com.dasanzhone.seawind.ApplicationTestConfiguration;
+import com.dasanzhone.seawind.swservice.endpoint.WeatherServiceEndpoint;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes=ApplicationTestConfiguration.class)

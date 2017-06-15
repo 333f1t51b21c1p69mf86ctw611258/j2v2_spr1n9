@@ -1,6 +1,6 @@
 {
-  "name": "Swweb",
-  "short_name": "Swweb",
+  "name": "swwebApp",
+  "short_name": "swwebApp",
   "icons": [
       {
           "src": "/content/images/logo-jhipster.png",

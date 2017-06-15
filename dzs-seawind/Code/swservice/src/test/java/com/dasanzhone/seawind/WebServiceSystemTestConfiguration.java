@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.dasanzhone.namespace.weatherservice.WeatherService;
-import com.dasanzhone.seawind.configuration.WebServiceConfiguration;
+import com.dasanzhone.seawind.swservice.configuration.WebServiceConfiguration;
 
 @Configuration
 public class WebServiceSystemTestConfiguration {

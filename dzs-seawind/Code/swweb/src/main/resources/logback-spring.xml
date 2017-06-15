@@ -22,7 +22,7 @@
     </appender>
 -->
 
-    <logger name="com.dasanzhone.seawind" level="#logback.loglevel#"/>
+    <logger name="com.dasanzhone.seawind.swweb" level="#logback.loglevel#"/>
 
     <logger name="io.github.jhipster" level="#logback.loglevel#"/>
 

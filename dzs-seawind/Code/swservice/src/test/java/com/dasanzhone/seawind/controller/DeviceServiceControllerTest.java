@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.dasanzhone.namespace.deviceservice.general.OntInput;
 import com.dasanzhone.seawind.ApplicationTestConfiguration;
+import com.dasanzhone.seawind.swservice.controller.DeviceServiceController;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ApplicationTestConfiguration.class)
