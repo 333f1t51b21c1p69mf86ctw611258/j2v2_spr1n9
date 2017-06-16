@@ -148,16 +148,18 @@
 
 	<s:complexType name="OntInput">
        	<s:sequence>
-			<s:element minOccurs="0" maxOccurs="1" name="OntInterface" type="s:string"/>
-			<s:element minOccurs="0" maxOccurs="1" name="SwVerPland" type="s:string"/>
-			<s:element minOccurs="0" maxOccurs="1" name="SwDnloadVersion" type="s:string"/>
-			<s:element minOccurs="0" maxOccurs="1" name="Sernum" type="s:string"/>
-			<s:element minOccurs="0" maxOccurs="1" name="FecUp" type="s:string"/>
-			<s:element minOccurs="0" maxOccurs="1" name="EnableAes" type="s:string"/>
-			<s:element minOccurs="0" maxOccurs="1" name="PlndVar" type="s:string"/>
-			<s:element minOccurs="0" maxOccurs="1" name="OpticsHist" type="s:string"/>
-      <s:element minOccurs="0" maxOccurs="1" name="Berint" type="s:string"/>
-      <s:element minOccurs="0" maxOccurs="1" name="Provversion" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="OntInterface" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SwVerPland" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SwDnloadVersion" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Sernum" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="FecUp" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableAes" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="PlndVar" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="OpticsHist" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Berint" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Provversion" type="s:string"/>
+
+          <s:element minOccurs="0" maxOccurs="1" name="AdminState" type="s:string"/>
         </s:sequence>
     </s:complexType>
 
@@ -181,6 +183,22 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="DeclareOntIdResult" type="general:CommonOperationReturn"/>
+          </s:sequence>
+        </s:complexType>
+    </s:element>
+
+    <s:element name="ActivateDeactivateOntId">
+    	<s:complexType>
+        	<s:sequence>
+				<s:element minOccurs="0" maxOccurs="1" name="OntInput" type="general:OntInput"/>
+	        </s:sequence>
+	    </s:complexType>
+    </s:element>
+    
+    <s:element name="ActivateDeactivateOntIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ActivateDeactivateOntIdResult" type="general:CommonOperationReturn"/>
           </s:sequence>
         </s:complexType>
     </s:element>

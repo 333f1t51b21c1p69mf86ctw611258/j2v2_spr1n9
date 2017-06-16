@@ -2,6 +2,8 @@ package com.dasanzhone.seawind.swservice.endpoint;
 
 import java.io.IOException;
 
+import javax.jws.WebParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +75,11 @@ public class DeviceServiceEndpoint implements DeviceService {
 			OntInput ontInput) throws DeviceException {
 
 		return deviceServiceController.declareOntId(ontInput);
+	}
+
+	public CommonOperationReturn activateDeactivateOntId(OntInput ontInput) throws DeviceException {
+		
+		return deviceServiceController.activateDeactivateOntId(ontInput);
 	}
 
 }

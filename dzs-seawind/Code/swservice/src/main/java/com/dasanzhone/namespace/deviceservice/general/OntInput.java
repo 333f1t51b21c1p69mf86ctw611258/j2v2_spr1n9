@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="OntInterface" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="OntInterface" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="SwVerPland" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="SwDnloadVersion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Sernum" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="OpticsHist" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Berint" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Provversion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="AdminState" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -46,11 +47,12 @@ import javax.xml.bind.annotation.XmlType;
     "plndVar",
     "opticsHist",
     "berint",
-    "provversion"
+    "provversion",
+    "adminState"
 })
 public class OntInput {
 
-    @XmlElement(name = "OntInterface")
+    @XmlElement(name = "OntInterface", required = true)
     protected String ontInterface;
     @XmlElement(name = "SwVerPland")
     protected String swVerPland;
@@ -70,6 +72,8 @@ public class OntInput {
     protected String berint;
     @XmlElement(name = "Provversion")
     protected String provversion;
+    @XmlElement(name = "AdminState")
+    protected String adminState;
 
     /**
      * Gets the value of the ontInterface property.
@@ -309,6 +313,30 @@ public class OntInput {
      */
     public void setProvversion(String value) {
         this.provversion = value;
+    }
+
+    /**
+     * Gets the value of the adminState property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAdminState() {
+        return adminState;
+    }
+
+    /**
+     * Sets the value of the adminState property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAdminState(String value) {
+        this.adminState = value;
     }
 
 }

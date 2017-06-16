@@ -127,4 +127,21 @@ public interface DeviceService {
         throws DeviceException
     ;
 
+    /**
+     * 
+     * @param ontInput
+     * @return
+     *     returns com.dasanzhone.namespace.deviceservice.general.CommonOperationReturn
+     * @throws DeviceException
+     */
+    @WebMethod(operationName = "ActivateDeactivateOntId", action = "http://www.dasanzhone.com/namespace/deviceservice/ActivateDeactivateOntId")
+    @WebResult(name = "ActivateDeactivateOntIdResult", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general")
+    @RequestWrapper(localName = "ActivateDeactivateOntId", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general", className = "com.dasanzhone.namespace.deviceservice.general.ActivateDeactivateOntId")
+    @ResponseWrapper(localName = "ActivateDeactivateOntIdResponse", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general", className = "com.dasanzhone.namespace.deviceservice.general.ActivateDeactivateOntIdResponse")
+    public CommonOperationReturn activateDeactivateOntId(
+        @WebParam(name = "OntInput", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general")
+        OntInput ontInput)
+        throws DeviceException
+    ;
+
 }

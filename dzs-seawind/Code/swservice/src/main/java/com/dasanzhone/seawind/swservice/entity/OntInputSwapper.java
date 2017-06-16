@@ -6,15 +6,17 @@ import com.dasanzhone.namespace.deviceservice.general.OntInput;
 
 public class OntInputSwapper {
 
+	private static final String STRING_DOWN = "DOWN";
+	private static final String STRING_UP = "UP";
 	private static final String STRING_DISABLE = "DISABLE";
 	private static final String STRING_ENABLE = "ENABLE";
 
 	private final OntInput ontInput;
-	
+
 	public OntInputSwapper(OntInput ontInput) {
 		this.ontInput = ontInput;
 	}
-	
+
 	public String getOntInterface() {
 		return this.ontInput.getOntInterface();
 	}
@@ -90,6 +92,19 @@ public class OntInputSwapper {
 		}
 
 		return this.ontInput.getProvversion();
+	}
+
+	public String getAdminState() {
+		String first = this.ontInput.getAdminState();
+		String swapper = null;
+
+		if (STRING_UP.equalsIgnoreCase(first)) {
+			swapper = "1";
+		} else if (STRING_DOWN.equalsIgnoreCase(first)) {
+			swapper = "2";
+		}
+
+		return swapper;
 	}
 
 }

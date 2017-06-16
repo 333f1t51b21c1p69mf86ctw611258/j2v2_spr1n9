@@ -76,11 +76,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ActivateDeactivateOntId }
+     * 
+     */
+    public ActivateDeactivateOntId createActivateDeactivateOntId() {
+        return new ActivateDeactivateOntId();
+    }
+
+    /**
+     * Create an instance of {@link OntInput }
+     * 
+     */
+    public OntInput createOntInput() {
+        return new OntInput();
+    }
+
+    /**
      * Create an instance of {@link ForecastReturn }
      * 
      */
     public ForecastReturn createForecastReturn() {
         return new ForecastReturn();
+    }
+
+    /**
+     * Create an instance of {@link ActivateDeactivateOntIdResponse }
+     * 
+     */
+    public ActivateDeactivateOntIdResponse createActivateDeactivateOntIdResponse() {
+        return new ActivateDeactivateOntIdResponse();
     }
 
     /**
@@ -97,14 +121,6 @@ public class ObjectFactory {
      */
     public DeclareOntId createDeclareOntId() {
         return new DeclareOntId();
-    }
-
-    /**
-     * Create an instance of {@link OntInput }
-     * 
-     */
-    public OntInput createOntInput() {
-        return new OntInput();
     }
 
     /**

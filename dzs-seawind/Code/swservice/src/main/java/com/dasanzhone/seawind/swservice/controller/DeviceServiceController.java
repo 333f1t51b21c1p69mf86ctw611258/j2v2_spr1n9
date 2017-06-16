@@ -185,4 +185,51 @@ public class DeviceServiceController {
 		}
 	}
 
+	public CommonOperationReturn activateDeactivateOntId(OntInput ontInput) {
+		CommonOperationReturn result = new CommonOperationReturn();
+
+		OntInputSwapper ontInputSwapper = new OntInputSwapper(ontInput);
+
+		int leafNode;
+		try {
+			leafNode = BusinessUtil.tranformInterfaceToOid(ontInputSwapper.getOntInterface());
+		} catch (Exception e) {
+			result.setSuccess(false);
+			result.setResponseText(e.toString());
+			result.setDescription(ExceptionUtils.getFullStackTrace(e));
+			return result;
+		}
+
+		SnmpOperationInput input = new SnmpOperationInput();
+
+		input.setHost("10.72.200.125");
+		input.setVersion("v2");
+		input.setOids(new ArrayList<SnmpOid>());
+
+		SnmpOid snmpOid = new SnmpOid(".1.3.6.1.2.1.2.2.1.7." + leafNode, SnmpUtil.getSnmpVar("INTEGER", ontInputSwapper.getAdminState()));
+		input.getOids().add(snmpOid);
+
+		try {
+			SnmpPDU snmpPDU = SnmpOperation.setWithoutMib_Low(input);
+			if (snmpPDU.getErrstat() == 0) {
+				result.setSuccess(true);
+				result.setResponseText("SUCCESSFUL");
+				result.setDescription(snmpPDU.printVarBinds());
+			} else {
+				result.setSuccess(false);
+				result.setResponseText("UNSUCCESSFUL");
+				result.setDescription(snmpPDU.getError());
+			}
+
+			return result;
+
+		} catch (Exception e) {
+
+			result.setSuccess(false);
+			result.setResponseText(e.toString());
+			result.setDescription(ExceptionUtils.getFullStackTrace(e));
+			return result;
+		}
+	}
+
 }

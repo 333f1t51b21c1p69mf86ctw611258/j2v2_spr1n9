@@ -51,6 +51,13 @@
 		<wsdl:part name="parameters" element="general:DeclareOntIdResponse"></wsdl:part>
 	</wsdl:message>
 
+	<wsdl:message name="ActivateDeactivateOntIdIn">
+		<wsdl:part name="parameters" element="general:ActivateDeactivateOntId"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ActivateDeactivateOntIdOut">
+		<wsdl:part name="parameters" element="general:ActivateDeactivateOntIdResponse"></wsdl:part>
+	</wsdl:message>
+
 	<wsdl:message name="DeviceException">
 		<wsdl:part name="parameters" element="exception:DeviceException" />
 	</wsdl:message>
@@ -90,6 +97,12 @@
 		<wsdl:operation name="DeclareOntId">
 			<wsdl:input message="device:DeclareOntIdIn"></wsdl:input>
 			<wsdl:output message="device:DeclareOntIdOut"></wsdl:output>
+			<wsdl:fault name="DeviceException" message="device:DeviceException" />
+		</wsdl:operation>
+
+		<wsdl:operation name="ActivateDeactivateOntId">
+			<wsdl:input message="device:ActivateDeactivateOntIdIn"></wsdl:input>
+			<wsdl:output message="device:ActivateDeactivateOntIdOut"></wsdl:output>
 			<wsdl:fault name="DeviceException" message="device:DeviceException" />
 		</wsdl:operation>
 
@@ -158,6 +171,21 @@
 		<wsdl:operation name="DeclareOntId">
 			<soap:operation
 				soapAction="http://www.dasanzhone.com/namespace/deviceservice/DeclareOntId"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="DeviceException">
+				<soap:fault name="DeviceException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="ActivateDeactivateOntId">
+			<soap:operation
+				soapAction="http://www.dasanzhone.com/namespace/deviceservice/ActivateDeactivateOntId"
 				style="document" />
 			<wsdl:input>
 				<soap:body use="literal" />
