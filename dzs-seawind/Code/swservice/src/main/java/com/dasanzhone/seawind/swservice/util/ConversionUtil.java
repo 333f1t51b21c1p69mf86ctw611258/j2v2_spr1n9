@@ -1,6 +1,8 @@
 package com.dasanzhone.seawind.swservice.util;
 
-public class BusinessUtil {
+import com.google.common.base.CaseFormat;
+
+public class ConversionUtil {
 
 	public static int convertAddressToOntId(String cli_node) {
 		String[] nodes = cli_node.split("/");
@@ -83,6 +85,11 @@ public class BusinessUtil {
 		}
 		
 		return new String(data);
+	}
+	
+	public static String convertConstantCaseToCamelCase(String constantCase) {
+		
+		return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, constantCase);
 	}
 
 }

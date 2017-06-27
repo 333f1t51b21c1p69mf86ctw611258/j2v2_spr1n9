@@ -1,7 +1,7 @@
 package com.dasanzhone.seawind.swservice.entity;
 
 import com.dasanzhone.namespace.deviceservice.general.OntInput;
-import com.dasanzhone.seawind.swservice.util.BusinessUtil;
+import com.dasanzhone.seawind.swservice.util.ConversionUtil;
 
 import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 
@@ -23,15 +23,15 @@ public class OntInputSwapper {
 
 	public Integer parseOntId() {
 		if (ontId == null && StringUtils.isNotEmpty(ontInput.getOntInterface())) {
-			ontId = BusinessUtil.convertAddressToOntId(ontInput.getOntInterface());
+			ontId = ConversionUtil.convertAddressToOntId(ontInput.getOntInterface());
 		}
 		
 		if (ontId == null && StringUtils.isNotEmpty(ontInput.getOntSlot())) {
-			ontId = BusinessUtil.convertAddressToOntId(ontInput.getOntSlot());
+			ontId = ConversionUtil.convertAddressToOntId(ontInput.getOntSlot());
 		}
 		
 		if (ontId == null && StringUtils.isNotEmpty(ontInput.getOntPort())) {
-			ontId = BusinessUtil.convertAddressToOntId(ontInput.getOntPort());
+			ontId = ConversionUtil.convertAddressToOntId(ontInput.getOntPort());
 		}
 
 		return ontId;
@@ -39,11 +39,11 @@ public class OntInputSwapper {
 
 	public Integer parseCardSlotId() {
 		if (cardSlotId == null && StringUtils.isNotEmpty(ontInput.getOntSlot())) {
-			cardSlotId = BusinessUtil.convertAddressToOntCardSlot(ontInput.getOntSlot());
+			cardSlotId = ConversionUtil.convertAddressToOntCardSlot(ontInput.getOntSlot());
 		}
 		
 		if (cardSlotId == null && StringUtils.isNotEmpty(ontInput.getOntPort())) {
-			cardSlotId = BusinessUtil.convertAddressToOntCardSlot(ontInput.getOntPort());
+			cardSlotId = ConversionUtil.convertAddressToOntCardSlot(ontInput.getOntPort());
 		}
 
 		return cardSlotId;
@@ -51,7 +51,7 @@ public class OntInputSwapper {
 
 	public Integer parsePortId() {
 		if (portId == null && StringUtils.isNotEmpty(ontInput.getOntPort())) {
-			portId = BusinessUtil.convertAddressToOntPort(ontInput.getOntPort());
+			portId = ConversionUtil.convertAddressToOntPort(ontInput.getOntPort());
 		}
 
 		return portId;

@@ -22,12 +22,19 @@
 	</properties>
 
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>19.0</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
 		<dependency>
-		    <groupId>commons-beanutils</groupId>
-		    <artifactId>commons-beanutils</artifactId>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
 		</dependency>
-	
+
 		<!-- https://mvnrepository.com/artifact/com.beust/jcommander -->
 		<dependency>
 			<groupId>com.beust</groupId>
@@ -149,7 +156,7 @@
 						<wsdlUrl>src/main/resources/service-api-definition/Weather1.0.wsdl</wsdlUrl>
 						<wsdlUrl>src/main/resources/service-api-definition/Device1.0.wsdl</wsdlUrl>
 					</wsdlUrls>
-<!-- 					<wsdlDirectory>${basedir}/src/main/resources/service-api-definition</wsdlDirectory> -->
+					<!-- <wsdlDirectory>${basedir}/src/main/resources/service-api-definition</wsdlDirectory> -->
 					<sourceDestDir>src/main/java</sourceDestDir>
 					<!-- For accessing the imported schema, see https://netbeans.org/bugzilla/show_bug.cgi?id=241570 -->
 					<vmArgs>

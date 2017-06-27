@@ -23,7 +23,7 @@ import com.dasanzhone.seawind.swservice.snmp.SnmpOid;
 import com.dasanzhone.seawind.swservice.snmp.SnmpOperation;
 import com.dasanzhone.seawind.swservice.snmp.SnmpOperationInput;
 import com.dasanzhone.seawind.swservice.snmp.SnmpUtil;
-import com.dasanzhone.seawind.swservice.util.BusinessUtil;
+import com.dasanzhone.seawind.swservice.util.ConversionUtil;
 
 import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 import net.logstash.logback.encoder.org.apache.commons.lang.exception.ExceptionUtils;
@@ -114,7 +114,7 @@ public class DeviceServiceController {
 			input.getOids().add(snmpOid);
 		}
 
-		String sernum_byteArrayString = BusinessUtil.convertSerialNumberHexStringToSerialNumberByteArrayString(ontInput.getSernum());
+		String sernum_byteArrayString = ConversionUtil.convertSerialNumberHexStringToSerialNumberByteArrayString(ontInput.getSernum());
 		mapper = new OntInputParamMapper(null, sernum_byteArrayString);
 		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
 			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.1.1.5.[ONT_ID]"), SnmpUtil.getSnmpVar("STRING", mapper.getFinalValue()));
