@@ -78,8 +78,17 @@ public class DeviceServiceEndpoint implements DeviceService {
 	}
 
 	public CommonOperationReturn activateDeactivateOntId(OntInput ontInput) throws DeviceException {
-		
+
 		return deviceServiceController.activateDeactivateOntId(ontInput);
+	}
+
+	public CommonOperationReturn declarePpptpCard(OntInput ontInput) throws DeviceException {
+		return deviceServiceController.declarePpptpCard(ontInput);
+	}
+	
+	public CommonOperationReturn configureUniLanPorts(OntInput ontInput) throws DeviceException {
+		
+		return deviceServiceController.configureUniLanPorts(ontInput);
 	}
 
 }

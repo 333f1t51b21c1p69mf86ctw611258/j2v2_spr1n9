@@ -1,15 +1,15 @@
 package com.dasanzhone.seawind.swservice.entity;
 
-import org.apache.cxf.common.util.StringUtils;
-
 import com.dasanzhone.namespace.deviceservice.general.OntInput;
+import com.dasanzhone.seawind.swservice.util.BusinessUtil;
+
+import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 
 public class OntInputSwapper {
 
-	private static final String STRING_DOWN = "DOWN";
-	private static final String STRING_UP = "UP";
-	private static final String STRING_DISABLE = "DISABLE";
-	private static final String STRING_ENABLE = "ENABLE";
+	private static final String STRING_TAG_PORT_ID = "[PORT_ID]";
+	private static final String STRING_TAG_CARD_SLOT_ID = "[CARD_SLOT_ID]";
+	private static final String STRING_TAG_ONT_ID = "[ONT_ID]";
 
 	private final OntInput ontInput;
 
@@ -17,94 +17,86 @@ public class OntInputSwapper {
 		this.ontInput = ontInput;
 	}
 
-	public String getOntInterface() {
-		return this.ontInput.getOntInterface();
-	}
+	private Integer ontId = null;
+	private Integer cardSlotId = null;
+	private Integer portId = null;
 
-	public String getSwVerPland() {
-		return this.ontInput.getSwVerPland();
-	}
-
-	public String getSwDnloadVersion() {
-		return this.ontInput.getSwDnloadVersion();
-	}
-
-	public String getSernum() {
-		return this.ontInput.getSernum();
-	}
-
-	public String getFecUp() {
-		String first = this.ontInput.getFecUp();
-		String swapper = null;
-
-		if (STRING_ENABLE.equalsIgnoreCase(first)) {
-			swapper = "1";
-		} else if (STRING_DISABLE.equalsIgnoreCase(first)) {
-			swapper = "2";
+	public Integer parseOntId() {
+		if (ontId == null && StringUtils.isNotEmpty(ontInput.getOntInterface())) {
+			ontId = BusinessUtil.convertAddressToOntId(ontInput.getOntInterface());
+		}
+		
+		if (ontId == null && StringUtils.isNotEmpty(ontInput.getOntSlot())) {
+			ontId = BusinessUtil.convertAddressToOntId(ontInput.getOntSlot());
+		}
+		
+		if (ontId == null && StringUtils.isNotEmpty(ontInput.getOntPort())) {
+			ontId = BusinessUtil.convertAddressToOntId(ontInput.getOntPort());
 		}
 
-		return swapper;
+		return ontId;
 	}
 
-	public String getEnableAes() {
-		String first = this.ontInput.getEnableAes();
-		String swapper = null;
-
-		if (STRING_ENABLE.equalsIgnoreCase(first)) {
-			swapper = "1";
-		} else if (STRING_DISABLE.equalsIgnoreCase(first)) {
-			swapper = "0";
+	public Integer parseCardSlotId() {
+		if (cardSlotId == null && StringUtils.isNotEmpty(ontInput.getOntSlot())) {
+			cardSlotId = BusinessUtil.convertAddressToOntCardSlot(ontInput.getOntSlot());
+		}
+		
+		if (cardSlotId == null && StringUtils.isNotEmpty(ontInput.getOntPort())) {
+			cardSlotId = BusinessUtil.convertAddressToOntCardSlot(ontInput.getOntPort());
 		}
 
-		return swapper;
+		return cardSlotId;
 	}
 
-	public String getPlndVar() {
-		return this.ontInput.getPlndVar();
-	}
-
-	public String getOpticsHist() {
-		String first = STRING_ENABLE.equalsIgnoreCase(this.ontInput.getOpticsHist()) || STRING_DISABLE.equalsIgnoreCase(this.ontInput.getOpticsHist())
-				? this.ontInput.getOpticsHist() : STRING_DISABLE;
-
-		String swapper = null;
-
-		if (STRING_ENABLE.equalsIgnoreCase(first)) {
-			swapper = "1";
-		} else if (STRING_DISABLE.equalsIgnoreCase(first)) {
-			swapper = "2";
+	public Integer parsePortId() {
+		if (portId == null && StringUtils.isNotEmpty(ontInput.getOntPort())) {
+			portId = BusinessUtil.convertAddressToOntPort(ontInput.getOntPort());
 		}
 
-		return swapper;
+		return portId;
 	}
 
-	public String getBerint() {
-		if (StringUtils.isEmpty(this.ontInput.getBerint())) {
-			return "8000";
+	public String assignOidWithTags(String oidWithTag) {
+		String result = oidWithTag;
+
+		if (StringUtils.isNotEmpty(result)) {
+			if (!result.startsWith(".")) {
+				result = "." + result;
+			}
+
+			if (result.contains(STRING_TAG_ONT_ID)) {
+				Integer ontId = this.parseOntId();
+
+				if (ontId != null) {
+					result = result.replace(STRING_TAG_ONT_ID, ontId.toString());
+				} else {
+					throw new IllegalArgumentException();
+				}
+			}
+
+			if (result.contains(STRING_TAG_CARD_SLOT_ID)) {
+				Integer cardSlotId = this.parseCardSlotId();
+
+				if (cardSlotId != null) {
+					result = result.replace(STRING_TAG_CARD_SLOT_ID, cardSlotId.toString());
+				} else {
+					throw new IllegalArgumentException();
+				}
+			}
+
+			if (result.contains(STRING_TAG_PORT_ID)) {
+				Integer portId = this.parsePortId();
+
+				if (portId != null) {
+					result = result.replace(STRING_TAG_PORT_ID, portId.toString());
+				} else {
+					throw new IllegalArgumentException();
+				}
+			}
 		}
 
-		return this.ontInput.getBerint();
-	}
-
-	public String getProvversion() {
-		if (StringUtils.isEmpty(this.ontInput.getProvversion())) {
-			return "*";
-		}
-
-		return this.ontInput.getProvversion();
-	}
-
-	public String getAdminState() {
-		String first = this.ontInput.getAdminState();
-		String swapper = null;
-
-		if (STRING_UP.equalsIgnoreCase(first)) {
-			swapper = "1";
-		} else if (STRING_DOWN.equalsIgnoreCase(first)) {
-			swapper = "2";
-		}
-
-		return swapper;
-	}
+		return result;
+	}	
 
 }

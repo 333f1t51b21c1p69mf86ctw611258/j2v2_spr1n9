@@ -58,6 +58,20 @@
 		<wsdl:part name="parameters" element="general:ActivateDeactivateOntIdResponse"></wsdl:part>
 	</wsdl:message>
 
+	<wsdl:message name="DeclarePpptpCardIn">
+		<wsdl:part name="parameters" element="general:DeclarePpptpCard"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="DeclarePpptpCardOut">
+		<wsdl:part name="parameters" element="general:DeclarePpptpCardResponse"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="ConfigureUniLanPortsIn">
+		<wsdl:part name="parameters" element="general:ConfigureUniLanPorts"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ConfigureUniLanPortsOut">
+		<wsdl:part name="parameters" element="general:ConfigureUniLanPortsResponse"></wsdl:part>
+	</wsdl:message>
+
 	<wsdl:message name="DeviceException">
 		<wsdl:part name="parameters" element="exception:DeviceException" />
 	</wsdl:message>
@@ -103,6 +117,18 @@
 		<wsdl:operation name="ActivateDeactivateOntId">
 			<wsdl:input message="device:ActivateDeactivateOntIdIn"></wsdl:input>
 			<wsdl:output message="device:ActivateDeactivateOntIdOut"></wsdl:output>
+			<wsdl:fault name="DeviceException" message="device:DeviceException" />
+		</wsdl:operation>
+
+		<wsdl:operation name="DeclarePpptpCard">
+			<wsdl:input message="device:DeclarePpptpCardIn"></wsdl:input>
+			<wsdl:output message="device:DeclarePpptpCardOut"></wsdl:output>
+			<wsdl:fault name="DeviceException" message="device:DeviceException" />
+		</wsdl:operation>
+
+		<wsdl:operation name="ConfigureUniLanPorts">
+			<wsdl:input message="device:ConfigureUniLanPortsIn"></wsdl:input>
+			<wsdl:output message="device:ConfigureUniLanPortsOut"></wsdl:output>
 			<wsdl:fault name="DeviceException" message="device:DeviceException" />
 		</wsdl:operation>
 
@@ -186,6 +212,36 @@
 		<wsdl:operation name="ActivateDeactivateOntId">
 			<soap:operation
 				soapAction="http://www.dasanzhone.com/namespace/deviceservice/ActivateDeactivateOntId"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="DeviceException">
+				<soap:fault name="DeviceException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="DeclarePpptpCard">
+			<soap:operation
+				soapAction="http://www.dasanzhone.com/namespace/deviceservice/DeclarePpptpCard"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="DeviceException">
+				<soap:fault name="DeviceException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="ConfigureUniLanPorts">
+			<soap:operation
+				soapAction="http://www.dasanzhone.com/namespace/deviceservice/ConfigureUniLanPorts"
 				style="document" />
 			<wsdl:input>
 				<soap:body use="literal" />

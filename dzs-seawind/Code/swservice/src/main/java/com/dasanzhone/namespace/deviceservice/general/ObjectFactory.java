@@ -124,6 +124,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DeclarePpptpCard }
+     * 
+     */
+    public DeclarePpptpCard createDeclarePpptpCard() {
+        return new DeclarePpptpCard();
+    }
+
+    /**
+     * Create an instance of {@link DeclarePpptpCardResponse }
+     * 
+     */
+    public DeclarePpptpCardResponse createDeclarePpptpCardResponse() {
+        return new DeclarePpptpCardResponse();
+    }
+
+    /**
      * Create an instance of {@link GetCityForecastByZIPResponse }
      * 
      */
@@ -145,6 +161,14 @@ public class ObjectFactory {
      */
     public DeviceInformationReturn createDeviceInformationReturn() {
         return new DeviceInformationReturn();
+    }
+
+    /**
+     * Create an instance of {@link ConfigureUniLanPorts }
+     * 
+     */
+    public ConfigureUniLanPorts createConfigureUniLanPorts() {
+        return new ConfigureUniLanPorts();
     }
 
     /**
@@ -185,6 +209,14 @@ public class ObjectFactory {
      */
     public GetDeviceInformation createGetDeviceInformation() {
         return new GetDeviceInformation();
+    }
+
+    /**
+     * Create an instance of {@link ConfigureUniLanPortsResponse }
+     * 
+     */
+    public ConfigureUniLanPortsResponse createConfigureUniLanPortsResponse() {
+        return new ConfigureUniLanPortsResponse();
     }
 
     /**

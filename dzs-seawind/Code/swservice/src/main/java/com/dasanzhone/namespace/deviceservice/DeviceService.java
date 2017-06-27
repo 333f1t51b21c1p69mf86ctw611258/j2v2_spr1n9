@@ -144,4 +144,38 @@ public interface DeviceService {
         throws DeviceException
     ;
 
+    /**
+     * 
+     * @param ontInput
+     * @return
+     *     returns com.dasanzhone.namespace.deviceservice.general.CommonOperationReturn
+     * @throws DeviceException
+     */
+    @WebMethod(operationName = "DeclarePpptpCard", action = "http://www.dasanzhone.com/namespace/deviceservice/DeclarePpptpCard")
+    @WebResult(name = "DeclarePpptpCardResult", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general")
+    @RequestWrapper(localName = "DeclarePpptpCard", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general", className = "com.dasanzhone.namespace.deviceservice.general.DeclarePpptpCard")
+    @ResponseWrapper(localName = "DeclarePpptpCardResponse", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general", className = "com.dasanzhone.namespace.deviceservice.general.DeclarePpptpCardResponse")
+    public CommonOperationReturn declarePpptpCard(
+        @WebParam(name = "OntInput", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general")
+        OntInput ontInput)
+        throws DeviceException
+    ;
+
+    /**
+     * 
+     * @param ontInput
+     * @return
+     *     returns com.dasanzhone.namespace.deviceservice.general.CommonOperationReturn
+     * @throws DeviceException
+     */
+    @WebMethod(operationName = "ConfigureUniLanPorts", action = "http://www.dasanzhone.com/namespace/deviceservice/ConfigureUniLanPorts")
+    @WebResult(name = "ConfigureUniLanPortsResult", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general")
+    @RequestWrapper(localName = "ConfigureUniLanPorts", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general", className = "com.dasanzhone.namespace.deviceservice.general.ConfigureUniLanPorts")
+    @ResponseWrapper(localName = "ConfigureUniLanPortsResponse", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general", className = "com.dasanzhone.namespace.deviceservice.general.ConfigureUniLanPortsResponse")
+    public CommonOperationReturn configureUniLanPorts(
+        @WebParam(name = "OntInput", targetNamespace = "http://www.dasanzhone.com/namespace/deviceservice/general")
+        OntInput ontInput)
+        throws DeviceException
+    ;
+
 }

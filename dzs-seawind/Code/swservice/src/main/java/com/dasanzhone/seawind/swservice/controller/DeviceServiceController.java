@@ -16,6 +16,7 @@ import com.dasanzhone.namespace.deviceservice.general.DeviceInformationReturn;
 import com.dasanzhone.namespace.deviceservice.general.ForecastRequest;
 import com.dasanzhone.namespace.deviceservice.general.ForecastReturn;
 import com.dasanzhone.namespace.deviceservice.general.OntInput;
+import com.dasanzhone.seawind.swservice.entity.OntInputParamMapper;
 import com.dasanzhone.seawind.swservice.entity.OntInputSwapper;
 import com.dasanzhone.seawind.swservice.service.SnmpManager;
 import com.dasanzhone.seawind.swservice.snmp.SnmpOid;
@@ -24,6 +25,7 @@ import com.dasanzhone.seawind.swservice.snmp.SnmpOperationInput;
 import com.dasanzhone.seawind.swservice.snmp.SnmpUtil;
 import com.dasanzhone.seawind.swservice.util.BusinessUtil;
 
+import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 import net.logstash.logback.encoder.org.apache.commons.lang.exception.ExceptionUtils;
 
 /*
@@ -36,7 +38,6 @@ import net.logstash.logback.encoder.org.apache.commons.lang.exception.ExceptionU
 @Component
 public class DeviceServiceController {
 
-	private static final String STRING_ENABLE = "ENABLE";
 	private static final Logger LOG = LoggerFactory.getLogger(DeviceServiceController.class);
 
 	public ForecastReturn getCityForecastByZIP(ForecastRequest forecastRequest) {
@@ -95,27 +96,10 @@ public class DeviceServiceController {
 		return deviceInformationReturn;
 	}
 
-	public static String ROOT_SW_VER_PLAND = ".1.3.6.1.4.1.637.61.1.35.10.1.1.11.";
-	public static String ROOT_SW_DNLOAD_VERSION = ".1.3.6.1.4.1.637.61.1.35.10.1.1.60.";
-	public static String ROOT_SERNUM = ".1.3.6.1.4.1.637.61.1.35.10.1.1.5.";
-	public static String ROOT_FEC_UP = ".1.3.6.1.4.1.637.61.1.35.10.1.1.39.";
-	public static String ROOT_ENABLE_AES = ".1.3.6.1.4.1.637.61.1.35.10.1.1.75.";
-	public static String ROOT_PLND_VAR = ".1.3.6.1.4.1.637.61.1.35.10.1.1.65.";
-
 	public CommonOperationReturn declareOntId(OntInput ontInput) {
 		CommonOperationReturn result = new CommonOperationReturn();
 
 		OntInputSwapper ontInputSwapper = new OntInputSwapper(ontInput);
-
-		int leafNode;
-		try {
-			leafNode = BusinessUtil.tranformInterfaceToOid(ontInputSwapper.getOntInterface());
-		} catch (Exception e) {
-			result.setSuccess(false);
-			result.setResponseText(e.toString());
-			result.setDescription(ExceptionUtils.getFullStackTrace(e));
-			return result;
-		}
 
 		SnmpOperationInput input = new SnmpOperationInput();
 
@@ -123,44 +107,91 @@ public class DeviceServiceController {
 		input.setVersion("v2");
 		input.setOids(new ArrayList<SnmpOid>());
 
-		SnmpOid snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.2." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "4"));
-		input.getOids().add(snmpOid);
+		SnmpOid snmpOid = null;
+		OntInputParamMapper mapper = new OntInputParamMapper("4", null);
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.1.1.2.[ONT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.5." + leafNode, SnmpUtil.getSnmpVar("STRING", ontInputSwapper.getSernum()));
-		input.getOids().add(snmpOid);
+		String sernum_byteArrayString = BusinessUtil.convertSerialNumberHexStringToSerialNumberByteArrayString(ontInput.getSernum());
+		mapper = new OntInputParamMapper(null, sernum_byteArrayString);
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.1.1.5.[ONT_ID]"), SnmpUtil.getSnmpVar("STRING", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.8." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "0"));
-		input.getOids().add(snmpOid);
+		mapper = new OntInputParamMapper("0", null);
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.1.1.8.[ONT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.11." + leafNode, SnmpUtil.getSnmpVar("STRING", ontInputSwapper.getSwVerPland()));
-		input.getOids().add(snmpOid);
+		mapper = new OntInputParamMapper(null, ontInput.getSwVerPland());
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.1.1.11.[ONT_ID]"), SnmpUtil.getSnmpVar("STRING", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.18." + leafNode, SnmpUtil.getSnmpVar("INTEGER", ontInputSwapper.getBerint()));
-		input.getOids().add(snmpOid);
+		mapper = new OntInputParamMapper("8000", ontInput.getBerint());
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.1.1.18.[ONT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.21." + leafNode, SnmpUtil.getSnmpVar("STRING", ontInputSwapper.getProvversion()));
-		input.getOids().add(snmpOid);
+		mapper = new OntInputParamMapper("*", ontInput.getProvversion());
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.1.1.21.[ONT_ID]"), SnmpUtil.getSnmpVar("STRING", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.39." + leafNode, SnmpUtil.getSnmpVar("INTEGER", ontInputSwapper.getFecUp()));
-		input.getOids().add(snmpOid);
+		mapper = new OntInputParamMapper(null, ontInput.getFecUp());
+		mapper.getMapValues().put(OntInputParamMapper.STRING_ENABLE, "1");
+		mapper.getMapValues().put(OntInputParamMapper.STRING_DISABLE, "2");
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.1.1.39.[ONT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.60." + leafNode, SnmpUtil.getSnmpVar("STRING", ontInputSwapper.getSwDnloadVersion()));
-		input.getOids().add(snmpOid);
+		mapper = new OntInputParamMapper(null, ontInput.getSwDnloadVersion());
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.1.1.60.[ONT_ID]"), SnmpUtil.getSnmpVar("STRING", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.63." + leafNode, SnmpUtil.getSnmpVar("INTEGER", ontInputSwapper.getOpticsHist()));
-		input.getOids().add(snmpOid);
+		mapper = new OntInputParamMapper(null, ontInput.getOpticsHist());
+		mapper.getMapValues().put(OntInputParamMapper.STRING_ENABLE, "1");
+		mapper.getMapValues().put(OntInputParamMapper.STRING_DISABLE, "2");
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.1.1.63.[ONT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.65." + leafNode, SnmpUtil.getSnmpVar("STRING", ontInputSwapper.getPlndVar()));
-		input.getOids().add(snmpOid);
+		mapper = new OntInputParamMapper(null, ontInput.getPlndVar());
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.1.1.65.[ONT_ID]"), SnmpUtil.getSnmpVar("STRING", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.47.6.1.1.18." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "8"));
-		input.getOids().add(snmpOid);
+		mapper = new OntInputParamMapper("8", null);
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.47.6.1.1.18.[ONT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.47.6.1.1.19." + leafNode, SnmpUtil.getSnmpVar("INTEGER", "2"));
-		input.getOids().add(snmpOid);
+		mapper = new OntInputParamMapper("2", null);
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.47.6.1.1.19.[ONT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
 
-		snmpOid = new SnmpOid(".1.3.6.1.4.1.637.61.1.35.10.1.1.75." + leafNode, SnmpUtil.getSnmpVar("INTEGER", ontInputSwapper.getEnableAes()));
-		input.getOids().add(snmpOid);
+		mapper = new OntInputParamMapper(null, ontInput.getEnableAes());
+		mapper.getMapValues().put(OntInputParamMapper.STRING_ENABLE, "1");
+		mapper.getMapValues().put(OntInputParamMapper.STRING_DISABLE, "0");
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.1.1.75.[ONT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
 
 		try {
 			SnmpPDU snmpPDU = SnmpOperation.setWithoutMib_Low(input);
@@ -190,15 +221,48 @@ public class DeviceServiceController {
 
 		OntInputSwapper ontInputSwapper = new OntInputSwapper(ontInput);
 
-		int leafNode;
+		SnmpOperationInput input = new SnmpOperationInput();
+
+		input.setHost("10.72.200.125");
+		input.setVersion("v2");
+		input.setOids(new ArrayList<SnmpOid>());
+
+		SnmpOid snmpOid = null;
+		OntInputParamMapper mapper = new OntInputParamMapper(null, ontInput.getAdminState());
+		mapper.getMapValues().put(OntInputParamMapper.STRING_UP, "1");
+		mapper.getMapValues().put(OntInputParamMapper.STRING_DOWN, "2");
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.2.1.2.2.1.7.[ONT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
+
 		try {
-			leafNode = BusinessUtil.tranformInterfaceToOid(ontInputSwapper.getOntInterface());
+			SnmpPDU snmpPDU = SnmpOperation.setWithoutMib_Low(input);
+			if (snmpPDU.getErrstat() == 0) {
+				result.setSuccess(true);
+				result.setResponseText("SUCCESSFUL");
+				result.setDescription(snmpPDU.printVarBinds());
+			} else {
+				result.setSuccess(false);
+				result.setResponseText("UNSUCCESSFUL");
+				result.setDescription(snmpPDU.getError());
+			}
+
+			return result;
+
 		} catch (Exception e) {
+
 			result.setSuccess(false);
 			result.setResponseText(e.toString());
 			result.setDescription(ExceptionUtils.getFullStackTrace(e));
 			return result;
 		}
+	}
+
+	public CommonOperationReturn declarePpptpCard(OntInput ontInput) {
+		CommonOperationReturn result = new CommonOperationReturn();
+
+		OntInputSwapper ontInputSwapper = new OntInputSwapper(ontInput);
 
 		SnmpOperationInput input = new SnmpOperationInput();
 
@@ -206,8 +270,96 @@ public class DeviceServiceController {
 		input.setVersion("v2");
 		input.setOids(new ArrayList<SnmpOid>());
 
-		SnmpOid snmpOid = new SnmpOid(".1.3.6.1.2.1.2.2.1.7." + leafNode, SnmpUtil.getSnmpVar("INTEGER", ontInputSwapper.getAdminState()));
-		input.getOids().add(snmpOid);
+		SnmpOid snmpOid = null;
+		OntInputParamMapper mapper = new OntInputParamMapper("4", null);
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.2.1.3.[ONT_ID].[CARD_SLOT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
+
+		mapper = new OntInputParamMapper(null, ontInput.getPlannedCardType());
+		mapper.getMapValues().put("10_100base", "24");
+		mapper.getMapValues().put("veip", "48");
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.2.1.4.[ONT_ID].[CARD_SLOT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
+
+		mapper = new OntInputParamMapper(null, ontInput.getAdminState());
+		mapper.getMapValues().put(OntInputParamMapper.STRING_UP, "0");
+		mapper.getMapValues().put(OntInputParamMapper.STRING_DOWN, "1");
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.2.1.6.[ONT_ID].[CARD_SLOT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
+
+		mapper = new OntInputParamMapper(null, ontInput.getPlndnumdataports());
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.2.1.10.[ONT_ID].[CARD_SLOT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
+
+		mapper = new OntInputParamMapper("1", null);
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.35.10.2.1.12.[ONT_ID].[CARD_SLOT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
+
+		// TODO:
+		// mapper = new OntInputParamMapper(null, ontInput.getPlndnumvoiceports());
+		// snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("???????????????"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+		// input.getOids().add(snmpOid);
+
+		try {
+			SnmpPDU snmpPDU = SnmpOperation.setWithoutMib_Low(input);
+			if (snmpPDU.getErrstat() == 0) {
+				result.setSuccess(true);
+				result.setResponseText("SUCCESSFUL");
+				result.setDescription(snmpPDU.printVarBinds());
+			} else {
+				result.setSuccess(false);
+				result.setResponseText("UNSUCCESSFUL");
+				result.setDescription(snmpPDU.getError());
+			}
+
+			return result;
+
+		} catch (Exception e) {
+
+			result.setSuccess(false);
+			result.setResponseText(e.toString());
+			result.setDescription(ExceptionUtils.getFullStackTrace(e));
+			return result;
+		}
+	}
+
+	public CommonOperationReturn configureUniLanPorts(OntInput ontInput) {
+		CommonOperationReturn result = new CommonOperationReturn();
+
+		OntInputSwapper ontInputSwapper = new OntInputSwapper(ontInput);
+
+		SnmpOperationInput input = new SnmpOperationInput();
+
+		input.setHost("10.72.200.125");
+		input.setVersion("v2");
+		input.setOids(new ArrayList<SnmpOid>());
+
+		SnmpOid snmpOid = null;
+		OntInputParamMapper mapper = new OntInputParamMapper(null, ontInput.getAdminState());
+		mapper.getMapValues().put(OntInputParamMapper.STRING_UP, "1");
+		mapper.getMapValues().put(OntInputParamMapper.STRING_DOWN, "2");
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.2.1.2.2.1.7.[PORT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
+
+		mapper = new OntInputParamMapper(null, ontInput.getAutoDetect());
+		if (StringUtils.isNotEmpty(mapper.getFinalValue())) {
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.47.6.1.1.4.[PORT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+			snmpOid = new SnmpOid(ontInputSwapper.assignOidWithTags("1.3.6.1.4.1.637.61.1.47.6.1.1.6.[PORT_ID]"), SnmpUtil.getSnmpVar("INTEGER", mapper.getFinalValue()));
+			input.getOids().add(snmpOid);
+		}
 
 		try {
 			SnmpPDU snmpPDU = SnmpOperation.setWithoutMib_Low(input);

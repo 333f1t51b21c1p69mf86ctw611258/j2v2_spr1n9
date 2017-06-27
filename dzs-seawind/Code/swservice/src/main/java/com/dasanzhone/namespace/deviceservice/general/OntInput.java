@@ -17,7 +17,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="OntInterface" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="OntInterface" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="OntSlot" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="OntPort" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="SwVerPland" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="SwDnloadVersion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Sernum" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -28,6 +30,10 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="Berint" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Provversion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="AdminState" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="PlannedCardType" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="Plndnumdataports" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="Plndnumvoiceports" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="AutoDetect" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,6 +45,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "OntInput", propOrder = {
     "ontInterface",
+    "ontSlot",
+    "ontPort",
     "swVerPland",
     "swDnloadVersion",
     "sernum",
@@ -48,12 +56,20 @@ import javax.xml.bind.annotation.XmlType;
     "opticsHist",
     "berint",
     "provversion",
-    "adminState"
+    "adminState",
+    "plannedCardType",
+    "plndnumdataports",
+    "plndnumvoiceports",
+    "autoDetect"
 })
 public class OntInput {
 
-    @XmlElement(name = "OntInterface", required = true)
+    @XmlElement(name = "OntInterface")
     protected String ontInterface;
+    @XmlElement(name = "OntSlot")
+    protected String ontSlot;
+    @XmlElement(name = "OntPort")
+    protected String ontPort;
     @XmlElement(name = "SwVerPland")
     protected String swVerPland;
     @XmlElement(name = "SwDnloadVersion")
@@ -74,6 +90,14 @@ public class OntInput {
     protected String provversion;
     @XmlElement(name = "AdminState")
     protected String adminState;
+    @XmlElement(name = "PlannedCardType")
+    protected String plannedCardType;
+    @XmlElement(name = "Plndnumdataports")
+    protected String plndnumdataports;
+    @XmlElement(name = "Plndnumvoiceports")
+    protected String plndnumvoiceports;
+    @XmlElement(name = "AutoDetect")
+    protected String autoDetect;
 
     /**
      * Gets the value of the ontInterface property.
@@ -97,6 +121,54 @@ public class OntInput {
      */
     public void setOntInterface(String value) {
         this.ontInterface = value;
+    }
+
+    /**
+     * Gets the value of the ontSlot property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getOntSlot() {
+        return ontSlot;
+    }
+
+    /**
+     * Sets the value of the ontSlot property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setOntSlot(String value) {
+        this.ontSlot = value;
+    }
+
+    /**
+     * Gets the value of the ontPort property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getOntPort() {
+        return ontPort;
+    }
+
+    /**
+     * Sets the value of the ontPort property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setOntPort(String value) {
+        this.ontPort = value;
     }
 
     /**
@@ -337,6 +409,102 @@ public class OntInput {
      */
     public void setAdminState(String value) {
         this.adminState = value;
+    }
+
+    /**
+     * Gets the value of the plannedCardType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPlannedCardType() {
+        return plannedCardType;
+    }
+
+    /**
+     * Sets the value of the plannedCardType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPlannedCardType(String value) {
+        this.plannedCardType = value;
+    }
+
+    /**
+     * Gets the value of the plndnumdataports property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPlndnumdataports() {
+        return plndnumdataports;
+    }
+
+    /**
+     * Sets the value of the plndnumdataports property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPlndnumdataports(String value) {
+        this.plndnumdataports = value;
+    }
+
+    /**
+     * Gets the value of the plndnumvoiceports property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPlndnumvoiceports() {
+        return plndnumvoiceports;
+    }
+
+    /**
+     * Sets the value of the plndnumvoiceports property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPlndnumvoiceports(String value) {
+        this.plndnumvoiceports = value;
+    }
+
+    /**
+     * Gets the value of the autoDetect property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAutoDetect() {
+        return autoDetect;
+    }
+
+    /**
+     * Sets the value of the autoDetect property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAutoDetect(String value) {
+        this.autoDetect = value;
     }
 
 }

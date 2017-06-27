@@ -146,9 +146,12 @@
         </s:complexType>
     </s:element>
 
-	<s:complexType name="OntInput">
-       	<s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="OntInterface" type="s:string"/>
+	  <s:complexType name="OntInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OntInterface" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="OntSlot" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="OntPort" type="s:string"/>
+
           <s:element minOccurs="0" maxOccurs="1" name="SwVerPland" type="s:string"/>
           <s:element minOccurs="0" maxOccurs="1" name="SwDnloadVersion" type="s:string"/>
           <s:element minOccurs="0" maxOccurs="1" name="Sernum" type="s:string"/>
@@ -160,6 +163,13 @@
           <s:element minOccurs="0" maxOccurs="1" name="Provversion" type="s:string"/>
 
           <s:element minOccurs="0" maxOccurs="1" name="AdminState" type="s:string"/>
+
+          <s:element minOccurs="0" maxOccurs="1" name="PlannedCardType" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Plndnumdataports" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Plndnumvoiceports" type="s:string"/>
+
+          <s:element minOccurs="0" maxOccurs="1" name="AutoDetect" type="s:string"/>
+          
         </s:sequence>
     </s:complexType>
 
@@ -199,6 +209,38 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="ActivateDeactivateOntIdResult" type="general:CommonOperationReturn"/>
+          </s:sequence>
+        </s:complexType>
+    </s:element>
+
+    <s:element name="DeclarePpptpCard">
+    	<s:complexType>
+        	<s:sequence>
+				<s:element minOccurs="0" maxOccurs="1" name="OntInput" type="general:OntInput"/>
+	        </s:sequence>
+	    </s:complexType>
+    </s:element>
+    
+    <s:element name="DeclarePpptpCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeclarePpptpCardResult" type="general:CommonOperationReturn"/>
+          </s:sequence>
+        </s:complexType>
+    </s:element>
+
+    <s:element name="ConfigureUniLanPorts">
+    	<s:complexType>
+        	<s:sequence>
+				<s:element minOccurs="0" maxOccurs="1" name="OntInput" type="general:OntInput"/>
+	        </s:sequence>
+	    </s:complexType>
+    </s:element>
+    
+    <s:element name="ConfigureUniLanPortsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConfigureUniLanPortsResult" type="general:CommonOperationReturn"/>
           </s:sequence>
         </s:complexType>
     </s:element>
