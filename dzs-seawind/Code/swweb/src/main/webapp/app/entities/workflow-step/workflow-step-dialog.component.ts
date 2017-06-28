@@ -1,0 +1,134 @@
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Response } from '@angular/http';
+
+import { Observable } from 'rxjs/Rx';
+import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+
+import { WorkflowStep } from './workflow-step.model';
+import { WorkflowStepPopupService } from './workflow-step-popup.service';
+import { WorkflowStepService } from './workflow-step.service';
+import { User, UserService } from '../../shared';
+import { Workflow, WorkflowService } from '../workflow';
+import { ResponseWrapper } from '../../shared';
+
+@Component({
+    selector: 'jhi-workflow-step-dialog',
+    templateUrl: './workflow-step-dialog.component.html'
+})
+export class WorkflowStepDialogComponent implements OnInit {
+
+    workflowStep: WorkflowStep;
+    authorities: any[];
+    isSaving: boolean;
+
+    users: User[];
+
+    workflows: Workflow[];
+    createdDateDp: any;
+    lastModifiedDateDp: any;
+
+    constructor(
+        public activeModal: NgbActiveModal,
+        private alertService: JhiAlertService,
+        private workflowStepService: WorkflowStepService,
+        private userService: UserService,
+        private workflowService: WorkflowService,
+        private eventManager: JhiEventManager
+    ) {
+    }
+
+    ngOnInit() {
+        this.isSaving = false;
+        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.userService.query()
+            .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.workflowService.query()
+            .subscribe((res: ResponseWrapper) => { this.workflows = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+    }
+
+    clear() {
+        this.activeModal.dismiss('cancel');
+    }
+
+    save() {
+        this.isSaving = true;
+        if (this.workflowStep.id !== undefined) {
+            this.subscribeToSaveResponse(
+                this.workflowStepService.update(this.workflowStep), false);
+        } else {
+            this.subscribeToSaveResponse(
+                this.workflowStepService.create(this.workflowStep), true);
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<WorkflowStep>, isCreated: boolean) {
+        result.subscribe((res: WorkflowStep) =>
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: WorkflowStep, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? `A new Workflow Step is created with identifier ${result.id}`
+            : `A Workflow Step is updated with identifier ${result.id}`,
+            null, null);
+
+        this.eventManager.broadcast({ name: 'workflowStepListModification', content: 'OK'});
+        this.isSaving = false;
+        this.activeModal.dismiss(result);
+    }
+
+    private onSaveError(error) {
+        try {
+            error.json();
+        } catch (exception) {
+            error.message = error.text();
+        }
+        this.isSaving = false;
+        this.onError(error);
+    }
+
+    private onError(error) {
+        this.alertService.error(error.message, null, null);
+    }
+
+    trackUserById(index: number, item: User) {
+        return item.id;
+    }
+
+    trackWorkflowById(index: number, item: Workflow) {
+        return item.id;
+    }
+}
+
+@Component({
+    selector: 'jhi-workflow-step-popup',
+    template: ''
+})
+export class WorkflowStepPopupComponent implements OnInit, OnDestroy {
+
+    modalRef: NgbModalRef;
+    routeSub: any;
+
+    constructor(
+        private route: ActivatedRoute,
+        private workflowStepPopupService: WorkflowStepPopupService
+    ) {}
+
+    ngOnInit() {
+        this.routeSub = this.route.params.subscribe((params) => {
+            if ( params['id'] ) {
+                this.modalRef = this.workflowStepPopupService
+                    .open(WorkflowStepDialogComponent, params['id']);
+            } else {
+                this.modalRef = this.workflowStepPopupService
+                    .open(WorkflowStepDialogComponent);
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        this.routeSub.unsubscribe();
+    }
+}
