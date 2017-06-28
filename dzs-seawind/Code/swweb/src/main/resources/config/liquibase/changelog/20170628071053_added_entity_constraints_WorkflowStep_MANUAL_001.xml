@@ -9,7 +9,7 @@
     <changeSet id="20170628071053-001" author="jhipster">
         
         <addUniqueConstraint tableName="workflow_step"
-                             columnNames="workflow_id, stepNumber"
+                             columnNames="workflow_id, step_number"
                              constraintName="uni_workflow_step_workflow_id_step_number" />
 
     </changeSet>
