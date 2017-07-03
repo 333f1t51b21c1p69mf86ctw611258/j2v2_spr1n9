@@ -7,13 +7,6 @@
             "relationshipName": "workflowStep",
             "otherEntityName": "workflowStep",
             "otherEntityRelationshipName": "workflow"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "relationshipValidateRules": "required",
-            "relationshipName": "user",
-            "otherEntityName": "user",
-            "otherEntityField": "login"
         }
     ],
     "fields": [
@@ -63,7 +56,7 @@
             ]
         }
     ],
-    "changelogDate": "20170628071052",
+    "changelogDate": "20170703111602",
     "javadoc": "Workflow entity.",
     "entityTableName": "workflow",
     "dto": "mapstruct",

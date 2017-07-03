@@ -84,11 +84,11 @@ jhipster:
             queue-size: 512
     mail:
         from: test@localhost
-        base-url: http://127.0.0.1:8686
+        base-url: http://127.0.0.1:8080
     security:
         authentication:
             jwt:
-                secret: 142f5b0ed49b3d8f509893d37ca1e1bdf09ffe4f
+                secret: 8ea9d85c8f97ff12bf419554d0c8159d71d6f57c
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

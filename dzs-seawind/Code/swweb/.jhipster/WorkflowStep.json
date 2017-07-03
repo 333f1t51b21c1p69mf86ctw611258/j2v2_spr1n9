@@ -4,13 +4,6 @@
         {
             "relationshipType": "many-to-one",
             "relationshipValidateRules": "required",
-            "relationshipName": "user",
-            "otherEntityName": "user",
-            "otherEntityField": "login"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "relationshipValidateRules": "required",
             "javadoc": "Another side of the same relationship",
             "relationshipName": "workflow",
             "otherEntityName": "workflow",
@@ -119,7 +112,7 @@
             ]
         }
     ],
-    "changelogDate": "20170628071053",
+    "changelogDate": "20170703111603",
     "javadoc": "The WorkflowStep entity.",
     "entityTableName": "workflow_step",
     "dto": "mapstruct",

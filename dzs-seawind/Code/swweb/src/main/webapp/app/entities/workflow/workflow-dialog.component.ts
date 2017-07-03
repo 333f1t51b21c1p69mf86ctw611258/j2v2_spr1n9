@@ -9,8 +9,6 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Workflow } from './workflow.model';
 import { WorkflowPopupService } from './workflow-popup.service';
 import { WorkflowService } from './workflow.service';
-import { User, UserService } from '../../shared';
-import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-workflow-dialog',
@@ -21,8 +19,6 @@ export class WorkflowDialogComponent implements OnInit {
     workflow: Workflow;
     authorities: any[];
     isSaving: boolean;
-
-    users: User[];
     createdDateDp: any;
     lastModifiedDateDp: any;
 
@@ -30,7 +26,6 @@ export class WorkflowDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private workflowService: WorkflowService,
-        private userService: UserService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -38,8 +33,6 @@ export class WorkflowDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.userService.query()
-            .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -85,10 +78,6 @@ export class WorkflowDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
-    }
-
-    trackUserById(index: number, item: User) {
-        return item.id;
     }
 }
 
