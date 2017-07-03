@@ -38,68 +38,68 @@
                 </small>
             </div>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" for="field_createdBy">Created By</label>
-            <input type="number" class="form-control" name="createdBy" id="field_createdBy"
-                [(ngModel)]="workflow.createdBy" required />
-            <div [hidden]="!(editForm.controls.createdBy?.dirty && editForm.controls.createdBy?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.createdBy?.errors?.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.createdBy?.errors?.number">
-                    This field should be a number.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" for="field_createdDate">Created Date</label>
-            <div class="input-group">
-                <input id="field_createdDate" type="text" class="form-control" name="createdDate" ngbDatepicker  #createdDateDp="ngbDatepicker" [(ngModel)]="workflow.createdDate"
-                required/>
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" (click)="createdDateDp.toggle()"><i class="fa fa-calendar"></i></button>
-                </span>
-            </div>
-            <div [hidden]="!(editForm.controls.createdDate?.dirty && editForm.controls.createdDate?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.createdDate?.errors?.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" for="field_lastModifiedBy">Last Modified By</label>
-            <input type="number" class="form-control" name="lastModifiedBy" id="field_lastModifiedBy"
-                [(ngModel)]="workflow.lastModifiedBy" required />
-            <div [hidden]="!(editForm.controls.lastModifiedBy?.dirty && editForm.controls.lastModifiedBy?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.lastModifiedBy?.errors?.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.lastModifiedBy?.errors?.number">
-                    This field should be a number.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" for="field_lastModifiedDate">Last Modified Date</label>
-            <div class="input-group">
-                <input id="field_lastModifiedDate" type="text" class="form-control" name="lastModifiedDate" ngbDatepicker  #lastModifiedDateDp="ngbDatepicker" [(ngModel)]="workflow.lastModifiedDate"
-                required/>
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" (click)="lastModifiedDateDp.toggle()"><i class="fa fa-calendar"></i></button>
-                </span>
-            </div>
-            <div [hidden]="!(editForm.controls.lastModifiedDate?.dirty && editForm.controls.lastModifiedDate?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.lastModifiedDate?.errors?.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
+        <!--<div class="form-group">-->
+            <!--<label class="form-control-label" for="field_createdBy">Created By</label>-->
+            <!--<input type="number" class="form-control" name="createdBy" id="field_createdBy"-->
+                <!--[(ngModel)]="workflow.createdBy" required />-->
+            <!--<div [hidden]="!(editForm.controls.createdBy?.dirty && editForm.controls.createdBy?.invalid)">-->
+                <!--<small class="form-text text-danger"-->
+                   <!--[hidden]="!editForm.controls.createdBy?.errors?.required">-->
+                   <!--This field is required.-->
+                <!--</small>-->
+                <!--<small class="form-text text-danger"-->
+                    <!--[hidden]="!editForm.controls.createdBy?.errors?.number">-->
+                    <!--This field should be a number.-->
+                <!--</small>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="form-control-label" for="field_createdDate">Created Date</label>-->
+            <!--<div class="input-group">-->
+                <!--<input id="field_createdDate" type="text" class="form-control" name="createdDate" ngbDatepicker  #createdDateDp="ngbDatepicker" [(ngModel)]="workflow.createdDate"-->
+                <!--required/>-->
+                <!--<span class="input-group-btn">-->
+                    <!--<button type="button" class="btn btn-default" (click)="createdDateDp.toggle()"><i class="fa fa-calendar"></i></button>-->
+                <!--</span>-->
+            <!--</div>-->
+            <!--<div [hidden]="!(editForm.controls.createdDate?.dirty && editForm.controls.createdDate?.invalid)">-->
+                <!--<small class="form-text text-danger"-->
+                   <!--[hidden]="!editForm.controls.createdDate?.errors?.required">-->
+                   <!--This field is required.-->
+                <!--</small>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="form-control-label" for="field_lastModifiedBy">Last Modified By</label>-->
+            <!--<input type="number" class="form-control" name="lastModifiedBy" id="field_lastModifiedBy"-->
+                <!--[(ngModel)]="workflow.lastModifiedBy" required />-->
+            <!--<div [hidden]="!(editForm.controls.lastModifiedBy?.dirty && editForm.controls.lastModifiedBy?.invalid)">-->
+                <!--<small class="form-text text-danger"-->
+                   <!--[hidden]="!editForm.controls.lastModifiedBy?.errors?.required">-->
+                   <!--This field is required.-->
+                <!--</small>-->
+                <!--<small class="form-text text-danger"-->
+                    <!--[hidden]="!editForm.controls.lastModifiedBy?.errors?.number">-->
+                    <!--This field should be a number.-->
+                <!--</small>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="form-control-label" for="field_lastModifiedDate">Last Modified Date</label>-->
+            <!--<div class="input-group">-->
+                <!--<input id="field_lastModifiedDate" type="text" class="form-control" name="lastModifiedDate" ngbDatepicker  #lastModifiedDateDp="ngbDatepicker" [(ngModel)]="workflow.lastModifiedDate"-->
+                <!--required/>-->
+                <!--<span class="input-group-btn">-->
+                    <!--<button type="button" class="btn btn-default" (click)="lastModifiedDateDp.toggle()"><i class="fa fa-calendar"></i></button>-->
+                <!--</span>-->
+            <!--</div>-->
+            <!--<div [hidden]="!(editForm.controls.lastModifiedDate?.dirty && editForm.controls.lastModifiedDate?.invalid)">-->
+                <!--<small class="form-text text-danger"-->
+                   <!--[hidden]="!editForm.controls.lastModifiedDate?.errors?.required">-->
+                   <!--This field is required.-->
+                <!--</small>-->
+            <!--</div>-->
+        <!--</div>-->
 
     </div>
     <div class="modal-footer">
