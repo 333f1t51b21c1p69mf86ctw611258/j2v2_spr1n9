@@ -110,7 +110,7 @@ public class WorkflowStepResource {
     @GetMapping("/workflow-steps-by-workflow-id/{workflowId}")
     @Timed
     public ResponseEntity<List<WorkflowStepDTO>> getWorkflowStepsByWorkflowId(@ApiParam Pageable pageable, @PathVariable Long workflowId) {
-        log.debug("REST request to get a page of WorkflowSteps By WorkflowId");
+        log.debug("REST request to get a page of WorkflowSteps By WorkflowId: {}", workflowId);
         Page<WorkflowStep> page = workflowStepRepository.findByWorkflowId(pageable, workflowId);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/workflow-steps-by-workflow-id");
         return new ResponseEntity<>(workflowStepMapper.toDto(page.getContent()), headers, HttpStatus.OK);
