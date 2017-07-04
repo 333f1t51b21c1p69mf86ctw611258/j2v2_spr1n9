@@ -12,7 +12,7 @@ import { WorkflowService } from './workflow.service';
 
 import { Account, Principal } from '../../shared';
 import { User, UserService } from '../../shared';
-import {StuffService} from '../../shared';
+import { StuffService } from '../../shared';
 
 @Component({
     selector: 'jhi-workflow-dialog',
