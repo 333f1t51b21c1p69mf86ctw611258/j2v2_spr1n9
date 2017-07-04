@@ -12,6 +12,7 @@ import { WorkflowService } from './workflow.service';
 
 import { Account, Principal } from '../../shared';
 import { User, UserService } from '../../shared';
+import {StuffService} from '../../shared';
 
 @Component({
     selector: 'jhi-workflow-dialog',
@@ -35,21 +36,13 @@ export class WorkflowDialogComponent implements OnInit {
         private eventManager: JhiEventManager,
 
         private userService: UserService,
-        private principal: Principal
+        private principal: Principal,
+        private stuffService: StuffService
     ) {
     }
 
-    getCurrentDate() {
-        var dateObj = new Date();
-        var month = dateObj.getUTCMonth() + 1; //months from 1-12
-        var day = dateObj.getUTCDate();
-        var year = dateObj.getUTCFullYear();
-
-        return {year, month, day};
-    }
-
-    initNewWorkflow() {
-        this.workflow.createdDate = this.getCurrentDate();
+    initNewEntitty() {
+        this.workflow.createdDate = this.stuffService.getCurrentDate();
         this.workflow.lastModifiedDate = this.workflow.createdDate;
 
         this.principal.identity().then((account) => {
@@ -68,7 +61,7 @@ export class WorkflowDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
 
-        this.initNewWorkflow();
+        this.initNewEntitty();
     }
 
     clear() {

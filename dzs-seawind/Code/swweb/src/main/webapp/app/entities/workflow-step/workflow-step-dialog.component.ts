@@ -14,6 +14,7 @@ import { ResponseWrapper } from '../../shared';
 
 import { Account, Principal } from '../../shared';
 import { User, UserService } from '../../shared';
+import {StuffService} from '../../shared';
 
 @Component({
     selector: 'jhi-workflow-step-dialog',
@@ -40,21 +41,13 @@ export class WorkflowStepDialogComponent implements OnInit {
         private eventManager: JhiEventManager,
 
         private userService: UserService,
-        private principal: Principal
+        private principal: Principal,
+        private stuffService: StuffService
     ) {
     }
 
-    getCurrentDate() {
-        var dateObj = new Date();
-        var month = dateObj.getUTCMonth() + 1; //months from 1-12
-        var day = dateObj.getUTCDate();
-        var year = dateObj.getUTCFullYear();
-
-        return {year, month, day};
-    }
-
-    initNewWorkflow() {
-        this.workflowStep.createdDate = this.getCurrentDate();
+    initNewEntity() {
+        this.workflowStep.createdDate = this.stuffService.getCurrentDate();
         this.workflowStep.lastModifiedDate = this.workflowStep.createdDate;
 
         this.principal.identity().then((account) => {
@@ -75,7 +68,7 @@ export class WorkflowStepDialogComponent implements OnInit {
         this.workflowService.query()
             .subscribe((res: ResponseWrapper) => { this.workflows = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
 
-        this.initNewWorkflow();
+        this.initNewEntity();
     }
 
     clear() {
