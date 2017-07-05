@@ -16,7 +16,7 @@ import {
     WorkflowResolvePagingParams,
 } from './';
 
-import { FileUploadComponent } from '../../components';
+import { FileUploadComponent } from '../../shared';
 
 const ENTITY_STATES = [
     ...workflowRoute,
