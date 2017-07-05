@@ -1,18 +1,19 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Response } from '@angular/http';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Response} from '@angular/http';
 
-import { Observable } from 'rxjs/Rx';
-import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import {Observable} from 'rxjs/Rx';
+import {NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {JhiEventManager, JhiAlertService} from 'ng-jhipster';
 
-import { Workflow } from './workflow.model';
-import { WorkflowPopupService } from './workflow-popup.service';
-import { WorkflowService } from './workflow.service';
+import {Workflow} from './workflow.model';
+import {WorkflowPopupService} from './workflow-popup.service';
+import {WorkflowService} from './workflow.service';
 
-import { Account, Principal } from '../../shared';
-import { User, UserService } from '../../shared';
-import { StuffService } from '../../shared';
+import {Account, Principal} from '../../shared';
+import {User, UserService} from '../../shared';
+import {StuffService} from '../../shared';
+import {HttpClientService} from '../../shared';
 
 @Component({
     selector: 'jhi-workflow-dialog',
@@ -29,16 +30,14 @@ export class WorkflowDialogComponent implements OnInit {
     account: Account;
     user: User;
 
-    constructor(
-        public activeModal: NgbActiveModal,
-        private alertService: JhiAlertService,
-        private workflowService: WorkflowService,
-        private eventManager: JhiEventManager,
-
-        private userService: UserService,
-        private principal: Principal,
-        private stuffService: StuffService
-    ) {
+    constructor(public activeModal: NgbActiveModal,
+                private alertService: JhiAlertService,
+                private workflowService: WorkflowService,
+                private eventManager: JhiEventManager,
+                private userService: UserService,
+                private principal: Principal,
+                private stuffService: StuffService,
+                private httpClientService: HttpClientService) {
     }
 
     initNewEntitty() {
@@ -87,10 +86,10 @@ export class WorkflowDialogComponent implements OnInit {
     private onSaveSuccess(result: Workflow, isCreated: boolean) {
         this.alertService.success(
             isCreated ? `A new Workflow is created with identifier ${result.id}`
-            : `A Workflow is updated with identifier ${result.id}`,
+                : `A Workflow is updated with identifier ${result.id}`,
             null, null);
 
-        this.eventManager.broadcast({ name: 'workflowListModification', content: 'OK'});
+        this.eventManager.broadcast({name: 'workflowListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -119,14 +118,13 @@ export class WorkflowPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private workflowPopupService: WorkflowPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+                private workflowPopupService: WorkflowPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.workflowPopupService
                     .open(WorkflowDialogComponent, params['id']);
             } else {

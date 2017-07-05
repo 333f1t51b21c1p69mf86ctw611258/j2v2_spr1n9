@@ -1,4 +1,5 @@
 export * from './services/stuff.service';
+export * from './services/http-client.service';
 
 export * from './components/file-upload/file-upload.component';
 
