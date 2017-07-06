@@ -3,6 +3,8 @@ import { DatePipe } from '@angular/common';
 
 import {
     StuffService,
+    HttpClientService,
+
     SwwebSharedLibsModule,
     SwwebSharedCommonModule,
     CSRFService,
@@ -28,6 +30,8 @@ import {
     ],
     providers: [
         StuffService,
+        HttpClientService,
+
         LoginService,
         LoginModalService,
         AccountService,
