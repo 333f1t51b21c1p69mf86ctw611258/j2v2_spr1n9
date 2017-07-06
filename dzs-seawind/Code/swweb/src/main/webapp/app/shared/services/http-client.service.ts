@@ -20,7 +20,7 @@ export class HttpClientService {
 
         const objHeaders = new Headers();
         const formData: FormData = new FormData();
-        formData.append('files', files[0], files[0].name);
+        formData.append('file', files[0], files[0].name);
         // For multiple files
         // for (let i = 0; i < files.length; i++) {
         //     formData.append(`files[]`, files[i], files[i].name);

@@ -40,8 +40,8 @@
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" for="field_description">WorkflowSteps</label>
-            <jhi-file-upload class="form-control"></jhi-file-upload>
+            <label class="form-control-label" for="file_steps">WorkflowSteps</label>
+            <input id="file_steps" type="file" class="form-control" (change)="onChange($event)">
         </div>
 
         <!--<div class="form-group">-->

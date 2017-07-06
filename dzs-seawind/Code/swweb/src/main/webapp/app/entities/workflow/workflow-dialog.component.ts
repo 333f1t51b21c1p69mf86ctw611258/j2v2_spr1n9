@@ -56,6 +56,14 @@ export class WorkflowDialogComponent implements OnInit {
         });
     }
 
+    onChange(event) {
+        const file = event.srcElement.files;
+        const postData = {field1: 'field1', field2: 'field2'}; // Put your form data variable. This is only example.
+        this.httpClientService.postWithFile('/api/stepsFile', postData, file).then((result) => {
+            console.log(result);
+        });
+    }
+
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
