@@ -58,7 +58,7 @@ export class WorkflowDialogComponent implements OnInit {
 
     onChange(event) {
         const file = event.srcElement.files;
-        const postData = {field1: 'field1', field2: 'field2'}; // Put your form data variable. This is only example.
+        const postData = {field1: 'this is field1_value', field2: 'this is field2_value'}; // Put your form data variable. This is only example.
         this.httpClientService.postWithFile('/api/stepsFile', postData, file).then((result) => {
             console.log(result);
         });
