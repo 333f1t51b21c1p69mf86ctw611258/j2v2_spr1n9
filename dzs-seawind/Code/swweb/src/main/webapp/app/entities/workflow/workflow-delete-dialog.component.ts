@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { Workflow } from './workflow.model';
 import { WorkflowPopupService } from './workflow-popup.service';
@@ -19,7 +19,6 @@ export class WorkflowDeleteDialogComponent {
     constructor(
         private workflowService: WorkflowService,
         public activeModal: NgbActiveModal,
-        private alertService: JhiAlertService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -36,7 +35,6 @@ export class WorkflowDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success(`A Workflow is deleted with identifier ${id}`, null, null);
     }
 }
 

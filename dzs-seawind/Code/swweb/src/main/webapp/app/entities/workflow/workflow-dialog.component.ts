@@ -1,14 +1,14 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {Response} from '@angular/http';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Response } from '@angular/http';
 
-import {Observable} from 'rxjs/Rx';
-import {NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {JhiEventManager, JhiAlertService} from 'ng-jhipster';
+import { Observable } from 'rxjs/Rx';
+import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import {Workflow} from './workflow.model';
-import {WorkflowPopupService} from './workflow-popup.service';
-import {WorkflowService} from './workflow.service';
+import { Workflow } from './workflow.model';
+import { WorkflowPopupService } from './workflow-popup.service';
+import { WorkflowService } from './workflow.service';
 
 import {Account, Principal} from '../../shared';
 import {User, UserService} from '../../shared';
@@ -79,25 +79,20 @@ export class WorkflowDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.workflow.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.workflowService.update(this.workflow), false);
+                this.workflowService.update(this.workflow));
         } else {
             this.subscribeToSaveResponse(
-                this.workflowService.create(this.workflow), true);
+                this.workflowService.create(this.workflow));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Workflow>, isCreated: boolean) {
+    private subscribeToSaveResponse(result: Observable<Workflow>) {
         result.subscribe((res: Workflow) =>
-            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Workflow, isCreated: boolean) {
-        this.alertService.success(
-            isCreated ? `A new Workflow is created with identifier ${result.id}`
-                : `A Workflow is updated with identifier ${result.id}`,
-            null, null);
-
-        this.eventManager.broadcast({name: 'workflowListModification', content: 'OK'});
+    private onSaveSuccess(result: Workflow) {
+        this.eventManager.broadcast({ name: 'workflowListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -126,13 +121,14 @@ export class WorkflowPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(private route: ActivatedRoute,
-                private workflowPopupService: WorkflowPopupService) {
-    }
+    constructor(
+        private route: ActivatedRoute,
+        private workflowPopupService: WorkflowPopupService
+    ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if (params['id']) {
+            if ( params['id'] ) {
                 this.modalRef = this.workflowPopupService
                     .open(WorkflowDialogComponent, params['id']);
             } else {

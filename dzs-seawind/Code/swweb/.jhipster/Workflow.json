@@ -56,7 +56,7 @@
             ]
         }
     ],
-    "changelogDate": "20170703111602",
+    "changelogDate": "20170712101756",
     "javadoc": "Workflow entity.",
     "entityTableName": "workflow",
     "dto": "mapstruct",

@@ -1,5 +1,5 @@
-var dataCacheName = '"Swweb-v1';
-var cacheName = '"Swweb-1';
+var dataCacheName = 'Swweb-v1';
+var cacheName = 'Swweb-1';
 var filesToCache = [
     '/',
     '/index.html'

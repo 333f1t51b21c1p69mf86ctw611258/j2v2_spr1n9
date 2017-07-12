@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "com.dasanzhone.seawind.swweb"
     },
-    "jhipsterVersion": "4.5.6",
+    "jhipsterVersion": "4.6.1",
     "baseName": "swweb",
     "packageName": "com.dasanzhone.seawind.swweb",
     "packageFolder": "com/dasanzhone/seawind/swweb",
@@ -20,8 +20,8 @@
     "serviceDiscoveryType": false,
     "buildTool": "maven",
     "enableSocialSignIn": false,
-    "jwtSecretKey": "8ea9d85c8f97ff12bf419554d0c8159d71d6f57c",
-    "clientFramework": "angular2",
+    "jwtSecretKey": "fd1f43753434156272612aa0c0508642e5bcf3db",
+    "clientFramework": "angularX",
     "useSass": false,
     "clientPackageManager": "npm",
     "applicationType": "monolith",
