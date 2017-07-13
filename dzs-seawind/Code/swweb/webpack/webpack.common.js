@@ -1,16 +1,25 @@
 const webpack = require('webpack');
+const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StringReplacePlugin = require('string-replace-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+const WebpackNotifierPlugin = require('webpack-notifier');
+const path = require('path');
 
-const utils = require('./utils.js');
+const parseVersion = require('./utils.js').parseVersion;
 
 module.exports = (options) => {
     const DATAS = {
-        VERSION: `'${utils.parseVersion()}'`,
-        DEBUG_INFO_ENABLED: options.env === 'development'
+        VERSION: `'${parseVersion()}'`,
+        DEBUG_INFO_ENABLED: options.env === 'dev'
     };
     return {
+        entry: {
+            'polyfills': './src/main/webapp/app/polyfills',
+            'global': './src/main/webapp/content/css/global.css',
+            'main': './src/main/webapp/app/app.main'
+        },
         resolve: {
             extensions: ['.ts', '.js'],
             modules: ['node_modules']
@@ -18,6 +27,14 @@ module.exports = (options) => {
         module: {
             rules: [
                 { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports-loader?jQuery=jquery' },
+                {
+                    test: /\.ts$/,
+                    loaders: [
+                        'angular2-template-loader',
+                        'awesome-typescript-loader'
+                    ],
+                    exclude: ['node_modules/generator-jhipster']
+                },
                 {
                     test: /\.html$/,
                     loader: 'html-loader',
@@ -59,34 +76,13 @@ module.exports = (options) => {
             ]
         },
         plugins: [
-            new webpack.DefinePlugin({
-                'process.env': {
-                    'NODE_ENV': JSON.stringify(options.env)
-                }
+            new CommonsChunkPlugin({
+                names: ['manifest', 'polyfills'].reverse()
             }),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: 'polyfills',
-                chunks: ['polyfills']
+            new webpack.DllReferencePlugin({
+                context: './',
+                manifest: require(path.resolve('./target/www/vendor.json'))
             }),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: 'vendor',
-                chunks: ['main'],
-                minChunks: module => utils.isExternalLib(module)
-            }),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: ['polyfills', 'vendor'].reverse()
-            }),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: ['manifest'],
-                minChunks: Infinity,
-            }),
-            /**
-             * See: https://github.com/angular/angular/issues/11580
-             */
-            new webpack.ContextReplacementPlugin(
-                /angular(\\|\/)core(\\|\/)@angular/,
-                utils.root('src/main/webapp/app'), {}
-            ),
             new CopyWebpackPlugin([
                 { from: './node_modules/core-js/client/shim.min.js', to: 'core-js-shim.min.js' },
                 { from: './node_modules/swagger-ui/dist', to: 'swagger-ui/dist' },
@@ -105,7 +101,14 @@ module.exports = (options) => {
                 chunksSortMode: 'dependency',
                 inject: 'body'
             }),
-            new StringReplacePlugin()
+            new AddAssetHtmlPlugin([
+                { filepath: path.resolve('./target/www/vendor.dll.js'), includeSourcemap: false }
+            ]),
+            new StringReplacePlugin(),
+            new WebpackNotifierPlugin({
+                title: 'JHipster',
+                contentImage: path.join(__dirname, 'logo-jhipster.png')
+            })
         ]
     };
 };

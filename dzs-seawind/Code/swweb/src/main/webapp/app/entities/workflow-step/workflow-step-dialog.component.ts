@@ -79,19 +79,24 @@ export class WorkflowStepDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.workflowStep.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.workflowStepService.update(this.workflowStep));
+                this.workflowStepService.update(this.workflowStep), false);
         } else {
             this.subscribeToSaveResponse(
-                this.workflowStepService.create(this.workflowStep));
+                this.workflowStepService.create(this.workflowStep), true);
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<WorkflowStep>) {
+    private subscribeToSaveResponse(result: Observable<WorkflowStep>, isCreated: boolean) {
         result.subscribe((res: WorkflowStep) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: WorkflowStep) {
+    private onSaveSuccess(result: WorkflowStep, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? `A new Workflow Step is created with identifier ${result.id}`
+            : `A Workflow Step is updated with identifier ${result.id}`,
+            null, null);
+
         this.eventManager.broadcast({ name: 'workflowStepListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

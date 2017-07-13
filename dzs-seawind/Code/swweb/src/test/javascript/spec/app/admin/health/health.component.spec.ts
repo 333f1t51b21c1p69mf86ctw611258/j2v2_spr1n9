@@ -4,6 +4,7 @@ import { SwwebTestModule } from '../../../test.module';
 import { JhiHealthCheckComponent } from '../../../../../../main/webapp/app/admin/health/health.component';
 import { JhiHealthService } from '../../../../../../main/webapp/app/admin/health/health.service';
 
+
 describe('Component Tests', () => {
 
     describe('JhiHealthCheckComponent', () => {

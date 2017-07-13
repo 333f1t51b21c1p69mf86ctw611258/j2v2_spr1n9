@@ -1,6 +1,6 @@
 {
-    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "project": {
+        "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
         "name": "swweb"
     },
     "apps": [{
@@ -23,6 +23,8 @@
         ],
         "scripts": []
     }],
+    "addons": [],
+    "packages": [],
     "lint": [{
             "project": "../../../tsconfig.json"
         },
@@ -38,9 +40,9 @@
     "defaults": {
         "styleExt": "css",
         "prefixInterfaces": false,
-        "component" : {
-            "inlineStyle" : true,
-            "inlineTemplate": false
+        "inline": {
+            "style": true,
+            "template": false
         },
         "spec": {
             "component": false,

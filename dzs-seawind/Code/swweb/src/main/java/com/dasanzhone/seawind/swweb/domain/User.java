@@ -3,7 +3,6 @@ package com.dasanzhone.seawind.swweb.domain;
 import com.dasanzhone.seawind.swweb.config.Constants;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.validator.constraints.Email;
 
@@ -14,7 +13,6 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Set;
 import java.time.Instant;
 
@@ -106,7 +104,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     //Lowercase the login before saving it in database
     public void setLogin(String login) {
-        this.login = StringUtils.lowerCase(login, Locale.ENGLISH);
+        this.login = login.toLowerCase(Locale.ENGLISH);
     }
 
     public String getPassword() {
@@ -206,12 +204,13 @@ public class User extends AbstractAuditingEntity implements Serializable {
         }
 
         User user = (User) o;
-        return !(user.getId() == null || getId() == null) && Objects.equals(getId(), user.getId());
+
+        return login.equals(user.login);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return login.hashCode();
     }
 
     @Override

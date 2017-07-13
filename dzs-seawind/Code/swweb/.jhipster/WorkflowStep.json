@@ -112,7 +112,7 @@
             ]
         }
     ],
-    "changelogDate": "20170712101757",
+    "changelogDate": "20170703111603",
     "javadoc": "The WorkflowStep entity.",
     "entityTableName": "workflow_step",
     "dto": "mapstruct",
