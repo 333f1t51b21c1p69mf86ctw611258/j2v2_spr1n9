@@ -90,7 +90,7 @@
         <validation-api.version>1.1.0.Final</validation-api.version>
 
         <!--ADD NEW-->
-        <cxf.version>3.1.6</cxf.version>
+        <cxf.version>3.1.12</cxf.version>
     </properties>
 
 
@@ -995,8 +995,8 @@
                         <configuration>
                             <!-- See http://www.mojohaus.org/jaxws-maven-plugin/wsimport-mojo.html -->
                             <wsdlUrls>
-                                <!--<wsdlUrl>src/main/resources/service-api-definition/Weather1.0.wsdl</wsdlUrl>-->
-                                <!--<wsdlUrl>src/main/resources/service-api-definition/Device1.0.wsdl</wsdlUrl>-->
+                                <wsdlUrl>src/main/resources/service-api-definition/Weather1.0.wsdl</wsdlUrl>
+                                <wsdlUrl>src/main/resources/service-api-definition/Device1.0.wsdl</wsdlUrl>
                             </wsdlUrls>
                             <!-- <wsdlDirectory>${basedir}/src/main/resources/service-api-definition</wsdlDirectory> -->
                             <sourceDestDir>src/main/java</sourceDestDir>
