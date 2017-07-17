@@ -1,9 +1,14 @@
 package com.dasanzhone.seawind.swservice.endpoint;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.jws.WebParam;
 
+import com.dasanzhone.seawind.swweb.domain.Workflow;
+import com.dasanzhone.seawind.swweb.domain.WorkflowStep;
+import com.dasanzhone.seawind.swweb.repository.WorkflowRepository;
+import com.dasanzhone.seawind.swweb.repository.WorkflowStepRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +31,12 @@ public class DeviceServiceEndpoint implements DeviceService {
 
 	@Autowired
 	private DeviceServiceController deviceServiceController;
+
+	@Autowired
+    private WorkflowRepository workflowRepository;
+
+	@Autowired
+	private WorkflowStepRepository workflowStepRepository;
 
 	@Override
 	public ForecastReturn getCityForecastByZIP(ForecastRequest forecastRequest) throws DeviceException {
@@ -64,7 +75,11 @@ public class DeviceServiceEndpoint implements DeviceService {
 		NetworkDeviceReturn result = new NetworkDeviceReturn();
 
 		result.setSuccess(true);
-		result.setResponseText("abc");
+
+        List<Workflow> all = workflowRepository.findAll();
+        List<WorkflowStep> allSteps = workflowStepRepository.findAll();
+
+        result.setResponseText("You have sent a request with deviceId: " + deviceId + "; Workflow count: " + all.size() + "; WorkflowStep count: " + allSteps.size());
 		result.setNetworkDevice(new NetworkDevice());
 
 		return result;

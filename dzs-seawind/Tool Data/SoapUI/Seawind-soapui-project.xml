@@ -739,7 +739,7 @@
          </gen:ForecastRequest>\r
       </gen:GetCityDeviceByZIP>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetCityDeviceByZIP"/></con:call><con:call id="b7ece547-7ced-4ce1-9154-867beccb5ebf" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.72.125.164:8080/soap-api/DeviceSoapService_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetCityDeviceByZIP"/><con:wsrmConfig version="1.2"/></con:call><con:call id="b7ece547-7ced-4ce1-9154-867beccb5ebf" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.72.125.164:8080/soap-api/DeviceSoapService_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <gen:GetCityDeviceByZIP>\r
@@ -757,7 +757,7 @@
          </gen:ForecastRequest>\r
       </gen:GetCityDeviceByZIP>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetCityDeviceByZIP"/></con:call><con:call id="36a6b7c8-4274-41fe-ac44-a6359ebd519c" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.72.125.164:8080/soap-api/DeviceSoapService_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetCityDeviceByZIP"/><con:wsrmConfig version="1.2"/></con:call><con:call id="36a6b7c8-4274-41fe-ac44-a6359ebd519c" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.72.125.164:8080/soap-api/DeviceSoapService_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <gen:GetCityDeviceByZIP>\r
@@ -853,7 +853,15 @@
          <gen:ZIP>?</gen:ZIP>\r
       </gen:GetDeviceInformation>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetDeviceInformation"/></con:call></con:operation><con:operation id="1d7bd203-69cc-4b32-a132-e2fd37c2fe79" isOneWay="false" action="http://www.dasanzhone.com/namespace/deviceservice/GetNetworkDeviceById" name="GetNetworkDeviceById" bindingOperationName="GetNetworkDeviceById" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d2dea1c2-0abd-43d6-ad8b-7643f386790f" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.72.125.164:8080/soap-api/DeviceSoapService_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetDeviceInformation"/></con:call></con:operation><con:operation id="1d7bd203-69cc-4b32-a132-e2fd37c2fe79" isOneWay="false" action="http://www.dasanzhone.com/namespace/deviceservice/GetNetworkDeviceById" name="GetNetworkDeviceById" bindingOperationName="GetNetworkDeviceById" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d2dea1c2-0abd-43d6-ad8b-7643f386790f" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.72.125.164:8080/soap-api/DeviceSoapService_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gen:GetNetworkDeviceById>\r
+         <!--Optional:-->\r
+         <gen:DeviceId>1000</gen:DeviceId>\r
+      </gen:GetNetworkDeviceById>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetNetworkDeviceById"/><con:wsrmConfig version="1.2"/></con:call><con:call id="00c9cdc3-bbc6-4277-84d0-c92b994904e1" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.72.125.164:8080/soap-api/DeviceSoapService_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <gen:GetNetworkDeviceById>\r
@@ -861,7 +869,7 @@
          <gen:DeviceId>?</gen:DeviceId>\r
       </gen:GetNetworkDeviceById>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetNetworkDeviceById"/></con:call><con:call id="00c9cdc3-bbc6-4277-84d0-c92b994904e1" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.72.125.164:8080/soap-api/DeviceSoapService_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetNetworkDeviceById"/><con:wsrmConfig version="1.2"/></con:call><con:call id="1a4e67ad-01b3-439f-8432-244d855f99ea" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.72.125.164:8080/soap-api/DeviceSoapService_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <gen:GetNetworkDeviceById>\r
@@ -869,15 +877,7 @@
          <gen:DeviceId>?</gen:DeviceId>\r
       </gen:GetNetworkDeviceById>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetNetworkDeviceById"/></con:call><con:call id="1a4e67ad-01b3-439f-8432-244d855f99ea" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.72.125.164:8080/soap-api/DeviceSoapService_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">\r
-   <soapenv:Header/>\r
-   <soapenv:Body>\r
-      <gen:GetNetworkDeviceById>\r
-         <!--Optional:-->\r
-         <gen:DeviceId>?</gen:DeviceId>\r
-      </gen:GetNetworkDeviceById>\r
-   </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetNetworkDeviceById"/></con:call></con:operation></con:interface><con:mockService id="2891981a-494d-4e2f-b0c0-c8e689227758" port="8088" path="/mockDeviceService" host="DESKTOP-OB29B68" name="DeviceService MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="ActivateDeactivateOntId" id="1414dab3-9d94-46ef-b9cc-5af6a85e6279" interface="DeviceService" operation="ActivateDeactivateOntId"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="c2ccb94e-6888-4860-812a-057fe2e9004f" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.dasanzhone.com/namespace/deviceservice/GetNetworkDeviceById"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="2891981a-494d-4e2f-b0c0-c8e689227758" port="8088" path="/mockDeviceService" host="DESKTOP-OB29B68" name="DeviceService MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="ActivateDeactivateOntId" id="1414dab3-9d94-46ef-b9cc-5af6a85e6279" interface="DeviceService" operation="ActivateDeactivateOntId"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="c2ccb94e-6888-4860-812a-057fe2e9004f" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.dasanzhone.com/namespace/deviceservice/general">
    <soapenv:Header/>
    <soapenv:Body>
       <gen:ActivateDeactivateOntIdResponse>

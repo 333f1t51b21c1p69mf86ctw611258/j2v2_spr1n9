@@ -1,3 +1,10 @@
+enum WorkflowCode {
+    DECLARE_ONT_ID,
+    ACTIVATE_DEACTIVATE_ONT_ID,
+    DECLARE_PPPTP_CARD,
+    CONFIGURE_UNI_LAN_PORTS
+}
+
 /**
  * PropertyName enum.
  */
@@ -33,6 +40,7 @@ enum PropertyType {
  * Workflow entity.
  */
 entity Workflow {
+    workflowCode WorkflowCode required,
 	workflowName String maxlength(255) required,
     description String maxlength(1023),
     createdBy Long required,
